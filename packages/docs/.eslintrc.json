@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@bsafer-system/eslint-config"
+  ]
+}

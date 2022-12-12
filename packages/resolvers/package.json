@@ -1,0 +1,23 @@
+{
+  "name": "@bsafer-system/resolvers",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch && css",
+    "css": "cp ./src/tailwindcss/main.css ./dist",
+    "build": "tsup",
+    "lint": "eslint src/**/*.ts* --fix"
+  },
+  "dependencies": {
+    "@bsafer-system/tokens": "*"
+  },
+  "devDependencies": {
+    "@bsafer-system/ts-config": "*",
+    "tailwindcss": "^3.2.4",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  }
+}

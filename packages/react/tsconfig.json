@@ -1,0 +1,6 @@
+{
+  "extends": "@bsafer-system/ts-config/react.json",
+  "include": [
+    "src"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build"
+  },
+  "dependencies": {
+    "turbo": "^1.6.3"
+  }
+}
