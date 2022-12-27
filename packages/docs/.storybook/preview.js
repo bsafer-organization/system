@@ -1,3 +1,4 @@
+import '@bsafer-system/resolvers/styles/tailwindcss.css'
 import { themes } from '@storybook/theming'
 
 export const parameters = {

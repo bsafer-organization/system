@@ -1,5 +1,6 @@
 import { Button, ButtonProps } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Button',
@@ -20,14 +21,20 @@ export default {
   argTypes: {
     color: {
       control: {
-        // options: ['primary', 'secondary', 'default'],
+        options: ['default', 'primary', 'secondary'] as PropsToArray<
+          ButtonProps['color']
+        >,
         type: 'inline-radio'
       }
     },
     variant: {
+      options: ['text', 'contained', 'outlined'] as PropsToArray<
+        ButtonProps['variant']
+      >,
       control: { type: 'inline-radio' }
     },
     size: {
+      options: ['sm', 'md', 'lg'] as PropsToArray<ButtonProps['size']>,
       control: { type: 'inline-radio' }
     },
     onClick: { action: 'button-clicked' }

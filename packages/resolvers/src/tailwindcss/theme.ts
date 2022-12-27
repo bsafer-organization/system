@@ -21,7 +21,7 @@ const theme = {
 
 const content = [
   './src/**/*.{ts,js,tsx,tsx}',
-  'node_modules/@bsafer-system/react/**/*.{ts,js,tsx,tsx}'
+  'node_modules/@bsafer-system/react/**/*.{ts,js,tsx,tsx}',
 ] as const
 
 export const defaultTailwindTheme = {

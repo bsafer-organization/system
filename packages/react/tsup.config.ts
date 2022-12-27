@@ -6,5 +6,5 @@ export default defineConfig({
   external: ['react'],
   format: ['esm', 'cjs'],
   splitting: false,
-  onSuccess: 'npx tailwindcss -o ./dist/main.css --minify'
+  onSuccess: 'npx tailwindcss -o ./dist/index.css --minify'
 })

@@ -1,6 +1,10 @@
 {
   "name": "@bsafer-system/ts-config",
   "version": "1.0.0",
-  "private": true,
-  "license": "UNLISENCED"
+  "exports": {
+    ".": "./base.json",
+    "./base.json": "./base.json",
+    "./react.json": "./react.json"
+  },
+  "license": "MIT"
 }
