@@ -18,7 +18,7 @@ module.exports = {
   },
   viteFinal: (config, {configType}) => {
     if(configType === 'PRODUCTION') {
-      config.base = '/system-monorepo'
+      config.base = '/system'
     }
 
     return config
