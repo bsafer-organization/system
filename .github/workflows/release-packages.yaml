@@ -1,8 +1,9 @@
 name: Release Packages
 
 on:
-  tags:
-    - v*
+  push:
+    tags:
+      - v*
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
