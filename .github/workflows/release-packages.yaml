@@ -24,9 +24,6 @@ jobs:
       
       - name: Install Dependences
         run: npm ci
-
-      - name: Build
-        run: npm run build
       
       - name: Publish to NPM
         id: changesets
