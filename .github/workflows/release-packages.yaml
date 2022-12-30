@@ -3,7 +3,7 @@ name: Release Packages
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+-release'
+      - 'build-releases-[0-9]+'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
