@@ -1,0 +1,38 @@
+name: Deploy Storybook in GhPages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v3
+
+      - name: Setup NodeJs
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      
+      - name: Install dependences
+      - run: npm ci
+
+      - name: Build
+      - run: npm run build
+        env:
+          TURBO_TOKEN: ${{secrets.VERCEL_SECRET}}
+          TURBO_TEAM: bsafer-ti
+      
+      - name: Deploy Storybook
+        working-directory: ./packages/docs
+        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+        
