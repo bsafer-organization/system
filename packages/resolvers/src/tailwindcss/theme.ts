@@ -1,5 +1,5 @@
 
-import { colors, fontFamily, fontSizes, fontWeights, lineHeights } from '@bsafer-system/tokens'
+import { colors, elevations, fontFamily, fontSizes, fontWeights, lineHeights } from '@bsafer-system/tokens'
 
 const fontSize = {
   xs: [fontSizes.xs, lineHeights.lg],
@@ -17,6 +17,7 @@ const theme = {
   fontFamily,
   fontSize,
   fontWeight: fontWeights,
+  boxShadow: elevations
 }
 
 const content = [
