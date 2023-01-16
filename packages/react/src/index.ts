@@ -7,4 +7,5 @@ export * from './core/Heading'
 export * from './core/Input'
 export * from './core/Text'
 export * from './core/Tooltip'
+export * from './core/Select'
 

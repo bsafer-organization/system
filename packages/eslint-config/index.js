@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [ '@rocketseat/eslint-config/react' ],
+  extends: ['@rocketseat/eslint-config/react'],
   rules: {
     "no-unused-vars": "warn",
     "prettier/prettier": [
@@ -7,7 +7,8 @@ module.exports = {
       {
         "trailingComma": "none",
         "singleQuote": true,
-        "semi": false
+        "semi": false,
+        "endOfLine": "auto"
       }
     ]
   }
