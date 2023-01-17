@@ -14,7 +14,6 @@
     "release": "turbo run build --scope=!docs && changeset publish"
   },
   "dependencies": {
-    "react-select": "^5.7.0",
     "turbo": "^1.6.3"
   },
   "devDependencies": {
