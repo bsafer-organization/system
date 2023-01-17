@@ -40,7 +40,7 @@ export interface ActionBadgeProps
    * Icon placed after the children. When an icon is not passed as a JSX element, the "CloseCircle" icon is the default
    * @default 'CloseCircle'
    */
-  icon?: React.ReactNode
+  icon?: JSX.Element
 
   /**
    * Disable all component

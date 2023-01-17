@@ -1,4 +1,4 @@
-import { w, W } from 'windstitch'
+import { w } from 'windstitch'
 import { StylesConfig } from 'react-select'
 
 export const SelectStyle = {

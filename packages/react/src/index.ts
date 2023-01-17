@@ -13,5 +13,6 @@ export * from './core/Input'
 export * from './core/IconButton'
 export * from './core/Text'
 export * from './core/Tooltip'
+export * from './core/RadioButton'
 export * from './core/Select'
 

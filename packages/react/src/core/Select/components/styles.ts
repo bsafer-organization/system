@@ -1,5 +1,4 @@
-import { w, W } from 'windstitch'
-import { StylesConfig } from 'react-select'
+import { w } from 'windstitch'
 import * as Tooltip from '@radix-ui/react-tooltip'
 
 export const TooltipStyle = {

@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { ActionBadge, ActionBadgeProps } from '@bsafer-system/react'
 
 export default {
@@ -18,6 +17,9 @@ export default {
     avatarUrl: '',
     disabled: false,
     icon: undefined
+  },
+  argTypes: {
+    onActionClick: { action: 'onActionClick' }
   },
   decorators: [
     (Story) => {
@@ -51,6 +53,13 @@ export const Colors = () => {
       <ActionBadge color="red">Red</ActionBadge>
       <ActionBadge color="yellow">Yellow</ActionBadge>
       <ActionBadge color="black">Black</ActionBadge>
+    </>
+  )
+}
+
+export const Disabled = () => {
+  return (
+    <>
       <ActionBadge disabled={true}>Disabled</ActionBadge>
     </>
   )

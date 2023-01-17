@@ -27,14 +27,18 @@ export default {
     icon: <InfoCircle color="#EF1B1F" size={32} />,
     successButtonText: 'Agora não',
     cancelButtonText: 'Sim, excluir',
-    onSuccessButtonClick: () => {
-      console.log('onSuccessButtonClick')
-    },
-    onCancelButtonClick: () => {
-      console.log('onCancelButtonClick')
-    },
+    // onSuccessButtonClick: () => {
+    //   console.log('onSuccessButtonClick')
+    // },
+    // onCancelButtonClick: () => {
+    //   console.log('onCancelButtonClick')
+    // },
     isActionDialog: true,
     overlayBackdrop: true
+  },
+  argTypes: {
+    onSuccessButtonClick: { action: 'onSuccessButtonClick' },
+    onCancelButtonClick: { action: 'onCancelButtonClick' }
   },
   decorators: [
     (Story) => {

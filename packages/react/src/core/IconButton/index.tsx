@@ -36,7 +36,7 @@ export interface IconButtonProps
   /**
    * Icon of the button.
    */
-  children: React.ReactNode
+  children: JSX.Element
 
   /**
    * Disable all component

@@ -1,6 +1,6 @@
-import { w, W } from 'windstitch'
+import { w } from 'windstitch'
 import { StylesConfig } from 'react-select'
-import { GroupedOption, InputData } from '.'
+import { GroupedOption, InputData } from './index'
 import React from 'react'
 
 export const GeneralStyle = {

@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { IconButton, IconButtonProps } from '@bsafer-system/react'
 import { TickCircle } from 'iconsax-react'
 
@@ -19,7 +18,9 @@ export default {
     size: 'md',
     disabled: false
   },
-
+  argTypes: {
+    onClick: { action: 'onClick' }
+  },
   decorators: [
     (Story) => {
       return (
