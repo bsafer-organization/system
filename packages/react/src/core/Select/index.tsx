@@ -93,7 +93,6 @@ export const Select = ({
   onValueChange
 }: SelectProps) => {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
-  const selectRef = React.useRef(null)
   return (
     <SelectStyle.Container>
       <SelectStyle.HeaderContainer>
@@ -105,7 +104,6 @@ export const Select = ({
         )}
       </SelectStyle.HeaderContainer>
       <ReactSelect
-        ref={selectRef}
         isClearable={multiple}
         hideSelectedOptions={false}
         {...(multiple ? { isMulti: true } : {})}
@@ -123,7 +121,6 @@ export const Select = ({
         onMenuClose={() => setMenuIsOpen(false)}
         inputId="select__input"
         components={{
-          // ClearIndicator,
           ClearIndicator: (props) => (
             <ClearIndicator
               props={props}
