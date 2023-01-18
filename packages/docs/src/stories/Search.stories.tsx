@@ -7,7 +7,7 @@ export default {
     parameters: {
         design: {
             type: 'figma',
-            url: ''
+            url: 'https://www.figma.com/file/FLeQZ1N2SuYH73TGd3Pcjo/Core-Components?node-id=451%3A4970&t=l8i4wfeZdmrZqGV9-0'
         }
     },
     args: {
