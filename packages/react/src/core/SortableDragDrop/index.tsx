@@ -45,14 +45,40 @@ export type SortableSelectProps = {
    * To hide this icon, just set startIcon to`false`
    */
   startIcon?: React.ReactNode | boolean
+
+  /**
+   * Select options
+   * @example [{label: 'Example', value: 'example', [key: string]: any}]
+   * @required
+   */
   options: InputData[]
+
+  /**
+   * Selected options from `options`
+   * @example [{id: '98j2e3-dj913um', sequence: 1, selectedOption: {label: 'Example', value: 'example', [key: string]: any}}]
+   */
   selectedOptions?: OutputData[]
+
+  /**
+   * Form submission
+   */
   submittedForm?: boolean
+
+  /**
+   * Disable component
+   * @default false
+   */
   isDisabled?: boolean
+
+  /**
+   * @param optionsGroupedByActions selected option
+   */
   onSelectChange: (optionsGroupedByActions: GroupByActions) => void
+
+  /**
+   * On error action
+   */
   onError?: () => void
-  closeMenuOnScroll?: boolean
-  closeMenuOnSelect?: boolean
 }
 
 interface SelectedOption {
@@ -81,9 +107,7 @@ export const SortableDragDropSelect = ({
   submittedForm,
   isDisabled,
   onSelectChange,
-  onError,
-  closeMenuOnScroll,
-  closeMenuOnSelect
+  onError
 }: SortableSelectProps) => {
   const {
     control,
@@ -337,8 +361,6 @@ export const SortableDragDropSelect = ({
                                       data-testid="selectEnergySequence"
                                       isClearable={false}
                                       hideSelectedOptions={false}
-                                      closeMenuOnScroll={closeMenuOnScroll}
-                                      closeMenuOnSelect={closeMenuOnSelect}
                                       isDisabled={isDisabled}
                                       value={
                                         field.option?.selectedOption.value

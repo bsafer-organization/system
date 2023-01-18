@@ -4,6 +4,7 @@
 export * from './core/ActionBadge'
 export * from './core/Avatar'
 export * from './core/Button'
+export * from './core/Box'
 export * from './core/Badge'
 export * from './core/Dialog'
 export type { DialogProps } from './core/Dialog/types'

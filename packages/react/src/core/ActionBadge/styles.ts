@@ -26,7 +26,7 @@ export const ActionBadgeStyle = {
           black: 'bg-grey-100 text-grey-900'
         },
         disabled: (disabled: boolean) =>
-          disabled ? 'bg-grey-100 text-grey-600' : ''
+          disabled ? '!bg-grey-100 !text-grey-600' : ''
       }
     }
   ),
@@ -46,9 +46,32 @@ export const ActionBadgeStyle = {
   IconContainer: w.button(
     `
       hover:cursor-pointer
-      disabled:cursor-not-allowed  
+      
+      transition-colors rounded-full
 
-    `
+    `,
+    {
+      variants: {
+        color: {
+          green:
+            'hover:bg-assistant-green-main hover:text-assistant-green-light',
+          blue: 'hover:text-assistant-blue-light hover:bg-assistant-blue-main',
+          red: 'hover:text-assistant-red-light hover:bg-assistant-red-main',
+          yellow:
+            'hover:text-assistant-yellow-light hover:bg-assistant-yellow-main',
+          black: 'hover:text-grey-100 hover:bg-grey-900'
+          // green: 'text-assistant-green-light bg-assistant-green-main/[.4]',
+          // blue: 'text-assistant-blue-light bg-assistant-blue-main/[.40]',
+          // red: 'text-assistant-red-light bg-assistant-red-main/[.40]',
+          // yellow: 'text-assistant-yellow-light bg-assistant-yellow-main/[.40]',
+          // black: 'text-grey-100 bg-grey-900/[.40]'
+        },
+        disabled: (disabled: boolean) =>
+          disabled
+            ? '!cursor-not-allowed hover:!text-grey-600 hover:!bg-transparent'
+            : ''
+      }
+    }
   ),
   Avatar: {
     Container: w.span(``, {

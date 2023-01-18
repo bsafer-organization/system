@@ -64,7 +64,7 @@ export interface SelectProps {
    */
   error?: string
   /**
-   * ACtion to do on clear select value
+   * Action to do on clear select value
    */
   onClearValue?: () => Promise<void>
   /**

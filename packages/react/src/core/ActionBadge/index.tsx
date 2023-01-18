@@ -102,6 +102,7 @@ export const ActionBadge = ({
         )}
         {children}
         <ActionBadgeStyle.IconContainer
+          color={color}
           disabled={disabled}
           onClick={onActionClick}
         >
