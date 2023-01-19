@@ -33,6 +33,15 @@ export const ClearIndicator = ({
             changeMenuState(true)
           }
           event.preventDefault()
+        },
+        onKeyUp: (key) => {
+          if (key.code === 'Space' || key.code === 'Enter') {
+            props.clearValue()
+            inputElement?.focus()
+            if (changeMenuState) {
+              changeMenuState(true)
+            }
+          }
         }
       }}
     >

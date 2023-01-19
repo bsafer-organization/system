@@ -48,6 +48,11 @@ export const IconButtonContainer = w.button(
           text-black hover:text-secondary-main
           bg-secondary-main hover:bg-black hover:border-black
           border-secondary-main border
+
+          focus:text-secondary-main
+          focus:bg-black
+          focus:border-black
+
           transition-colors
         `
       },
@@ -58,6 +63,11 @@ export const IconButtonContainer = w.button(
         text-secondary-main hover:text-assistant-yellow-main
         border-secondary-main border
         hover:border-assistant-yellow-main hover:bg-assistant-yellow-light
+
+        focus:text-assistant-yellow-main
+        focus:border-assistant-yellow-main
+        focus:bg-assistant-yellow-light
+
         transition-colors
         `
       },
@@ -68,6 +78,10 @@ export const IconButtonContainer = w.button(
         text-black hover:text-black
         border-transparent border
         hover:bg-assistant-yellow-light
+
+        focus:text-black
+        focus:bg-assistant-yellow-light
+
         transition-colors
         `
       },
@@ -78,7 +92,12 @@ export const IconButtonContainer = w.button(
         text-black hover:text-assistant-green-main
         hover:bg-black bg-assistant-green-main
         border-assistant-green-main border hover:border-black
-          transition-colors
+
+        focus:text-assistant-green-main
+        focus:bg-black
+        focus:border-black
+
+        transition-colors
         `
       },
       {
@@ -88,7 +107,12 @@ export const IconButtonContainer = w.button(
         text-assistant-green-main hover:text-assistant-green-dark
         hover:bg-assistant-green-light bg-transparent
         border-assistant-green-main border hover:border-assistant-green-dark
-          transition-colors
+
+        focus:text-assistant-green-dark
+        focus:bg-assistant-green-light
+        focus:border-assistant-green-dark
+        
+        transition-colors
         `
       },
       {
@@ -98,7 +122,10 @@ export const IconButtonContainer = w.button(
         text-assistant-green-main
         hover:bg-assistant-green-light bg-transparent
         border-transparent border
-          transition-colors
+
+        focus:bg-assistant-green-light
+
+        transition-colors
         `
       },
       {
@@ -108,6 +135,10 @@ export const IconButtonContainer = w.button(
           text-white
           bg-grey-900 hover:bg-black 
           border-grey-900 border hover:border-black
+
+          focus:bg-black
+          focus:border-black
+
           transition-colors
         `
       },
@@ -118,6 +149,10 @@ export const IconButtonContainer = w.button(
           text-grey-900
           bg-transparent hover:bg-grey-200
           border-grey-900 border hover:border-black
+
+          focus:bg-grey-200
+          focus:border-black
+
           transition-colors
         `
       },
@@ -128,6 +163,9 @@ export const IconButtonContainer = w.button(
           text-grey-900
           bg-transparent hover:bg-grey-200
           border-transparent border
+
+          focus:bg-grey-200
+
           transition-colors
         `
       }

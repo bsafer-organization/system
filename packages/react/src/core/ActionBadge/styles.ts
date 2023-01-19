@@ -54,17 +54,12 @@ export const ActionBadgeStyle = {
       variants: {
         color: {
           green:
-            'hover:bg-assistant-green-main hover:text-assistant-green-light',
-          blue: 'hover:text-assistant-blue-light hover:bg-assistant-blue-main',
-          red: 'hover:text-assistant-red-light hover:bg-assistant-red-main',
+            'hover:bg-assistant-green-main/[.2] focus:bg-assistant-green-main/[.2]',
+          blue: 'hover:bg-assistant-blue-main/[.2] focus:bg-assistant-blue-main/[.2]',
+          red: 'hover:bg-assistant-red-main/[.2] focus:bg-assistant-red-main/[.2]',
           yellow:
-            'hover:text-assistant-yellow-light hover:bg-assistant-yellow-main',
-          black: 'hover:text-grey-100 hover:bg-grey-900'
-          // green: 'text-assistant-green-light bg-assistant-green-main/[.4]',
-          // blue: 'text-assistant-blue-light bg-assistant-blue-main/[.40]',
-          // red: 'text-assistant-red-light bg-assistant-red-main/[.40]',
-          // yellow: 'text-assistant-yellow-light bg-assistant-yellow-main/[.40]',
-          // black: 'text-grey-100 bg-grey-900/[.40]'
+            'hover:bg-assistant-yellow-main/[.2] focus:bg-assistant-yellow-main/[.2]',
+          black: 'hover:bg-grey-900/[.2] focus:bg-grey-900/[.2]'
         },
         disabled: (disabled: boolean) =>
           disabled

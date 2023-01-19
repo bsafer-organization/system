@@ -26,7 +26,10 @@ export default {
         value: 'mei'
       }
     ],
-    disabled: false
+    disabled: false,
+    onOptionChange: (value) => {
+      console.log(value)
+    }
   },
   argTypes: {
     onOptionChange: {

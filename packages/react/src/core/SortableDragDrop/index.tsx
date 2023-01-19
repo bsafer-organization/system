@@ -390,14 +390,26 @@ export const SortableDragDropSelect = ({
                               />
                             </GeneralStyle.DragSelectContainer>
                             {fields.length > 1 && !isDisabled && (
-                              <div
+                              <button
+                                type="button"
                                 style={{
                                   width: '2rem',
                                   display: 'flex',
                                   justifyContent: 'center',
-                                  alignItems: 'center'
+                                  alignItems: 'center',
+                                  padding: '0.25rem',
+                                  borderRadius: '8px'
                                 }}
-                                className="hover:cursor-pointer"
+                                className="hover:cursor-pointer focus:bg-[#DDE0E3]/[.5] hover:bg-[#DDE0E3]/[.5] transition-colors"
+                                onKeyUp={(key) => {
+                                  if (
+                                    (key.code === 'Space' ||
+                                      key.code === 'Enter') &&
+                                    !isDisabled
+                                  ) {
+                                    remove(index)
+                                  }
+                                }}
                               >
                                 <Trash
                                   data-testid="removeEnergySequenceButton"
@@ -408,7 +420,7 @@ export const SortableDragDropSelect = ({
                                     }
                                   }}
                                 />
-                              </div>
+                              </button>
                             )}
                           </GeneralStyle.Control>
                           {errors.selected?.[index] && (

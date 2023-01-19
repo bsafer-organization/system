@@ -49,6 +49,8 @@ export const RadioButtonStyle = {
       [&:has([data-state="checked"]):not([disabled])]:border-assistant-blue-main
 
       disabled:border-grey-200
+      
+      focus:!border-black
     `
   }),
   Indicator: w(RadioGroup.Indicator, {

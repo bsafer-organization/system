@@ -55,15 +55,17 @@ export const GeneralStyle = {
       justify-center
       items-center
       gap-2
+      p-2
 
-      rounded
+      rounded-lg
 
       text-assistant-red-main
       text-sm
       font-semibold
 
-      !hover:bg-[#E9EBED]
-      !transition-colors
+      hover:bg-assistant-red-light/[.4]
+      focus:bg-assistant-red-light/[.4]
+      transition-colors
 
       disabled:cursor-not-allowed
       disabled:text-grey-600
