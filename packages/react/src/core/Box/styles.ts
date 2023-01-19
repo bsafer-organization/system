@@ -1,4 +1,5 @@
 import { w, W } from 'windstitch'
+import { PaddingProps, PaddingAll, PaddingOnly } from './index'
 
 export const BoxContainer = w.div(
   `
@@ -6,14 +7,33 @@ export const BoxContainer = w.div(
   `,
   {
     variants: {
-      size: {
-        sm: 'p-1',
-        md: 'p-2',
-        lg: 'p-3',
-        xl: 'p-4',
-        '2xl': 'p-5',
-        '3xl': 'p-6',
-        '4xl': 'p-8'
+      padding: (padding: PaddingProps) => {
+        if ((<PaddingAll>padding).all) {
+          const value = (<PaddingAll>padding).all
+
+          return value.slice(0, 2) === 'p-' ? value : `p-[${value}]`
+        } else {
+          console.log((<PaddingOnly>padding).only.top)
+
+          const top =
+            (<PaddingOnly>padding).only.top.slice(0, 3) === 'pt-'
+              ? (<PaddingOnly>padding).only.top
+              : `pt-[${(<PaddingOnly>padding).only.top}]`
+          const right =
+            (<PaddingOnly>padding).only.right.slice(0, 3) === 'pr-'
+              ? (<PaddingOnly>padding).only.right
+              : `pr-[${(<PaddingOnly>padding).only.right}]`
+          const bottom =
+            (<PaddingOnly>padding).only.bottom.slice(0, 3) === 'pb-'
+              ? (<PaddingOnly>padding).only.bottom
+              : `pb-[${(<PaddingOnly>padding).only.bottom}]`
+          const left =
+            (<PaddingOnly>padding).only.left.slice(0, 3) === 'pl-'
+              ? (<PaddingOnly>padding).only.left
+              : `pl-[${(<PaddingOnly>padding).only.left}]`
+
+          return `${top} ${right} ${bottom} ${left}`
+        }
       },
       backgroundColor: (color?: string) => {
         if (color) {
