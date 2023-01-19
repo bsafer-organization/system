@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+export * from './border-radius'
 export * from './colors'
 export * from './elevations'
 export * from './font-family'
