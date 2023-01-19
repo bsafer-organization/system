@@ -1,4 +1,4 @@
-# @bsafer-system/react
+# @bsafer-system/eslint-config
 
 ## 1.1.0
 
@@ -6,9 +6,3 @@
 
 - - Component migration from other repository `system` to monorepo
   - Increase tokens: border-radius, elevations
-
-## 1.0.1
-
-### Patch Changes
-
-- Added files config in package.json
