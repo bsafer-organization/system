@@ -12,7 +12,7 @@ module.exports = {
       }
     ]
   },
-  "globals": {
-    "JSX": "readonly"
+  globals: {
+    JSX: "readonly"
   }
 }
