@@ -1,5 +1,13 @@
 # @bsafer-system/resolvers
 
+## 1.2.1
+
+### Patch Changes
+
+- - Fix dependences
+- Updated dependencies
+  - @bsafer-system/tokens@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

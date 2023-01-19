@@ -1,5 +1,11 @@
 # @bsafer-system/tokens
 
+## 1.2.1
+
+### Patch Changes
+
+- - Fix dependences
+
 ## 1.2.0
 
 ### Minor Changes
