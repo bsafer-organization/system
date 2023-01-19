@@ -1,5 +1,6 @@
 import { Avatar, AvatarProps } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Avatar',
@@ -9,7 +10,8 @@ export default {
   },
   argTypes: {
     size: {
-      control: 'inline-radio'
+      control: 'inline-radio',
+      options: ['sm', 'md', 'lg', 'xl'] as PropsToArray<AvatarProps['size']>
     }
   }
 } as Meta<AvatarProps>

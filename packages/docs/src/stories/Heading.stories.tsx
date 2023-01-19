@@ -1,5 +1,6 @@
 import { Heading, HeadingProps, Text } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Heading',
@@ -19,17 +20,27 @@ export default {
   argTypes: {
     as: {
       control: {
-        type: 'inline-radio'
+        type: 'inline-radio',
+        options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as PropsToArray<HeadingProps['as']>
       }
     },
     weight: {
       control: {
-        type: 'inline-radio'
+        type: 'inline-radio',
+        options: ['bold', 'black', 'regular'] as PropsToArray<HeadingProps['weight']>
       }
     },
     color: {
       control: {
-        type: 'select'
+        type: 'select',
+        options: ['black', 'inherit', 'white', 'background', 'transparent',
+        'primary-main', 'secondary-main',
+        'assistant-blue-main', 'assistant-blue-light', 'assistant-blue-dark',
+        'assistant-green-main', 'assistant-green-light', 'assistant-green-dark',
+        'assistant-yellow-main', 'assistant-yellow-light', 'assistant-yellow-dark',
+        'assistant-red-main', 'assistant-red-light', 'assistant-red-dark',
+        'grey-900', 'grey-800', 'grey-700', 'grey-600', 'grey-500', 'grey-400',
+        'grey-300', 'grey-200', 'grey-100'] as PropsToArray<HeadingProps['color']>
       }
     }
   }

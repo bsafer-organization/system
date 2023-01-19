@@ -1,5 +1,6 @@
 import { Alerts, AlertProps } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Alerts',
@@ -16,7 +17,10 @@ export default {
     complement: 'Texto complementar sobre o feedback apresentado.'
   },
   argTypes: {
-    
+    feedback: {
+      control: 'inline-radio',
+      options: ['success', 'warning', 'error', 'info'] as PropsToArray<AlertProps['feedback']>
+    }    
   },
   decorators: [
     (Story) => {

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Text, TextProps } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Text',
@@ -22,22 +23,33 @@ export default {
   argTypes: {
     as: {
       control: {
-        type: 'select'
+        type: 'select',
+        options: ['span', 'strong', 'b', 'i', 'p'] as PropsToArray<TextProps['as']>
       }
     },
     weight: {
       control: {
-        type: 'inline-radio'
+        type: 'inline-radio',
+        options: ['bold', 'light', 'regular'] as PropsToArray<TextProps['weight']>
       }
     },
     size: {
       control: {
-        type: 'inline-radio'
+        type: 'inline-radio',
+        options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] as PropsToArray<TextProps['size']>
       }
     },
     color: {
       control: {
-        type: 'select'
+        type: 'select',
+        options: ['inherit', 'black', 'white', 'background', 'transparent',
+        'primary-main', 'secondary-main',
+        'assistant-blue-main', 'assistant-blue-light', 'assistant-blue-dark',
+        'assistant-green-main', 'assistant-green-light', 'assistant-green-dark',
+        'assistant-yellow-main', 'assistant-yellow-light', 'assistant-yellow-dark',
+        'assistant-red-main', 'assistant-red-light', 'assistant-red-dark',
+        'grey-900', 'grey-800', 'grey-700', 'grey-600', 'grey-500', 'grey-400',
+        'grey-300', 'grey-200', 'grey-100'] as PropsToArray<TextProps['color']>
       }
     }
   }
