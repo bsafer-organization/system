@@ -1,12 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import {
-  Box,
-  BoxProps,
-  PaddingProps,
-  PaddingAll,
-  PaddingOnly
-} from '@bsafer-system/react'
-import React from 'react'
+import { Box, BoxProps } from '@bsafer-system/react'
 
 export default {
   title: 'Core/Box',
@@ -35,94 +28,6 @@ export default {
 } as Meta<BoxProps>
 
 export const Playground: StoryObj<BoxProps> = {}
-
-type PaddingTypes = 'all' | 'only'
-
-export const Padding = () => {
-  const [paddingType, setPaddingType] = React.useState<PaddingTypes>('all')
-  const [padding, setPadding] = React.useState<PaddingProps>({
-    all: 'p-[10px]'
-  })
-
-  const [paddingAll, setPaddingAll] = React.useState<string>('p-5')
-
-  const [paddingTop, setPaddingTop] = React.useState<string>('p-5')
-  const [paddingRight, setPaddingRight] = React.useState<string>('p-5')
-  const [paddingBottom, setPaddingBottom] = React.useState<string>('p-5')
-  const [paddingLeft, setPaddingLeft] = React.useState<string>('p-5')
-
-  return (
-    <div className="flex flex-col justify-center items-center gap-5">
-      <select
-        onChange={(value) => {
-          setPaddingType(value.target.value as PaddingTypes)
-        }}
-      >
-        <option value="all">All</option>
-        <option value="only">Only</option>
-      </select>
-      {paddingType === 'all' && (
-        <span className="flex">
-          Padding:
-          <input
-            type="text"
-            onChange={(event) => setPaddingAll(event.target.value)}
-          />
-          <button
-            onClick={() =>
-              setPadding({
-                all: paddingAll
-              })
-            }
-          >
-            Apply
-          </button>
-        </span>
-      )}
-      {paddingType === 'only' && (
-        <span className="flex flex-col">
-          PaddingTop:
-          <input
-            type="text"
-            onChange={(event) => setPaddingTop(event.target.value)}
-          />
-          PaddingRight:
-          <input
-            type="text"
-            onChange={(event) => setPaddingRight(event.target.value)}
-          />
-          PaddingBottom:
-          <input
-            type="text"
-            onChange={(event) => setPaddingBottom(event.target.value)}
-          />
-          PaddingLeft:
-          <input
-            type="text"
-            onChange={(event) => setPaddingLeft(event.target.value)}
-          />
-          <button
-            onClick={() =>
-              setPadding({
-                only: {
-                  top: paddingTop,
-                  right: paddingRight,
-                  bottom: paddingBottom,
-                  left: paddingLeft
-                }
-              })
-            }
-          >
-            Apply
-          </button>
-        </span>
-      )}
-      <Box padding={padding} borderRadius="none">
-        Padding test
-      </Box>
-    </div>
-  )
-}
 
 export const BorderRadius = () => {
   return (
@@ -166,6 +71,3 @@ export const BorderRadius = () => {
     </div>
   )
 }
-
-// flex flex-col justify-center items-start gap-2 p-5 bg-black text-white rounded-none
-// flex flex-col justify-center items-start gap-2 p-[10px] bg-black text-white rounded-none
