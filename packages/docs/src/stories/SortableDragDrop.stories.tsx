@@ -75,9 +75,20 @@ export default {
   args: {
     options,
     selectedOptions: [],
-    isDisabled: false,
+    disabled: false,
     onSelectChange: (energyGroupByActions) => {
       console.log(energyGroupByActions)
+    }
+  },
+  argTypes: {
+    options: {
+      control: 'null'
+    },
+    selectedOptions: {
+      control: 'null'
+    },
+    disabled: {
+      control: 'boolean'
     }
   },
   decorators: [(Story) => <div className="w-96">{Story()}</div>]
@@ -94,7 +105,7 @@ export const Creation = () => {
         onSelectChange={(energyGroupByActions) => {
           console.log(energyGroupByActions)
         }}
-        isDisabled={false}
+        disabled={false}
       />
     </div>
   )
@@ -110,7 +121,7 @@ export const Edition = () => {
         onSelectChange={(energyGroupByActions) => {
           console.log(energyGroupByActions)
         }}
-        isDisabled={false}
+        disabled={false}
       />
     </div>
   )

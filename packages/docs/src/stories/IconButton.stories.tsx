@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { IconButton, IconButtonProps } from '@bsafer-system/react'
 import { TickCircle } from 'iconsax-react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/IconButton',
@@ -19,6 +20,28 @@ export default {
     disabled: false
   },
   argTypes: {
+    color: {
+      options: ['default', 'primary', 'secondary'] as PropsToArray<
+        IconButtonProps['color']
+      >,
+      control: 'radio'
+    },
+    variant: {
+      options: ['text', 'contained', 'outlined'] as PropsToArray<
+        IconButtonProps['variant']
+      >,
+      control: 'radio'
+    },
+    size: {
+      options: ['sm', 'md', 'lg'] as PropsToArray<IconButtonProps['size']>,
+      control: 'radio'
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    children: {
+      control: 'null'
+    },
     onClick: { action: 'onClick' }
   },
   decorators: [

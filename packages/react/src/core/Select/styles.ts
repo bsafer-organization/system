@@ -27,7 +27,7 @@ export const SelectStyle = {
     `
     font-regular text-grey-400 text-xs
     py-[.125rem] px-1
-    bg-grey-100 rounded
+    bg-grey-100 rounded-[0.25rem]
   `,
     {}
   ),

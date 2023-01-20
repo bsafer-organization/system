@@ -68,7 +68,7 @@ export type SortableSelectProps = {
    * Disable component
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 
   /**
    * @param optionsGroupedByActions selected option
@@ -105,7 +105,7 @@ export const SortableDragDropSelect = ({
   options,
   selectedOptions,
   submittedForm,
-  isDisabled,
+  disabled,
   onSelectChange,
   onError
 }: SortableSelectProps) => {
@@ -327,7 +327,7 @@ export const SortableDragDropSelect = ({
                             <GeneralStyle.DragSelectContainer>
                               <GeneralStyle.DragArea
                                 dragging={snapshot.isDragging}
-                                disabled={isDisabled}
+                                disabled={disabled}
                               >
                                 {startIcon ? (
                                   <span className="startIcon">
@@ -361,7 +361,7 @@ export const SortableDragDropSelect = ({
                                       data-testid="selectEnergySequence"
                                       isClearable={false}
                                       hideSelectedOptions={false}
-                                      isDisabled={isDisabled}
+                                      isDisabled={disabled}
                                       value={
                                         field.option?.selectedOption.value
                                           ? field.option?.selectedOption
@@ -380,7 +380,7 @@ export const SortableDragDropSelect = ({
                                         DropdownIndicator: (props) => (
                                           <DropdownIndicator
                                             props={props}
-                                            disabled={isDisabled}
+                                            disabled={disabled}
                                           />
                                         )
                                       }}
@@ -389,7 +389,7 @@ export const SortableDragDropSelect = ({
                                 }}
                               />
                             </GeneralStyle.DragSelectContainer>
-                            {fields.length > 1 && !isDisabled && (
+                            {fields.length > 1 && !disabled && (
                               <button
                                 type="button"
                                 style={{
@@ -405,7 +405,7 @@ export const SortableDragDropSelect = ({
                                   if (
                                     (key.code === 'Space' ||
                                       key.code === 'Enter') &&
-                                    !isDisabled
+                                    !disabled
                                   ) {
                                     remove(index)
                                   }
@@ -415,7 +415,7 @@ export const SortableDragDropSelect = ({
                                   data-testid="removeEnergySequenceButton"
                                   size={20}
                                   onClick={() => {
-                                    if (!isDisabled) {
+                                    if (!disabled) {
                                       remove(index)
                                     }
                                   }}
@@ -440,10 +440,10 @@ export const SortableDragDropSelect = ({
           </Droppable>
         </DragDropContext>
       </form>
-      {!isDisabled && (
+      {!disabled && (
         <GeneralStyle.Button
           data-testid="addEnergyButton"
-          disabled={isDisabled}
+          disabled={disabled}
           onClick={() => {
             append(emptyOption)
           }}

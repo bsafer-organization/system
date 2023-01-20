@@ -63,6 +63,13 @@ export const Colors = () => {
       <Badge color="red">Red</Badge>
       <Badge color="yellow">Yellow</Badge>
       <Badge color="black">Black</Badge>
+    </>
+  )
+}
+
+export const Disabled = () => {
+  return (
+    <>
       <Badge disabled={true}>Disabled</Badge>
     </>
   )
