@@ -36,6 +36,17 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
    * @default 'md'
    */
   size?: ButtonContainerProps['size']
+
+  /**
+   * Icon placed after the children of the input.
+   */
+  startIcon?: JSX.Element
+  /**
+   * Icon placed before the children of the input.
+   */
+  endIcon?: JSX.Element
+
+  onClick?: () => void
 }
 
 /**
@@ -48,11 +59,28 @@ export const Button = ({
   color = 'primary',
   variant = 'contained',
   size = 'md',
+  startIcon,
+  endIcon,
+  onClick,
   ...props
 }: ButtonProps) => {
   return (
-    <ButtonContainer size={size} variant={variant} color={color} {...props}>
+    <ButtonContainer
+      onClick={onClick}
+      size={size}
+      variant={variant}
+      color={color}
+      {...props}
+    >
+      {startIcon && (
+        <span className="flex justify-center items-center">{startIcon}</span>
+      )}
       {children}
+      {endIcon && (
+        <span className="w-4 h-4 flex justify-center items-center">
+          {endIcon}
+        </span>
+      )}
     </ButtonContainer>
   )
 }

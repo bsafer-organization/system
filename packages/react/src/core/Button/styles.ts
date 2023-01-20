@@ -6,6 +6,9 @@ export const ButtonContainer = w.button(
 
     disabled:cursor-not-allowed
     disabled:text-grey-600
+
+    flex justify-center items-center
+    gap-2
   `,
   {
     defaultVariants: {
@@ -17,7 +20,7 @@ export const ButtonContainer = w.button(
       size: {
         sm: 'px-3 py-1 text-xs',
         md: 'px-4 py-2 text-sm',
-        lg: 'px-6 py-3 text-md'
+        lg: 'px-6 py-3 text-base'
       },
       variant: {
         contained: `
@@ -48,6 +51,7 @@ export const ButtonContainer = w.button(
           text-black hover:text-secondary-main
           bg-secondary-main hover:bg-black hover:border-black
           border-secondary-main border
+
           transition-colors
         `
       },
@@ -58,6 +62,7 @@ export const ButtonContainer = w.button(
         text-secondary-main hover:text-assistant-yellow-main
         border-secondary-main border
         hover:border-assistant-yellow-main hover:bg-assistant-yellow-light
+        
         transition-colors
         `
       },

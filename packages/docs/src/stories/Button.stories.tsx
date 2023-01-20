@@ -1,6 +1,6 @@
-import { Button, ButtonProps } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
-import { PropsToArray } from '../helpers/propsToArray'
+import { TickCircle } from 'iconsax-react'
+import { Button, ButtonProps } from '@bsafer-system/react'
 
 export default {
   title: 'Core/Button',
@@ -16,33 +16,15 @@ export default {
     color: 'primary',
     variant: 'contained',
     size: 'md',
-    disabled: false
-  },
-  argTypes: {
-    color: {
-      control: {
-        options: ['default', 'primary', 'secondary'] as PropsToArray<
-          ButtonProps['color']
-        >,
-        type: 'inline-radio'
-      }
-    },
-    variant: {
-      options: ['text', 'contained', 'outlined'] as PropsToArray<
-        ButtonProps['variant']
-      >,
-      control: { type: 'inline-radio' }
-    },
-    size: {
-      options: ['sm', 'md', 'lg'] as PropsToArray<ButtonProps['size']>,
-      control: { type: 'inline-radio' }
-    },
-    onClick: { action: 'button-clicked' }
+    disabled: false,
+    onClick: () => {
+      console.log('CLICK')
+    }
   },
   decorators: [
     (Story) => {
       return (
-        <div className="flex flex-col flex-wrap justify-center items-center gap-10 max-w-2xl my-0 mx-auto">
+        <div className="flex flex-col justify-center items-center gap-10">
           {Story()}
         </div>
       )
@@ -50,14 +32,7 @@ export default {
   ]
 } as Meta<ButtonProps>
 
-export const Playground: StoryObj<ButtonProps> = {
-  args: {
-    children: 'Botão padrão',
-    color: 'primary',
-    variant: 'contained',
-    size: 'md'
-  }
-}
+export const Playground: StoryObj<ButtonProps> = {}
 
 export const Sizes = () => {
   return (
@@ -110,5 +85,22 @@ export const Colors = () => {
         Default Button
       </Button>
     </div>
+  )
+}
+
+export const Icons = () => {
+  return (
+    <>
+      <Button
+        variant="contained"
+        size="lg"
+        startIcon={<TickCircle size={16} />}
+      >
+        Start icon
+      </Button>
+      <Button variant="contained" size="lg" endIcon={<TickCircle size={16} />}>
+        End icon
+      </Button>
+    </>
   )
 }
