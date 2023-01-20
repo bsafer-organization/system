@@ -3,7 +3,7 @@ import { PaddingProps, PaddingAll, PaddingOnly } from './index'
 
 export const BoxContainer = w.div(
   `
-    flex flex-col justify-center items-start gap-2
+    flex justify-center gap-2 overflow-hidden
   `,
   {
     variants: {
@@ -13,26 +13,41 @@ export const BoxContainer = w.div(
 
           return value.slice(0, 2) === 'p-' ? value : `p-[${value}]`
         } else {
-          console.log((<PaddingOnly>padding).only.top)
+          const paddingOnly = <PaddingOnly>padding
 
-          const top =
-            (<PaddingOnly>padding).only.top.slice(0, 3) === 'pt-'
-              ? (<PaddingOnly>padding).only.top
-              : `pt-[${(<PaddingOnly>padding).only.top}]`
-          const right =
-            (<PaddingOnly>padding).only.right.slice(0, 3) === 'pr-'
-              ? (<PaddingOnly>padding).only.right
-              : `pr-[${(<PaddingOnly>padding).only.right}]`
-          const bottom =
-            (<PaddingOnly>padding).only.bottom.slice(0, 3) === 'pb-'
-              ? (<PaddingOnly>padding).only.bottom
-              : `pb-[${(<PaddingOnly>padding).only.bottom}]`
-          const left =
-            (<PaddingOnly>padding).only.left.slice(0, 3) === 'pl-'
-              ? (<PaddingOnly>padding).only.left
-              : `pl-[${(<PaddingOnly>padding).only.left}]`
+          let paddingTop: string = ''
+          let paddingRight: string = ''
+          let paddingBottom: string = ''
+          let paddingLeft: string = ''
+          if (paddingOnly.only.top) {
+            paddingTop =
+              paddingOnly.only.top.slice(0, 3) === 'pt-'
+                ? paddingOnly.only.top
+                : `pt-[${paddingOnly.only.top}]`
+          }
 
-          return `${top} ${right} ${bottom} ${left}`
+          if (paddingOnly.only.right) {
+            paddingRight =
+              paddingOnly.only.right.slice(0, 3) === 'pr-'
+                ? paddingOnly.only.right
+                : `pr-[${paddingOnly.only.right}]`
+          }
+
+          if (paddingOnly.only.bottom) {
+            paddingBottom =
+              paddingOnly.only.bottom.slice(0, 3) === 'pb-'
+                ? paddingOnly.only.bottom
+                : `pb-[${paddingOnly.only.bottom}]`
+          }
+
+          if (paddingOnly.only.left) {
+            paddingLeft =
+              paddingOnly.only.left.slice(0, 3) === 'pl-'
+                ? paddingOnly.only.left
+                : `pl-[${paddingOnly.only.left}]`
+          }
+
+          return `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`
         }
       },
       backgroundColor: (color?: string) => {
@@ -60,13 +75,18 @@ export const BoxContainer = w.div(
       borderRadius: {
         none: 'rounded-none',
         sm: 'rounded-sm',
-        md: 'rounded',
+        md: 'rounded-[0.25rem]',
         lg: 'rounded-md',
         xl: 'rounded-lg',
         '2xl': 'rounded-xl',
         '3xl': 'rounded-2xl',
         '4xl': 'rounded-3xl',
         full: 'rounded-full'
+      },
+      horizontalAlignment: {
+        left: 'items-start',
+        center: 'items-center',
+        right: 'items-end'
       }
     }
   }

@@ -7,10 +7,10 @@ export interface PaddingAll {
 
 export interface PaddingOnly {
   only: {
-    top: string
-    right: string
-    bottom: string
-    left: string
+    top?: string
+    right?: string
+    bottom?: string
+    left?: string
   }
 }
 
@@ -32,13 +32,13 @@ export interface BoxProps {
 
   /**
    * Box background color
-   * @default 'bg-black'
+   * @default "bg-black"
    */
   backgroundColor?: string
 
   /**
    * Font color
-   * @default 'text-white'
+   * @default "text-white"
    */
   fontColor?: string
 
@@ -47,6 +47,12 @@ export interface BoxProps {
    * @default "md"
    */
   borderRadius?: BoxStyleProps['borderRadius']
+
+  /**
+   * Content horizontal alignment
+   * @default "center"
+   */
+  horizontalAlignment?: BoxStyleProps['horizontalAlignment']
 }
 
 export const Box = ({
@@ -54,16 +60,20 @@ export const Box = ({
   padding = { all: 'p-2' },
   backgroundColor,
   fontColor,
-  borderRadius = 'md'
+  borderRadius = 'md',
+  horizontalAlignment = 'center'
 }: BoxProps) => {
   return (
     <BoxContainer
+      horizontalAlignment={horizontalAlignment}
       padding={padding}
       backgroundColor={backgroundColor}
       fontColor={fontColor}
       borderRadius={borderRadius}
     >
-      {children}
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap">
+        {children}
+      </span>
     </BoxContainer>
   )
 }

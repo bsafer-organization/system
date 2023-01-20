@@ -12,9 +12,20 @@ export default {
   },
   args: {
     children: <span>Box</span>,
-    backgroundColor: 'bg-[red]',
-    fontColor: 'text-[blue]',
+    backgroundColor: 'bg-[black]',
+    fontColor: 'text-[white]',
     padding: { all: 'p-5' }
+  },
+  argTypes: {
+    children: {
+      control: 'text'
+    },
+    backgroundColor: {
+      control: 'text'
+    },
+    fontColor: {
+      control: 'text'
+    }
   },
   decorators: [
     (Story) => {
@@ -67,6 +78,48 @@ export const BorderRadius = () => {
       <Box padding={{ all: 'p-5' }} borderRadius="full">
         full
         <br /> border-radius: 9999px
+      </Box>
+    </div>
+  )
+}
+
+export const Padding = () => {
+  return (
+    <div className="grid grid-cols-3 justify-center items-center gap-10 w-full">
+      <Box
+        padding={{
+          only: { top: 'pt-5' }
+        }}
+        borderRadius="md"
+      >
+        PaddingTop
+      </Box>
+      <Box
+        padding={{
+          only: { right: 'pr-5' }
+        }}
+        borderRadius="md"
+      >
+        PaddingRight
+      </Box>
+      <Box
+        padding={{
+          only: { bottom: 'pb-5' }
+        }}
+        borderRadius="md"
+      >
+        PaddingBottom
+      </Box>
+      <Box
+        padding={{
+          only: { left: 'pl-5' }
+        }}
+        borderRadius="md"
+      >
+        PaddingLeft
+      </Box>
+      <Box padding={{ all: 'p-5' }} borderRadius="md">
+        PaddingAll
       </Box>
     </div>
   )
