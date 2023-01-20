@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { ActionBadge, ActionBadgeProps } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/ActionBadge',
@@ -19,6 +20,26 @@ export default {
     icon: undefined
   },
   argTypes: {
+    color: {
+      options: ['green', 'blue', 'red', 'yellow', 'black'] as PropsToArray<
+        ActionBadgeProps['color']
+      >,
+      control: {
+        type: 'select'
+      }
+    },
+    size: {
+      options: ['xs', 'sm', 'md', 'lg'] as PropsToArray<
+        ActionBadgeProps['size']
+      >,
+      control: { type: 'select' }
+    },
+    avatarUrl: {
+      control: { type: null }
+    },
+    icon: {
+      control: { type: null }
+    },
     onActionClick: { action: 'onActionClick' }
   },
   decorators: [
