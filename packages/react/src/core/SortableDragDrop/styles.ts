@@ -55,17 +55,21 @@ export const GeneralStyle = {
       justify-center
       items-center
       gap-2
-      p-2
+      p-1
+      mt-1.5
 
       rounded-lg
-
-      text-assistant-red-main
       text-sm
-      font-semibold
 
-      hover:bg-assistant-red-light/[.4]
-      focus:bg-assistant-red-light/[.4]
+      text-grey-900
+      bg-transparent hover:bg-grey-200
+      border-grey-900 border hover:border-black
+      focus:bg-grey-200
+
       transition-colors
+
+      bg-transparent
+      
 
       disabled:cursor-not-allowed
       disabled:text-grey-600
@@ -80,6 +84,7 @@ export const GeneralStyle = {
       items-center
       gap-2
     
+      mt-1
       mb-3
   `,
     {}
@@ -91,7 +96,6 @@ export const GeneralStyle = {
       justify-between
       
       gap-0.5
-
       mb-1
 
       w-full

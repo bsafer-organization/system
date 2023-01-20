@@ -400,7 +400,7 @@ export const SortableDragDropSelect = ({
                                   padding: '0.25rem',
                                   borderRadius: '8px'
                                 }}
-                                className="hover:cursor-pointer focus:bg-[#DDE0E3]/[.5] hover:bg-[#DDE0E3]/[.5] transition-colors"
+                                className="hover:cursor-pointer focus:bg-grey-200 hover:bg-grey-200 transition-colors"
                                 onKeyUp={(key) => {
                                   if (
                                     (key.code === 'Space' ||
