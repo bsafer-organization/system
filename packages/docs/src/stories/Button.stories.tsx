@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { TickCircle } from 'iconsax-react'
 import { Button, ButtonProps } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Button',
@@ -19,6 +20,27 @@ export default {
     disabled: false,
     onClick: () => {
       console.log('CLICK')
+    }
+  },
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ['default', 'primary', 'secondary'] as PropsToArray<
+        ButtonProps['color']
+      >
+    },
+    variant: {
+      control: 'select',
+      options: ['text', 'contained', 'outlined'] as PropsToArray<
+        ButtonProps['variant']
+      >
+    },
+    size: {
+      control: 'radio',
+      options: ['sm', 'md', 'lg'] as PropsToArray<ButtonProps['size']>
+    },
+    disabled: {
+      control: 'boolean'
     }
   },
   decorators: [
