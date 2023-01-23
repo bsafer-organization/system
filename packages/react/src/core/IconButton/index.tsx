@@ -3,7 +3,7 @@ import React from 'react'
 import { IconButtonContainer, IconButtonContainerProps } from './styles'
 
 export interface IconButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Available colors for the IconButton component:
    * - primary (yellow/black)
