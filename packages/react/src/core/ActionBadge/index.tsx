@@ -1,5 +1,5 @@
-import React from 'react'
 import { CloseCircle } from 'iconsax-react'
+import React from 'react'
 import { ActionBadgeStyle, ActionBadgeStyleProps } from './styles'
 
 export interface ActionBadgeProps

@@ -2,7 +2,8 @@ import React from 'react'
 
 import { ButtonContainer, ButtonContainerProps } from './styles'
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Available colors for the button component:
    * - primary (yellow/black)

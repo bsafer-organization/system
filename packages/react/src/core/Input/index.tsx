@@ -1,5 +1,5 @@
 import { Danger, SearchNormal1 } from 'iconsax-react'
-import { HTMLAttributes } from 'react'
+import React from 'react'
 import {
   ErrorTextContainer,
   InputContainer,
@@ -48,7 +48,7 @@ export interface InputProps {
    * All properties of the input tag must be passed inside this property
    * @default undefined
    */
-  inputProps?: HTMLAttributes<HTMLInputElement>
+  inputProps?: React.ButtonHTMLAttributes<HTMLInputElement>
 }
 
 /**
