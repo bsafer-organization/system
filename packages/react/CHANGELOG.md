@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.2
+
+### Patch Changes
+
+- - Adjusted common attributes in components
+
 ## 1.2.1
 
 ### Patch Changes
