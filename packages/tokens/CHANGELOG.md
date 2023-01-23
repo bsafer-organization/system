@@ -1,5 +1,11 @@
 # @bsafer-system/tokens
 
+## 1.3.0
+
+### Minor Changes
+
+- - Added property `rounded: 0.25rem` into borderRadius token
+
 ## 1.2.1
 
 ### Patch Changes
