@@ -60,7 +60,6 @@ export const Button = ({
   size = 'md',
   startIcon,
   endIcon,
-  onClick,
   ...props
 }: ButtonProps) => {
   return (
