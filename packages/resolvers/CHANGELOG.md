@@ -1,5 +1,11 @@
 # @bsafer-system/resolvers
 
+## 1.3.0
+
+### Minor Changes
+
+- - Added rounded to tailwindcss resolver
+
 ## 1.2.1
 
 ### Patch Changes
