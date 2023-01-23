@@ -2,7 +2,7 @@ import { w, W } from 'windstitch'
 
 export const BadgeContainer = w.span(
   `
-    font-regular rounded-[0.25rem]
+    font-regular rounded-[0.25rem] inline-block
   `,
   {
     defaultVariants: {
