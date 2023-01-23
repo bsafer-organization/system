@@ -45,7 +45,7 @@ export default {
   decorators: [
     (Story) => {
       return (
-        <div className="flex flex-col justify-center items-center gap-5">
+        <div className="flex flex-col flex-wrap justify-center items-center gap-10 max-w-2lx my-0 mx-auto">
           {Story()}
         </div>
       )
