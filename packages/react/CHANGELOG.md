@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.0
+
+### Minor Changes
+
+- Reviewing all components, and general adjusted has been applied
+
 ## 1.1.1
 
 ### Patch Changes
