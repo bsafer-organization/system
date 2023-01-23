@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.1
+
+### Patch Changes
+
+- - Changed windstitch to main dependences
+
 ## 1.2.0
 
 ### Minor Changes
