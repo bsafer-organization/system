@@ -4,6 +4,7 @@ export const ActionBadgeStyle = {
   Container: w.span(
     `
     font-regular rounded-full
+    flex justify-center items-center w-fit
   `,
     {
       defaultVariants: {
