@@ -2,7 +2,7 @@ import { w, W } from 'windstitch'
 
 export const BadgeContainer = w.span(
   `
-    rounded font-regular
+    font-regular rounded-[0.25rem]
   `,
   {
     defaultVariants: {
@@ -25,7 +25,7 @@ export const BadgeContainer = w.span(
         black: 'bg-grey-100 text-grey-900'
       },
       disabled: (disabled: boolean) =>
-        disabled ? 'bg-grey-100 text-grey-600' : ''
+        disabled ? '!bg-grey-100 !text-grey-600' : ''
     }
   }
 )

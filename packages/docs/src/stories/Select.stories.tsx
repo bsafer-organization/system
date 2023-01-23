@@ -36,6 +36,26 @@ export default {
       console.log(value)
     }
   },
+  argTypes: {
+    closeMenuOnScroll: {
+      control: 'boolean'
+    },
+    closeMenuOnSelect: {
+      control: 'boolean'
+    },
+    options: {
+      control: 'null'
+    },
+    disabled: {
+      control: 'boolean'
+    },
+    label: {
+      control: 'text'
+    },
+    optional: {
+      control: 'boolean'
+    }
+  },
   decorators: [
     (Story) => {
       return (

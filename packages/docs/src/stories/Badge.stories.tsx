@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Badge, BadgeProps } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Badge',
@@ -15,6 +16,18 @@ export default {
     color: 'green',
     size: 'md',
     disabled: false
+  },
+  argTypes: {
+    color: {
+      options: ['green', 'blue', 'red', 'yellow', 'black'] as PropsToArray<
+        BadgeProps['color']
+      >,
+      control: 'select'
+    },
+    size: {
+      options: ['xs', 'sm', 'md', 'lg'] as PropsToArray<BadgeProps['size']>,
+      control: 'radio'
+    }
   },
   decorators: [
     (Story) => {
@@ -50,6 +63,13 @@ export const Colors = () => {
       <Badge color="red">Red</Badge>
       <Badge color="yellow">Yellow</Badge>
       <Badge color="black">Black</Badge>
+    </>
+  )
+}
+
+export const Disabled = () => {
+  return (
+    <>
       <Badge disabled={true}>Disabled</Badge>
     </>
   )
