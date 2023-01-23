@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { RadioButton, RadioButtonProps } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/RadioButton',
@@ -32,6 +33,15 @@ export default {
     }
   },
   argTypes: {
+    orientationView: {
+      options: ['vertical', 'horizontal', 'flex', 'grid'] as PropsToArray<
+        RadioButtonProps['orientationView']
+      >,
+      control: 'radio'
+    },
+    value: {
+      control: 'null'
+    },
     onOptionChange: {
       action: 'onOptionChange'
     }

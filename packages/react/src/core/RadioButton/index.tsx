@@ -59,14 +59,14 @@ export function RadioButton({
         disabled={disabled}
       >
         {options.map((option) => (
-          <RadioButtonStyle.Container key={option.value}>
+          <RadioButtonStyle.Label htmlFor={option.value} key={option.value}>
             <RadioButtonStyle.Item value={option.value} id={option.value}>
               <RadioButtonStyle.Indicator />
             </RadioButtonStyle.Item>
-            <RadioButtonStyle.Label htmlFor={option.value}>
+            <span className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap">
               {option.label}
-            </RadioButtonStyle.Label>
-          </RadioButtonStyle.Container>
+            </span>
+          </RadioButtonStyle.Label>
         ))}
       </RadioButtonStyle.Root>
     </form>
