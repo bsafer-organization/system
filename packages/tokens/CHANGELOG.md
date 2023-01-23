@@ -1,5 +1,11 @@
 # @bsafer-system/tokens
 
+## 1.3.1
+
+### Patch Changes
+
+- - Fix rounded default property in borderRadius token
+
 ## 1.3.0
 
 ### Minor Changes
