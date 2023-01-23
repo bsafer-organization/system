@@ -28,10 +28,10 @@
     "react-hook-form": "^7.41.3",
     "@radix-ui/react-radio-group": "^1.1.0",
     "@radix-ui/react-dialog": "^1.0.2",
-    "@radix-ui/react-switch": "^1.0.1"
+    "@radix-ui/react-switch": "^1.0.1",
+    "windstitch": "^0.3.0"
   },
   "devDependencies": {
-    "windstitch": "^0.3.0",
     "@bsafer-system/eslint-config": "*",
     "@bsafer-system/resolvers": "*",
     "@bsafer-system/tokens": "*",
