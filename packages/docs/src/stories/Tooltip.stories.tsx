@@ -6,6 +6,7 @@ import {
   TooltipProps
 } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Tooltip',
@@ -27,6 +28,7 @@ export default {
       }
     },
     open: {
+      control: 'boolean',
       table: {
         defaultValue: { summary: 'undefined' }
       }
