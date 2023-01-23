@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.5
+
+### Patch Changes
+
+- - Fix onClick button component
+
 ## 1.2.4
 
 ### Patch Changes
