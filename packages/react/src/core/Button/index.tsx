@@ -46,8 +46,6 @@ export interface ButtonProps
    * Icon placed before the children of the input.
    */
   endIcon?: JSX.Element
-
-  onClick?: () => void
 }
 
 /**
@@ -66,13 +64,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <ButtonContainer
-      onClick={onClick}
-      size={size}
-      variant={variant}
-      color={color}
-      {...props}
-    >
+    <ButtonContainer size={size} variant={variant} color={color} {...props}>
       {startIcon && (
         <span className="flex justify-center items-center">{startIcon}</span>
       )}
