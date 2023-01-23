@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.4
+
+### Patch Changes
+
+- Fixed display value for Badge component
+
 ## 1.2.3
 
 ### Patch Changes
