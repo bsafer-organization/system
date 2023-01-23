@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.2.3
+
+### Patch Changes
+
+- Adjusted onClick in Button Component
+
 ## 1.2.2
 
 ### Patch Changes
