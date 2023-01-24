@@ -47,12 +47,6 @@ export interface BoxProps {
    * @default "md"
    */
   borderRadius?: BoxStyleProps['borderRadius']
-
-  /**
-   * Content horizontal alignment
-   * @default "center"
-   */
-  horizontalAlignment?: BoxStyleProps['horizontalAlignment']
 }
 
 export const Box = ({
@@ -60,20 +54,16 @@ export const Box = ({
   padding = { all: 'p-2' },
   backgroundColor,
   fontColor,
-  borderRadius = 'md',
-  horizontalAlignment = 'center'
+  borderRadius = 'md'
 }: BoxProps) => {
   return (
     <BoxContainer
-      horizontalAlignment={horizontalAlignment}
       padding={padding}
       backgroundColor={backgroundColor}
       fontColor={fontColor}
       borderRadius={borderRadius}
     >
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">
-        {children}
-      </span>
+      {children}
     </BoxContainer>
   )
 }

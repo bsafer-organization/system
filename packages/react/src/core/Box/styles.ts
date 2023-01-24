@@ -3,7 +3,6 @@ import { PaddingProps, PaddingAll, PaddingOnly } from './index'
 
 export const BoxContainer = w.div(
   `
-    flex justify-center gap-2 overflow-hidden
   `,
   {
     variants: {
@@ -75,18 +74,13 @@ export const BoxContainer = w.div(
       borderRadius: {
         none: 'rounded-none',
         sm: 'rounded-sm',
-        md: 'rounded-[0.25rem]',
+        md: 'rounded',
         lg: 'rounded-md',
         xl: 'rounded-lg',
         '2xl': 'rounded-xl',
         '3xl': 'rounded-2xl',
         '4xl': 'rounded-3xl',
         full: 'rounded-full'
-      },
-      horizontalAlignment: {
-        left: 'items-start',
-        center: 'items-center',
-        right: 'items-end'
       }
     }
   }
