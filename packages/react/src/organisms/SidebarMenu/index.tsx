@@ -1,22 +1,27 @@
-import { Text } from '../../core/Text'
-import { ItemContainer, ItemLink, ItemsWrapper, RootContainer } from './styles'
+import {
+  ItemContainer,
+  ItemLink,
+  ItemsWrapper,
+  RootContainer,
+  TextMenu
+} from './styles'
 import { SidebarMenuProps } from './types'
 
 export * from './types'
 
-function Root({ children }: SidebarMenuProps['Root']) {
+function Root({ children, isContracted }: SidebarMenuProps['Root']) {
   return (
-    <RootContainer>
+    <RootContainer isContracted={isContracted}>
       <ItemsWrapper>{children}</ItemsWrapper>
     </RootContainer>
   )
 }
 
 function Item(props: SidebarMenuProps['Item']) {
-  const { icon: Icon, label, onGoToRoute, route, isActive, focusColor } = props
+  const { icon: Icon, label, onClick, route, isActive, focusColor } = props
 
   function handleClick() {
-    if (onGoToRoute) onGoToRoute(route)
+    if (onClick) onClick(route)
   }
 
   return (
@@ -25,9 +30,12 @@ function Item(props: SidebarMenuProps['Item']) {
         onClick={handleClick}
         isActive={isActive}
         focusColor={focusColor}
+        className="sidebar-item-menu"
       >
         <Icon size={16} className="shrink-0" />
-        <Text size="sm">{label}</Text>
+        <TextMenu size="sm" className="sidebar-text-menu">
+          {label}
+        </TextMenu>
       </ItemLink>
     </ItemContainer>
   )

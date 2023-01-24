@@ -1,4 +1,4 @@
-import { Heading, SidebarMenu } from '@bsafer-system/react'
+import { Button, Heading, SidebarMenu } from '@bsafer-system/react'
 import { Meta } from '@storybook/react'
 import { Airplane, Building, Danger, Figma } from 'iconsax-react'
 import { useState } from 'react'
@@ -14,7 +14,121 @@ export default {
 } as Meta
 
 export const Default = () => {
+  const [isContracted, setIsContracted] = useState(false)
   const [page, setPage] = useState('/home')
+
+  function handleChangePage(goToPage?: string) {
+    if (goToPage) setPage(goToPage)
+  }
+
+  function handleContractMenu() {
+    setIsContracted((prev) => !prev)
+  }
+
+  return (
+    <div>
+      <Button onClick={handleContractMenu} className="mb-3">
+        {isContracted ? 'Contrair' : 'Expandir'}
+      </Button>
+      <div className="flex ring-1 ring-grey-300 rounded-xl w-screen max-w-5xl h-96">
+        <aside className="w-60">
+          <SidebarMenu.Root isContracted={isContracted}>
+            <SidebarMenu.Item
+              icon={Building}
+              label="Home"
+              route="/home"
+              onClick={handleChangePage}
+              isActive={page === '/home'}
+            />
+            <SidebarMenu.Item
+              icon={Danger}
+              label="Dashboard"
+              route="/dashboard"
+              onClick={handleChangePage}
+              isActive={page === '/dashboard'}
+            />
+            <SidebarMenu.Item
+              icon={Figma}
+              label="Users"
+              route="/figma"
+              onClick={handleChangePage}
+              isActive={page === '/figma'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+            <SidebarMenu.Item
+              icon={Airplane}
+              label="Flight Simulator"
+              route="/simulator"
+              onClick={handleChangePage}
+              isActive={page === '/simulator'}
+            />
+          </SidebarMenu.Root>
+        </aside>
+        <main className="flex-1 flex justify-center items-center">
+          <Heading className="center">{page}</Heading>
+        </main>
+      </div>
+    </div>
+  )
+}
+
+export const FocusColor = () => {
+  const [page, setPage] = useState('/primary')
 
   function handleChangePage(goToPage?: string) {
     if (goToPage) setPage(goToPage)
@@ -26,31 +140,27 @@ export const Default = () => {
         <SidebarMenu.Root>
           <SidebarMenu.Item
             icon={Building}
-            label="Home"
-            path="/home"
+            label="Primary"
+            route="/primary"
             onClick={handleChangePage}
-            isActive={page === '/home'}
+            isActive={page === '/primary'}
+            focusColor="primary"
           />
           <SidebarMenu.Item
             icon={Danger}
-            label="Dashboard"
-            path="/dashboard"
+            label="Secondary"
+            route="/secondary"
             onClick={handleChangePage}
-            isActive={page === '/dashboard'}
+            isActive={page === '/secondary'}
+            focusColor="secondary"
           />
           <SidebarMenu.Item
             icon={Figma}
-            label="Users"
-            path="/figma"
+            label="Black"
+            route="/black"
             onClick={handleChangePage}
-            isActive={page === '/figma'}
-          />
-          <SidebarMenu.Item
-            icon={Airplane}
-            label="Flight Simulator com um nome muito grande que não cabe numa linha só"
-            path="/simulator"
-            onClick={handleChangePage}
-            isActive={page === '/simulator'}
+            isActive={page === '/black'}
+            focusColor="black"
           />
         </SidebarMenu.Root>
       </aside>

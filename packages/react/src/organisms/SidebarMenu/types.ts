@@ -4,11 +4,11 @@ import { ItemLinkProps } from './styles'
 
 interface ItemProps {
   isActive?: boolean
-  focusColor: ItemLinkProps['focusColor']
+  focusColor?: ItemLinkProps['focusColor']
   icon: Icon | React.ElementType
   label: string
   route?: string
-  onGoToRoute?: (path?: string) => void
+  onClick?: (path?: string) => void
 }
 
 interface RootProps {
