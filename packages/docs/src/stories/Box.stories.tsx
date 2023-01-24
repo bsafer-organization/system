@@ -124,19 +124,3 @@ export const Padding = () => {
     </div>
   )
 }
-
-export const Test = () => {
-  return (
-    <div className="w-56 h-56">
-      <Box
-        padding={{
-          all: 'p-5'
-        }}
-        borderRadius="md"
-      >
-        PaddingTopSSSSSSS SSSSSSSSSSSSSSSSSS WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-        EEEEEEEEEEE WWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWWWWW
-      </Box>
-    </div>
-  )
-}
