@@ -28,10 +28,10 @@ export const Default = () => {
   return (
     <div>
       <Button onClick={handleContractMenu} className="mb-3">
-        {isContracted ? 'Contrair' : 'Expandir'}
+        {!isContracted ? 'Contrair' : 'Expandir'}
       </Button>
       <div className="flex ring-1 ring-grey-300 rounded-xl w-screen max-w-5xl h-96">
-        <aside className="w-60">
+        <aside className="w-96">
           <SidebarMenu.Root isContracted={isContracted}>
             <SidebarMenu.Item
               icon={Building}
@@ -61,62 +61,6 @@ export const Default = () => {
               onClick={handleChangePage}
               isActive={page === '/simulator'}
             />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
-            <SidebarMenu.Item
-              icon={Airplane}
-              label="Flight Simulator"
-              route="/simulator"
-              onClick={handleChangePage}
-              isActive={page === '/simulator'}
-            />
           </SidebarMenu.Root>
         </aside>
         <main className="flex-1 flex justify-center items-center">
@@ -135,7 +79,7 @@ export const FocusColor = () => {
   }
 
   return (
-    <div className="flex ring-1 ring-grey-300 rounded-xl w-screen max-w-5xl">
+    <div className="flex ring-1 ring-grey-300 rounded-xl w-screen max-w-5xl h-96">
       <aside className="w-60">
         <SidebarMenu.Root>
           <SidebarMenu.Item

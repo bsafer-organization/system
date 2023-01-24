@@ -22,5 +22,6 @@ export * from './core/Toggles'
 export * from './core/Tooltip'
 // Organisms Components
 export * from './organisms/SidebarMenu'
+export * from './organisms/TopHeader'
 
 

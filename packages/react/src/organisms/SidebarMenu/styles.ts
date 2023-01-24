@@ -19,7 +19,7 @@ export const RootContainer = w.nav(
           : 'min-w-[16rem]'
     },
     defaultVariants: {
-      isContracted: true
+      isContracted: false
     }
   }
 )
@@ -27,7 +27,7 @@ export const RootContainer = w.nav(
 export const ItemsWrapper = w.ul(
   `
   absolute top-0 left-0
-  h-full min-w-[16rem] overflow-y-auto
+  w-full h-full min-w-[16rem] overflow-y-auto
   flex flex-col gap-6
   pt-8 px-6
 `,
@@ -41,9 +41,11 @@ export const ItemLink = w.button(
   flex items-center justify-start gap-2
   min-h-[2.5rem]
   py-2 px-4 rounded-full
+
+  focus-visible:ring-1 focus-visible:ring-black
   
   text-left
-  transition-all
+  transition-colors
 `,
   {
     variants: {
