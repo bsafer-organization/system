@@ -12,11 +12,18 @@ interface ItemProps {
 }
 
 interface RootProps {
-  isContracted?: boolean
+  isOpen?: boolean
+  activedRoute?: string
   children?: React.ReactNode
 }
 
 export interface SidebarMenuProps {
   Root: RootProps
   Item: ItemProps
+}
+
+export interface MenuItemTooltipProps {
+  label: string
+  hidden?: boolean
+  children: React.ReactNode
 }

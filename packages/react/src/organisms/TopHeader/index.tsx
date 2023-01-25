@@ -13,16 +13,16 @@ function Root({ children, ...props }: RootProps) {
   return <RootContainer {...props}>{children}</RootContainer>
 }
 
-function Leading({ children }: LeadingProps) {
-  return <LeadingContainer>{children}</LeadingContainer>
+function Leading({ children, ...props }: LeadingProps) {
+  return <LeadingContainer {...props}>{children}</LeadingContainer>
 }
 
-function Center({ children }: CenterProps) {
-  return <CenterContainer>{children}</CenterContainer>
+function Center({ children, ...props }: CenterProps) {
+  return <CenterContainer {...props}>{children}</CenterContainer>
 }
 
-function Trailing({ children }: TrailingProps) {
-  return <TrailingContainer>{children}</TrailingContainer>
+function Trailing({ children, ...props }: TrailingProps) {
+  return <TrailingContainer {...props}>{children}</TrailingContainer>
 }
 
 export const TopHeader = {

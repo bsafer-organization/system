@@ -13,13 +13,10 @@ export const RootContainer = w.nav(
 `,
   {
     variants: {
-      isContracted: (isContracted: boolean) =>
-        isContracted
-          ? `w-[5.5rem] [&_.sidebar-text-menu]:hidden [&_.sidebar-item-menu]:py-[0.6563rem] [&_.sidebar-item-menu]:px-3`
-          : 'min-w-[16rem]'
+      isOpen: (isOpen: boolean) => (isOpen ? 'min-w-[16rem]' : `w-[5.5rem]`)
     },
     defaultVariants: {
-      isContracted: false
+      isOpen: true
     }
   }
 )
@@ -30,6 +27,8 @@ export const ItemsWrapper = w.ul(
   w-full h-full min-w-[16rem] overflow-y-auto
   flex flex-col gap-6
   pt-8 px-6
+
+  transition-all
 `,
   {}
 )
@@ -58,7 +57,7 @@ export const ItemLink = w.button(
         !isActive ? `text-grey-700 hover:bg-grey-100` : ''
     },
     defaultVariants: {
-      isActive: true,
+      isActive: false,
       focusColor: 'primary'
     },
     compoundVariants: [

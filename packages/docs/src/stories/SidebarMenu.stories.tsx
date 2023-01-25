@@ -14,7 +14,7 @@ export default {
 } as Meta
 
 export const Default = () => {
-  const [isContracted, setIsContracted] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [page, setPage] = useState('/home')
 
   function handleChangePage(goToPage?: string) {
@@ -22,44 +22,40 @@ export const Default = () => {
   }
 
   function handleContractMenu() {
-    setIsContracted((prev) => !prev)
+    setIsOpen((prev) => !prev)
   }
 
   return (
     <div>
       <Button onClick={handleContractMenu} className="mb-3">
-        {!isContracted ? 'Contrair' : 'Expandir'}
+        {!isOpen ? 'Contrair' : 'Expandir'}
       </Button>
       <div className="flex ring-1 ring-grey-300 rounded-xl w-screen max-w-5xl h-96">
         <aside className="w-96">
-          <SidebarMenu.Root isContracted={isContracted}>
+          <SidebarMenu.Root isOpen={isOpen} activedRoute={page}>
             <SidebarMenu.Item
               icon={Building}
               label="Home"
               route="/home"
               onClick={handleChangePage}
-              isActive={page === '/home'}
             />
             <SidebarMenu.Item
               icon={Danger}
               label="Dashboard"
               route="/dashboard"
               onClick={handleChangePage}
-              isActive={page === '/dashboard'}
             />
             <SidebarMenu.Item
               icon={Figma}
               label="Users"
               route="/figma"
               onClick={handleChangePage}
-              isActive={page === '/figma'}
             />
             <SidebarMenu.Item
               icon={Airplane}
               label="Flight Simulator"
               route="/simulator"
               onClick={handleChangePage}
-              isActive={page === '/simulator'}
             />
           </SidebarMenu.Root>
         </aside>
