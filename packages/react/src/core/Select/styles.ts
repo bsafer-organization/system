@@ -1,5 +1,6 @@
 import { w } from 'windstitch'
 import { StylesConfig } from 'react-select'
+import { CustomDropdownIndicatorProps } from './index'
 
 export const SelectStyle = {
   Container: w.div(
@@ -45,8 +46,7 @@ const variants = ({
   isSelected,
   error,
   backgroundColor,
-  border,
-  focusBorder
+  border
 }: {
   isDisabled?: boolean
   isFocused?: boolean
@@ -54,7 +54,6 @@ const variants = ({
   error?: string | boolean
   backgroundColor?: string
   border?: string
-  focusBorder?: boolean
 }) => {
   const props = {
     fontSize: '14px',
@@ -101,12 +100,13 @@ const variants = ({
   return props
 }
 
-interface SelectStylesProps {
+export interface SelectStylesProps {
   error?: string
   padding?: string
   backgroundColor?: string
   border?: string
-  focusBorder?: boolean
+  borderRadius?: 'md' | 'full'
+  dropdownIndicator?: CustomDropdownIndicatorProps
 }
 
 export const selectStyles = ({
@@ -114,7 +114,8 @@ export const selectStyles = ({
   padding,
   backgroundColor,
   border,
-  focusBorder
+  borderRadius,
+  dropdownIndicator
 }: SelectStylesProps) => {
   const config: StylesConfig = {
     indicatorSeparator: (baseStyles, { isMulti, hasValue }) => ({
@@ -148,7 +149,7 @@ export const selectStyles = ({
       marginLeft: '0.25rem',
       borderRadius: '9999px',
       '&:hover': {
-        backgroundColor: '#E9EBED',
+        backgroundColor: dropdownIndicator?.hoverColor || '#090A0B',
         transitionProperty:
           'color, background-color, border-color, text-decoration-color, fill, stroke',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -165,13 +166,26 @@ export const selectStyles = ({
       gap: '0.25rem'
     }),
     control: (baseStyles, { isFocused, isDisabled }) => {
+      let controlBorderRadius = ''
+      switch (borderRadius) {
+        case 'full':
+          controlBorderRadius = '9999px'
+          break
+
+        default:
+          controlBorderRadius = '0.25rem'
+          break
+      }
+      console.log(borderRadius)
+      console.log(controlBorderRadius)
+
       return {
         ...baseStyles,
         minHeight: 0,
         boxShadow: 'none',
         backgroundColor: variants({ isDisabled, backgroundColor }).control
           .background,
-        borderRadius: '0.5rem',
+        borderRadius: controlBorderRadius,
         border: variants({ isFocused, error, isDisabled, border }).control
           .border,
         padding: padding || '12px 16px',
@@ -274,3 +288,17 @@ export const selectStyles = ({
   }
   return config
 }
+
+/**
+ *       borderRadius: {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-[0.25rem]',
+        lg: 'rounded-md',
+        xl: 'rounded-lg',
+        '2xl': 'rounded-xl',
+        '3xl': 'rounded-2xl',
+        '4xl': 'rounded-3xl',
+        full: 'rounded-full'
+      },
+ */

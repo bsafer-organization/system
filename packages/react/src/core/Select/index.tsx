@@ -1,7 +1,7 @@
 import React from 'react'
-import { Danger } from 'iconsax-react'
+import { Danger, Icon, IconProps } from 'iconsax-react'
 import ReactSelect, { MultiValue, ActionMeta } from 'react-select'
-import { SelectStyle, selectStyles } from './styles'
+import { SelectStyle, selectStyles, SelectStylesProps } from './styles'
 import {
   DropdownIndicator,
   MultiValueRemoveIndicator,
@@ -11,6 +11,12 @@ import {
 interface OptionProps {
   value: string
   label: string
+}
+
+export interface CustomDropdownIndicatorProps {
+  icon: Icon
+  variant?: IconProps['variant']
+  hoverColor?: string
 }
 
 export interface SelectProps {
@@ -79,10 +85,19 @@ export interface SelectProps {
    */
   border?: string
   /**
-   * Select focus border
-   * @default true
+   * Select border radius.
+   * - "md"
+   * - "full"
+   * @default "md"
    */
-  focusBorder?: boolean
+  borderRadius?: SelectStylesProps['borderRadius']
+  /**
+   * Select dropdown indicator.\
+   * **When menu is open, the icon will rotate 180 degrees**
+   * @example {icon: ArrowUp2, variant: "Bold", hoverColor: "black"}
+   * @default {icon: ArrowUp2, variant: "Bold", hoverColor: "#090A0B"}
+   */
+  dropdownIndicator?: CustomDropdownIndicatorProps
   /**
    * Action to do on clear select value
    */
@@ -112,7 +127,8 @@ export const Select = ({
   padding,
   backgroundColor,
   border,
-  focusBorder,
+  borderRadius,
+  dropdownIndicator,
   onClearValue,
   onValueChange
 }: SelectProps) => {
@@ -143,7 +159,8 @@ export const Select = ({
           padding,
           backgroundColor,
           border,
-          focusBorder
+          borderRadius,
+          dropdownIndicator
         })}
         defaultValue={defaultValue}
         options={options}
@@ -162,7 +179,11 @@ export const Select = ({
             />
           ),
           DropdownIndicator: (props) => (
-            <DropdownIndicator props={props} disabled={disabled} />
+            <DropdownIndicator
+              props={props}
+              dropdownIndicator={dropdownIndicator}
+              disabled={disabled}
+            />
           ),
           MultiValueRemove: MultiValueRemoveIndicator
         }}

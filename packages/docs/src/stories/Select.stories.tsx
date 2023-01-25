@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Select, SelectProps } from '@bsafer-system/react'
+import { ArrowUp2 } from 'iconsax-react'
 
 const options = [
   { value: 'ocean', label: 'Ocean' },
@@ -99,15 +100,20 @@ export const Multiple = () => {
   )
 }
 
-export const Test = () => {
+export const CustomSelect = () => {
   return (
-    <div className="w-56">
+    <div className="w-40">
       <Select
-        padding="1px 1px"
+        padding="4px 8px"
         options={options}
         backgroundColor="#E9EBED"
         border="1px solid transparent"
-        focusBorder={false}
+        borderRadius="full"
+        dropdownIndicator={{
+          icon: ArrowUp2,
+          variant: 'Linear',
+          hoverColor: 'grey'
+        }}
       />
     </div>
   )
