@@ -6,7 +6,6 @@ import {
   TooltipProps
 } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
-import { PropsToArray } from '../helpers/propsToArray'
 
 export default {
   title: 'Core/Tooltip',
@@ -97,13 +96,27 @@ export const Playground: StoryObj<TooltipProps> = {
 
     arrow: {
       width: 10,
-      height: 5
+      height: 5,
+      hidden: false
     },
 
     children: <Text size="lg">Hover me!</Text>,
     onOpenChange: (open) => console.log('Tooltip: ', open)
   }
 }
+
+export const TootipWithoutArrow = () => {
+  return (
+    <Tooltip
+      text="Lorem ipsum dolor, sit amet consectetur adipisicing elit"
+      arrow={{ hidden: true }}
+    >
+      <Text size="lg">Hover me! (but without arrow)</Text>
+    </Tooltip>
+  )
+}
+
+TootipWithoutArrow.storyName = 'Tootip Without Arrow'
 
 export const TootipWithHugeText = () => {
   return (
