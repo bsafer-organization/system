@@ -1,7 +1,7 @@
 import React from 'react'
-import { Danger } from 'iconsax-react'
+import { Danger, Icon, IconProps } from 'iconsax-react'
 import ReactSelect, { MultiValue, ActionMeta } from 'react-select'
-import { SelectStyle, selectStyles } from './styles'
+import { SelectStyle, selectStyles, SelectStylesProps } from './styles'
 import {
   DropdownIndicator,
   MultiValueRemoveIndicator,
@@ -11,6 +11,12 @@ import {
 interface OptionProps {
   value: string
   label: string
+}
+
+export interface CustomDropdownIndicatorProps {
+  icon: Icon
+  variant?: IconProps['variant']
+  hoverColor?: string
 }
 
 export interface SelectProps {
@@ -50,11 +56,11 @@ export interface SelectProps {
   disabled?: boolean
   /**
    * Label placed above the select
-   * @required
    */
-  label: string
+  label?: string
   /**
-   * Place an optional badge after the label
+   * Place an optional badge after the label.\
+   * **If `label` is not passed, this prop will not be displayed.**
    * @default false
    */
   optional?: boolean
@@ -63,6 +69,35 @@ export interface SelectProps {
    * @example 'Required field'
    */
   error?: string
+  /**
+   * Select padding
+   * @default "12px 16px" = "0.75rem 1rem"
+   */
+  padding?: string
+  /**
+   * Select background color
+   * @default "white"
+   */
+  backgroundColor?: string
+  /**
+   * Select border
+   * @default "1px solid grey-400"
+   */
+  border?: string
+  /**
+   * Select border radius.
+   * - "md"
+   * - "full"
+   * @default "md"
+   */
+  borderRadius?: SelectStylesProps['borderRadius']
+  /**
+   * Select dropdown indicator.\
+   * **When menu is open, the icon will rotate 180 degrees**
+   * @example {icon: ArrowUp2, variant: "Bold", hoverColor: "black"}
+   * @default {icon: ArrowUp2, variant: "Bold", hoverColor: "#090A0B"}
+   */
+  dropdownIndicator?: CustomDropdownIndicatorProps
   /**
    * Action to do on clear select value
    */
@@ -89,20 +124,27 @@ export const Select = ({
   label,
   optional = false,
   error,
+  padding,
+  backgroundColor,
+  border,
+  borderRadius,
+  dropdownIndicator,
   onClearValue,
   onValueChange
 }: SelectProps) => {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
   return (
     <SelectStyle.Container>
-      <SelectStyle.HeaderContainer>
-        <SelectStyle.Label htmlFor={label} title={label}>
-          {label}
-        </SelectStyle.Label>
-        {optional && (
-          <SelectStyle.OptionalBadge>Opcional</SelectStyle.OptionalBadge>
-        )}
-      </SelectStyle.HeaderContainer>
+      {label && (
+        <SelectStyle.HeaderContainer>
+          <SelectStyle.Label htmlFor={label} title={label}>
+            {label}
+          </SelectStyle.Label>
+          {optional && (
+            <SelectStyle.OptionalBadge>Opcional</SelectStyle.OptionalBadge>
+          )}
+        </SelectStyle.HeaderContainer>
+      )}
       <ReactSelect
         isClearable={multiple}
         hideSelectedOptions={false}
@@ -112,7 +154,14 @@ export const Select = ({
         isDisabled={disabled}
         onChange={onValueChange}
         classNamePrefix="select"
-        styles={selectStyles({ error })}
+        styles={selectStyles({
+          error,
+          padding,
+          backgroundColor,
+          border,
+          borderRadius,
+          dropdownIndicator
+        })}
         defaultValue={defaultValue}
         options={options}
         placeholder={placeholder ?? 'Selecione'}
@@ -130,7 +179,11 @@ export const Select = ({
             />
           ),
           DropdownIndicator: (props) => (
-            <DropdownIndicator props={props} disabled={disabled} />
+            <DropdownIndicator
+              props={props}
+              dropdownIndicator={dropdownIndicator}
+              disabled={disabled}
+            />
           ),
           MultiValueRemove: MultiValueRemoveIndicator
         }}
