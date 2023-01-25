@@ -16,7 +16,12 @@ type TooltipCollisionsType = Pick<
   | 'hideWhenDetached'
 >
 
-type TooltipArrowType = Pick<RadixTooltip.TooltipArrowProps, 'width' | 'height'>
+type TooltipArrowType = Pick<
+  RadixTooltip.TooltipArrowProps,
+  'width' | 'height'
+> & {
+  hidden?: boolean
+}
 
 export interface TooltipProps {
   /**
@@ -177,13 +182,17 @@ export function Tooltip({
             <TooltipContainer>
               <Text
                 size="sm"
-                color="grey-700"
                 {...textProps}
                 dangerouslySetInnerHTML={{
                   __html: text
                 }}
               />
-              <RadixTooltip.Arrow {...arrow} />
+              {!arrow?.hidden && (
+                <RadixTooltip.Arrow
+                  width={arrow?.width}
+                  height={arrow?.height}
+                />
+              )}
             </TooltipContainer>
           </RadixTooltip.Content>
         </RadixTooltip.Portal>
