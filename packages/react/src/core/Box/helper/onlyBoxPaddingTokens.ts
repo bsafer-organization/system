@@ -1,4 +1,4 @@
-const availableTokens = ['p-', 'pt-', 'pr-', 'pb-', 'pl-']
+const availableTokens = ['p-', 'pt-', 'pr-', 'pb-', 'pl-', 'px-', 'py-']
 
 export function onlyBoxPaddingTokens(padding?: string) {
   if (!padding) {
