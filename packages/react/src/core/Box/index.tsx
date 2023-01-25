@@ -1,21 +1,6 @@
 import React from 'react'
 import { BoxContainer, BoxStyleProps } from './styles'
 
-export interface PaddingAll {
-  all: string
-}
-
-export interface PaddingOnly {
-  only: {
-    top?: string
-    right?: string
-    bottom?: string
-    left?: string
-  }
-}
-
-export type PaddingProps = PaddingAll | PaddingOnly
-
 export interface BoxProps {
   /**
    * Box content
@@ -24,23 +9,23 @@ export interface BoxProps {
 
   /**
    * Box padding
-   * @example PaddingAll { all: 'p-2' }
-   * @example PaddingOnly { only: { top: 'p-2', right: 'p-2', bottom: 'p-2', left: 'p-2' } }
-   * @default { all: 'p-2' } = padding: 0.5rem
+   * @example 'p-2'
+   * @example 'pt-2 pl-3 pb-2 pr-3'
+   * @default 'p-2'
    */
-  padding?: PaddingProps
+  padding?: string
 
   /**
    * Box background color
-   * @default "bg-black"
+   * @default "white"
    */
-  backgroundColor?: string
+  backgroundColor?: BoxStyleProps['backgroundColor']
 
   /**
    * Font color
    * @default "text-white"
    */
-  fontColor?: string
+  color?: BoxStyleProps['color']
 
   /**
    * Box border radius
@@ -51,16 +36,16 @@ export interface BoxProps {
 
 export const Box = ({
   children,
-  padding = { all: 'p-2' },
-  backgroundColor,
-  fontColor,
+  padding,
+  backgroundColor = 'white',
+  color = 'black',
   borderRadius = 'md'
 }: BoxProps) => {
   return (
     <BoxContainer
       padding={padding}
       backgroundColor={backgroundColor}
-      fontColor={fontColor}
+      color={color}
       borderRadius={borderRadius}
     >
       {children}
