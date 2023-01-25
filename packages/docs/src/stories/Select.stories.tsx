@@ -98,3 +98,17 @@ export const Multiple = () => {
     </>
   )
 }
+
+export const Test = () => {
+  return (
+    <div className="w-56">
+      <Select
+        padding="1px 1px"
+        options={options}
+        backgroundColor="#E9EBED"
+        border="1px solid transparent"
+        focusBorder={false}
+      />
+    </div>
+  )
+}

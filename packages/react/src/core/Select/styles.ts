@@ -27,7 +27,7 @@ export const SelectStyle = {
     `
     font-regular text-grey-400 text-xs
     py-[.125rem] px-1
-    bg-grey-100 rounded-[0.25rem]
+    bg-grey-100 rounded
   `,
     {}
   ),
@@ -43,20 +43,26 @@ const variants = ({
   isDisabled,
   isFocused,
   isSelected,
-  error
+  error,
+  backgroundColor,
+  border,
+  focusBorder
 }: {
   isDisabled?: boolean
   isFocused?: boolean
   isSelected?: boolean
   error?: string | boolean
+  backgroundColor?: string
+  border?: string
+  focusBorder?: boolean
 }) => {
   const props = {
     fontSize: '14px',
     fontColor: 'grey-600',
     fontWeight: '300',
     control: {
-      border: '1px solid grey-400',
-      background: 'transparent'
+      border: border || '1px solid grey-400',
+      background: backgroundColor || 'white'
     },
     options: {
       background: ''
@@ -97,9 +103,19 @@ const variants = ({
 
 interface SelectStylesProps {
   error?: string
+  padding?: string
+  backgroundColor?: string
+  border?: string
+  focusBorder?: boolean
 }
 
-export const selectStyles = ({ error }: SelectStylesProps) => {
+export const selectStyles = ({
+  error,
+  padding,
+  backgroundColor,
+  border,
+  focusBorder
+}: SelectStylesProps) => {
   const config: StylesConfig = {
     indicatorSeparator: (baseStyles, { isMulti, hasValue }) => ({
       ...baseStyles,
@@ -151,14 +167,17 @@ export const selectStyles = ({ error }: SelectStylesProps) => {
     control: (baseStyles, { isFocused, isDisabled }) => {
       return {
         ...baseStyles,
+        minHeight: 0,
         boxShadow: 'none',
-        backgroundColor: variants({ isDisabled }).control.background,
+        backgroundColor: variants({ isDisabled, backgroundColor }).control
+          .background,
         borderRadius: '0.5rem',
-        padding: '12px 16px',
+        border: variants({ isFocused, error, isDisabled, border }).control
+          .border,
+        padding: padding || '12px 16px',
         lineHeight: '1.313rem',
         fontSize: variants({ isFocused, isDisabled }).fontSize,
         fontWeight: variants({ isFocused, isDisabled }).fontWeight,
-        border: variants({ isFocused, error, isDisabled }).control.border,
         color: variants({ isFocused, error, isDisabled }).fontColor,
         ':hover': {
           border: error ? '1px solid #EF1B1F' : '1px solid #090A0B'
@@ -191,9 +210,8 @@ export const selectStyles = ({ error }: SelectStylesProps) => {
 
       return {
         ...baseStyles,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
+        display: 'grid',
+        gap: '0.5rem',
         padding:
           scrollHeight && clientHeight && scrollHeight > clientHeight
             ? '0 0.5rem 0 0'
@@ -214,13 +232,16 @@ export const selectStyles = ({ error }: SelectStylesProps) => {
           .background,
         color: 'black',
         borderRadius: '0.25rem',
-        padding: '16px 16px 16px 16px',
+        padding: padding || '16px',
         fontSize: '14px',
         fontWeight: '400',
         lineHeight: '1.313rem',
         ':active': {
           background: '#E6F3FF'
-        }
+        },
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
       }
     },
     multiValue: (baseStyles, { isDisabled, isFocused }) => {
