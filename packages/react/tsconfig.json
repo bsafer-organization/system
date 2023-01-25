@@ -1,5 +1,10 @@
 {
   "extends": "@bsafer-system/ts-config/react.json",
+  "compilerOptions": {
+    "typeRoots": [
+      "./src/@types",
+    ]
+  },
   "include": [
     "src"
   ]

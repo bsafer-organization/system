@@ -27,7 +27,7 @@ export interface TooltipProps {
   /**
    * Element that will be wrapped by the tooltip
    */
-  children: React.ReactElement
+  children: React.ReactNode
 
   /**
    * Controlled way to open the tooltip
