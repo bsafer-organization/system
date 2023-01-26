@@ -23,7 +23,7 @@ export interface BoxProps {
 
   /**
    * Font color
-   * @default "text-white"
+   * @default "black"
    */
   color?: BoxStyleProps['color']
 
