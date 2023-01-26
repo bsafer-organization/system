@@ -1,10 +1,18 @@
 # @bsafer-system/react
 
+## 1.3.0
+
+### Minor Changes
+
+- Select adjustments: padding, background color, border radius and dropdown indicator;
+- Box properties rafactor: padding, background color and color;
+- Features: SidebarMenu and TopHeader.
+
 ## 1.2.5
 
 ### Patch Changes
 
-- - Fix onClick button component
+- Fix onClick button component
 
 ## 1.2.4
 
@@ -22,13 +30,13 @@
 
 ### Patch Changes
 
-- - Adjusted common attributes in components
+- Adjusted common attributes in components
 
 ## 1.2.1
 
 ### Patch Changes
 
-- - Changed windstitch to main dependences
+- Changed windstitch to main dependences
 
 ## 1.2.0
 
@@ -40,14 +48,14 @@
 
 ### Patch Changes
 
-- - Fix dependences
+- Fix dependences
 
 ## 1.1.0
 
 ### Minor Changes
 
-- - Component migration from other repository `system` to monorepo
-  - Increase tokens: border-radius, elevations
+- Component migration from other repository `system` to monorepo
+- Increase tokens: border-radius, elevations
 
 ## 1.0.1
 
