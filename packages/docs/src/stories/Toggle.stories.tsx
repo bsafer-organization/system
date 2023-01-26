@@ -1,6 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 import { Toggle, ToggleProps } from '@bsafer-system/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'Core/Toggle',
@@ -13,34 +12,19 @@ export default {
   },
   args: {
     text: '',
-    className: 'w-[25rem]'
-  },
-  argTypes: {
-    className: {
-      control: 'none'
-    }
+    checked: false
   },
   decorators: [
-    (Story) => {
-      return (
-        <div className="flex flex-col flex-wrap justify-center items-center gap-10 max-w-2xl my-0 mx-auto">
-          {Story()}
-        </div>
-      )
-    }
+    (Story) => <div className="w-screen max-w-screen-sm">{Story()}</div>
   ]
 } as Meta<ToggleProps>
 
 export const Playground: StoryObj<ToggleProps> = {}
 
 export const WithoutText = () => {
-  return(
-    <Toggle />
-  )
+  return <Toggle />
 }
 
 export const WithText = () => {
-  return(
-    <Toggle text='Texto inserido' className='w-[25rem]' />
-  )
+  return <Toggle text="Texto inserido" className="w-[25rem]" />
 }
