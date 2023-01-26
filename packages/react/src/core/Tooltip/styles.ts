@@ -9,12 +9,10 @@ export const TooltipTriggerContainer = w.div(
 
 export const TooltipContainer = w.div(
   `
-  max-w-md
-  bg-background rounded-md
-    shadow-lg shadow-grey-200
-    p-2
+  max-w-md bg-grey-200 rounded-xl p-2
+  text-grey-800
 
-  [&_svg]:fill-background
+  [&_svg]:fill-grey-200
 `,
   {}
 )
