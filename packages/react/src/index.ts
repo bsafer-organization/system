@@ -18,7 +18,7 @@ export * from './core/Select'
 export * from './core/SortableDragDrop'
 export * from './core/Table'
 export * from './core/Text'
-export * from './core/Toggles'
+export * from './core/Toggle'
 export * from './core/Tooltip'
 // Organisms Components
 export * from './organisms/SidebarMenu'
