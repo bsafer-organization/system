@@ -1,7 +1,7 @@
 import React from 'react'
-import { Danger, Icon, IconProps } from 'iconsax-react'
+import { ArrowUp2, Danger, Icon, IconProps } from 'iconsax-react'
 import ReactSelect, { MultiValue, ActionMeta } from 'react-select'
-import { SelectStyle, selectStyles, SelectStylesProps } from './styles'
+import { SelectStyle, selectStyles } from './styles'
 import {
   DropdownIndicator,
   MultiValueRemoveIndicator,
@@ -13,13 +13,18 @@ interface OptionProps {
   label: string
 }
 
+type SelectGeneralAttributes = Pick<
+  React.HTMLAttributes<HTMLSelectElement>,
+  'className'
+>
+
 export interface CustomDropdownIndicatorProps {
-  icon: Icon
+  icon?: Icon
   variant?: IconProps['variant']
   hoverColor?: string
 }
 
-export interface SelectProps {
+export interface SelectProps extends SelectGeneralAttributes {
   /**
    * Support multiple selected options
    */
@@ -88,9 +93,9 @@ export interface SelectProps {
    * Select border radius.
    * - "md"
    * - "full"
-   * @default "md"
+   * @default "md" = "0.5rem" = "8px"
    */
-  borderRadius?: SelectStylesProps['borderRadius']
+  borderRadius?: 'md' | 'full'
   /**
    * Select dropdown indicator.\
    * **When menu is open, the icon will rotate 180 degrees**
@@ -119,18 +124,23 @@ export const Select = ({
   defaultValue,
   closeMenuOnScroll = false,
   closeMenuOnSelect,
-  placeholder,
+  placeholder = 'Selecione',
   disabled = false,
   label,
   optional = false,
   error,
-  padding,
-  backgroundColor,
-  border,
-  borderRadius,
-  dropdownIndicator,
+  padding = '12px 16px',
+  backgroundColor = 'white',
+  border = '1px solid grey-400',
+  borderRadius = 'md',
+  dropdownIndicator = {
+    icon: ArrowUp2,
+    variant: 'Bold',
+    hoverColor: '#E9EBED'
+  },
   onClearValue,
-  onValueChange
+  onValueChange,
+  ...props
 }: SelectProps) => {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
   return (
@@ -146,6 +156,7 @@ export const Select = ({
         </SelectStyle.HeaderContainer>
       )}
       <ReactSelect
+        {...props}
         isClearable={multiple}
         hideSelectedOptions={false}
         {...(multiple ? { isMulti: true } : {})}
@@ -164,7 +175,7 @@ export const Select = ({
         })}
         defaultValue={defaultValue}
         options={options}
-        placeholder={placeholder ?? 'Selecione'}
+        placeholder={placeholder}
         menuIsOpen={menuIsOpen}
         onMenuOpen={() => setMenuIsOpen(true)}
         onMenuClose={() => setMenuIsOpen(false)}
