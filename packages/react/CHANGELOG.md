@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.3.1
+
+### Patch Changes
+
+- Some fixes in toggle component: component arguments and style adjustments
+
 ## 1.3.0
 
 ### Minor Changes
