@@ -1,6 +1,6 @@
 import { w } from 'windstitch'
 import { StylesConfig } from 'react-select'
-import { CustomDropdownIndicatorProps } from './index'
+import { SelectProps, CustomDropdownIndicatorProps } from './index'
 
 export const SelectStyle = {
   Container: w.div(
@@ -60,8 +60,8 @@ const variants = ({
     fontColor: 'grey-600',
     fontWeight: '300',
     control: {
-      border: border || '1px solid grey-400',
-      background: backgroundColor || 'white'
+      border,
+      background: backgroundColor
     },
     options: {
       background: ''
@@ -105,7 +105,7 @@ export interface SelectStylesProps {
   padding?: string
   backgroundColor?: string
   border?: string
-  borderRadius?: 'md' | 'full'
+  borderRadius?: SelectProps['borderRadius']
   dropdownIndicator?: CustomDropdownIndicatorProps
 }
 
@@ -149,7 +149,7 @@ export const selectStyles = ({
       marginLeft: '0.25rem',
       borderRadius: '9999px',
       '&:hover': {
-        backgroundColor: dropdownIndicator?.hoverColor || '#090A0B',
+        backgroundColor: dropdownIndicator?.hoverColor,
         transitionProperty:
           'color, background-color, border-color, text-decoration-color, fill, stroke',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -173,11 +173,9 @@ export const selectStyles = ({
           break
 
         default:
-          controlBorderRadius = '0.25rem'
+          controlBorderRadius = '0.5rem'
           break
       }
-      console.log(borderRadius)
-      console.log(controlBorderRadius)
 
       return {
         ...baseStyles,
@@ -188,7 +186,7 @@ export const selectStyles = ({
         borderRadius: controlBorderRadius,
         border: variants({ isFocused, error, isDisabled, border }).control
           .border,
-        padding: padding || '12px 16px',
+        padding,
         lineHeight: '1.313rem',
         fontSize: variants({ isFocused, isDisabled }).fontSize,
         fontWeight: variants({ isFocused, isDisabled }).fontWeight,
@@ -277,7 +275,6 @@ export const selectStyles = ({
         color: '#108BFF',
         '&:hover': {
           backgroundColor: 'transparent',
-          // backgroundColor: '#E9EBED',
           transitionProperty:
             'color, background-color, border-color, text-decoration-color, fill, stroke',
           transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -288,17 +285,3 @@ export const selectStyles = ({
   }
   return config
 }
-
-/**
- *       borderRadius: {
-        none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-[0.25rem]',
-        lg: 'rounded-md',
-        xl: 'rounded-lg',
-        '2xl': 'rounded-xl',
-        '3xl': 'rounded-2xl',
-        '4xl': 'rounded-3xl',
-        full: 'rounded-full'
-      },
- */
