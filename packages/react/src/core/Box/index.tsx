@@ -1,7 +1,7 @@
 import React from 'react'
 import { BoxContainer, BoxStyleProps } from './styles'
 
-export interface BoxProps {
+export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Box content
    */
@@ -39,7 +39,8 @@ export const Box = ({
   padding,
   backgroundColor = 'white',
   color = 'black',
-  borderRadius = 'md'
+  borderRadius = 'md',
+  ...props
 }: BoxProps) => {
   return (
     <BoxContainer
@@ -47,6 +48,7 @@ export const Box = ({
       backgroundColor={backgroundColor}
       color={color}
       borderRadius={borderRadius}
+      {...props}
     >
       {children}
     </BoxContainer>
