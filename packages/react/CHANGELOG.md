@@ -1,5 +1,18 @@
 # @bsafer-system/react
 
+## 1.3.2
+
+### Patch Changes
+
+- Box:
+
+  - Changing component props
+
+  Select:
+
+  - Changing component props
+  - Styles adjustments
+
 ## 1.3.1
 
 ### Patch Changes
