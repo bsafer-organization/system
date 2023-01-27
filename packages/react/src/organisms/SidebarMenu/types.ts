@@ -34,6 +34,14 @@ interface ItemProps {
   onClick?: (route?: string) => void
 }
 
+interface ListProps {
+  children: React.ReactNode
+}
+
+interface FooterProps {
+  children: React.ReactNode
+}
+
 interface RootProps {
   /**
    * Define is menu is open or close
@@ -51,6 +59,8 @@ interface RootProps {
 
 export interface SidebarMenuProps {
   Root: RootProps
+  List: ListProps
+  Footer: FooterProps
   Item: ItemProps
 }
 
