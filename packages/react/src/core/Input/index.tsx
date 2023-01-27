@@ -48,7 +48,10 @@ export interface InputProps {
    * All properties of the input tag must be passed inside this property
    * @default undefined
    */
-  inputProps?: React.ButtonHTMLAttributes<HTMLInputElement>
+  inputProps?: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >
 }
 
 /**
