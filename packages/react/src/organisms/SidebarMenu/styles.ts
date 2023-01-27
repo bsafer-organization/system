@@ -21,12 +21,32 @@ export const RootContainer = w.nav(
   }
 )
 
-export const ItemsWrapper = w.ul(
+export const AbsoluteContainer = w.div(
   `
   absolute top-0 left-0
-  w-full h-full min-w-[16rem] overflow-y-auto
+  w-full h-full min-w-[16rem] overflow-hidden
+  flex flex-col gap-8
+  py-8 px-6
+
+  transition-all
+`,
+  {}
+)
+
+export const ListContainer = w.ul(
+  `
+  w-full flex-1 overflow-y-auto
   flex flex-col gap-6
-  pt-8 px-6
+
+  transition-all
+`,
+  {}
+)
+
+export const FooterContainer = w.ul(
+  `
+  w-full
+  flex flex-col gap-6
 
   transition-all
 `,
