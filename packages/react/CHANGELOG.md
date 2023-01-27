@@ -1,5 +1,13 @@
 # @bsafer-system/react
 
+## 1.4.0
+
+### Minor Changes
+
+- Added two new subcomponents: List and Footer
+  - List: Create a scrollable list in main routes
+  - Footer: Create a footer list to special routes
+
 ## 1.3.3
 
 ### Patch Changes

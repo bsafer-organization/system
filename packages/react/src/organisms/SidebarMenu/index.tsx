@@ -1,10 +1,12 @@
-import { useContext } from 'react'
+import { ReactElement, useContext } from 'react'
 import { Tooltip } from '../../core/Tooltip'
 import { SidebarMenuContext } from './context/SidebarMenuProvider'
 import {
+  AbsoluteContainer,
+  FooterContainer,
   ItemContainer,
   ItemLink,
-  ItemsWrapper,
+  ListContainer,
   RootContainer,
   TextMenu
 } from './styles'
@@ -18,13 +20,35 @@ function Root(props: SidebarMenuProps['Root']) {
   return (
     <SidebarMenuContext.Provider value={{ isOpen, activedRoute }}>
       <RootContainer isOpen={isOpen}>
-        <ItemsWrapper>{children}</ItemsWrapper>
+        <AbsoluteContainer>
+          <>{children}</>
+        </AbsoluteContainer>
       </RootContainer>
     </SidebarMenuContext.Provider>
   )
 }
 
-function Item(props: SidebarMenuProps['Item']) {
+function List({ children }: SidebarMenuProps['List']) {
+  return (
+    <ListContainer>
+      <>{children}</>
+    </ListContainer>
+  )
+}
+
+function Footer({ children }: SidebarMenuProps['Footer']) {
+  return (
+    <footer>
+      <FooterContainer>
+        <>{children}</>
+      </FooterContainer>
+    </footer>
+  )
+}
+
+function Item(
+  props: SidebarMenuProps['Item']
+): ReactElement<SidebarMenuProps['Item']> {
   const { icon: Icon, label, onClick, route, isActive, focusColor } = props
   const { isOpen, activedRoute: isActiveRoutes } =
     useContext(SidebarMenuContext)
@@ -81,15 +105,37 @@ function MenuItemTooptip(props: MenuItemTooltipProps) {
 export const SidebarMenu = {
   /**
    * SidebarMenu.Root is a container that envelops the links and guarantees the contracted or expanded operation. It also manages which link is active or not based on a string for comparison
-   *
    * @param children
    * @param isOpen
    * @param activedRoute
+   * @example
+   *  <SidebarMenu.Root>
    *
-   * @returns div > ul
+   *    # List - Expanded and scrollable container with items
+   *    <SidebarMenu.List>
+   *      <SidebarMenu.Item />
+   *    </SidebarMenu.List>
+   *
+   *    # Footer - Footer container no scrollable with item
+   *    <SidebarMenu.Footer>
+   *      <SidebarMenu.Item />
+   *    </SidebarMenu.Footer>
+   *
+   *  </SidebarMenu.Root>
+   *
+   *
    */
   Root,
-
+  /**
+   * SidebarMenu.List is a scrollable container that should contain a list of items. This container is `flex-1`, so it expands into available space
+   * @param children
+   */
+  List,
+  /**
+   * SidebarMenu.Footer is a no-scrollable container that can be contain a list of items. This container stay above of the SidebarMenu.List
+   * @param children
+   */
+  Footer,
   /**
    * SidebarMenu.Item is an action button intended for use in routes. It is possible to insert a label, an icon and route information. It is also possible to listen to the click event for other tasks.
    *
@@ -99,8 +145,6 @@ export const SidebarMenu = {
    * @param route
    * @param isActive
    * @param focusColor
-   *
-   * @returns li > button
    */
   Item
 }
