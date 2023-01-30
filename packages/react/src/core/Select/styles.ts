@@ -1,6 +1,6 @@
-import { w } from 'windstitch'
 import { StylesConfig } from 'react-select'
-import { SelectProps, CustomDropdownIndicatorProps } from './index'
+import { w } from 'windstitch'
+import { CustomDropdownIndicatorProps, OptionProps, SelectProps } from './index'
 
 export const SelectStyle = {
   Container: w.div(
@@ -117,7 +117,7 @@ export const selectStyles = ({
   borderRadius,
   dropdownIndicator
 }: SelectStylesProps) => {
-  const config: StylesConfig = {
+  const config: StylesConfig<OptionProps> = {
     indicatorSeparator: (baseStyles, { isMulti, hasValue }) => ({
       ...baseStyles,
       display: isMulti && hasValue ? '' : 'none'

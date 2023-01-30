@@ -2,7 +2,9 @@ import { ArrowUp2, Danger, Icon, IconProps } from 'iconsax-react'
 import React from 'react'
 import ReactSelect, {
   ActionMeta,
-  Props as ReactSelectProps
+  MultiValue,
+  Props as ReactSelectProps,
+  SingleValue
 } from 'react-select'
 import {
   ClearIndicator,
@@ -11,7 +13,7 @@ import {
 } from './components'
 import { SelectStyle, selectStyles } from './styles'
 
-interface OptionProps {
+export interface OptionProps {
   value: string
   label: string
 }
@@ -21,7 +23,7 @@ export interface CustomDropdownIndicatorProps {
   hoverColor?: string
 }
 
-export interface SelectProps extends ReactSelectProps {
+export interface SelectProps extends ReactSelectProps<OptionProps, boolean> {
   /**
    * Support multiple selected options
    */
@@ -109,7 +111,10 @@ export interface SelectProps extends ReactSelectProps {
    * @param value selected value
    * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
    */
-  onValueChange?: (value: unknown, actionMeta: ActionMeta<unknown>) => void
+  onValueChange?: (
+    value: MultiValue<OptionProps> | SingleValue<OptionProps>,
+    actionMeta: ActionMeta<OptionProps | OptionProps[]>
+  ) => void
 }
 
 export const Select = ({
@@ -154,10 +159,11 @@ export const Select = ({
         menuPortalTarget={props.menuPortalTarget || document.body}
         isClearable={multiple}
         hideSelectedOptions={false}
-        isMulti={multiple || undefined}
+        isMulti={multiple}
         closeMenuOnScroll={closeMenuOnScroll}
         closeMenuOnSelect={closeMenuOnSelect ?? !multiple}
         isDisabled={disabled}
+        options={options}
         onChange={onValueChange}
         classNamePrefix="select"
         styles={selectStyles({
@@ -169,7 +175,6 @@ export const Select = ({
           dropdownIndicator
         })}
         defaultValue={defaultValue}
-        options={options}
         placeholder={placeholder}
         menuIsOpen={menuIsOpen}
         onMenuOpen={() => setMenuIsOpen(true)}
