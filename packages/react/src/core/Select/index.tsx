@@ -1,30 +1,27 @@
-import React from 'react'
 import { ArrowUp2, Danger, Icon, IconProps } from 'iconsax-react'
-import ReactSelect, { MultiValue, ActionMeta } from 'react-select'
-import { SelectStyle, selectStyles } from './styles'
+import React from 'react'
+import ReactSelect, {
+  ActionMeta,
+  Props as ReactSelectProps
+} from 'react-select'
 import {
+  ClearIndicator,
   DropdownIndicator,
-  MultiValueRemoveIndicator,
-  ClearIndicator
+  MultiValueRemoveIndicator
 } from './components'
+import { SelectStyle, selectStyles } from './styles'
 
 interface OptionProps {
   value: string
   label: string
 }
-
-type SelectGeneralAttributes = Pick<
-  React.HTMLAttributes<HTMLSelectElement>,
-  'className'
->
-
 export interface CustomDropdownIndicatorProps {
   icon?: Icon
   variant?: IconProps['variant']
   hoverColor?: string
 }
 
-export interface SelectProps extends SelectGeneralAttributes {
+export interface SelectProps extends ReactSelectProps {
   /**
    * Support multiple selected options
    */
@@ -112,10 +109,7 @@ export interface SelectProps extends SelectGeneralAttributes {
    * @param value selected value
    * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
    */
-  onValueChange?: (
-    value: MultiValue<unknown>,
-    actionMeta: ActionMeta<unknown>
-  ) => void
+  onValueChange?: (value: unknown, actionMeta: ActionMeta<unknown>) => void
 }
 
 export const Select = ({
@@ -157,9 +151,10 @@ export const Select = ({
       )}
       <ReactSelect
         {...props}
+        menuPortalTarget={props.menuPortalTarget || document.body}
         isClearable={multiple}
         hideSelectedOptions={false}
-        {...(multiple ? { isMulti: true } : {})}
+        isMulti={multiple || undefined}
         closeMenuOnScroll={closeMenuOnScroll}
         closeMenuOnSelect={closeMenuOnSelect ?? !multiple}
         isDisabled={disabled}

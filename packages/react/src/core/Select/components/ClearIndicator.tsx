@@ -1,11 +1,11 @@
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { CloseCircle } from 'iconsax-react'
-import { components, ClearIndicatorProps } from 'react-select'
-import { TooltipStyle } from './styles'
+import { ClearIndicatorProps, components } from 'react-select'
 import { Text } from '../../Text'
+import { TooltipStyle } from './styles'
 
 interface ClearIndicatorComponentProps {
-  props: ClearIndicatorProps<unknown, true>
+  props: ClearIndicatorProps<unknown, boolean>
   menuIsOpen: boolean
   changeMenuState?: (open: boolean) => void
   onClearValue?: () => Promise<void>
