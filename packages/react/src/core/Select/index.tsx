@@ -156,6 +156,7 @@ export const Select = ({
       )}
       <ReactSelect
         {...props}
+        menuPlacement={props.menuPlacement || 'auto'}
         menuPortalTarget={props.menuPortalTarget || document.body}
         isClearable={multiple}
         hideSelectedOptions={false}

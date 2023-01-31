@@ -12,7 +12,10 @@ import {
   Draggable,
   DropResult
 } from 'react-beautiful-dnd'
-import ReactSelect, { SingleValue } from 'react-select'
+import ReactSelect, {
+  SingleValue,
+  Props as ReactSelectProps
+} from 'react-select'
 import { GeneralStyle, selectStyles } from './styles'
 import { DropdownIndicator } from './components'
 
@@ -71,6 +74,12 @@ export type SortableSelectProps = {
   disabled?: boolean
 
   /**
+   * Menu placement
+   * @default 'auto'
+   */
+  menuPlacement?: ReactSelectProps['menuPlacement']
+
+  /**
    * @param optionsGroupedByActions selected option
    */
   onSelectChange: (optionsGroupedByActions: GroupByActions) => void
@@ -106,6 +115,7 @@ export const SortableDragDropSelect = ({
   selectedOptions,
   submittedForm,
   disabled,
+  menuPlacement = 'auto',
   onSelectChange,
   onError
 }: SortableSelectProps) => {
@@ -260,7 +270,7 @@ export const SortableDragDropSelect = ({
 
           if (
             initialSequenceExists?.selectedOption.id !==
-              curr.selectedOption.id ||
+            curr.selectedOption.id ||
             initialSequenceExists?.sequence !== curr.sequence
           ) {
             acc.toUpdate.push(curr)
@@ -359,6 +369,8 @@ export const SortableDragDropSelect = ({
                                       GroupedOption
                                     >
                                       data-testid="selectEnergySequence"
+                                      menuPlacement={menuPlacement}
+                                      menuPortalTarget={document.body}
                                       isClearable={false}
                                       hideSelectedOptions={false}
                                       isDisabled={disabled}
