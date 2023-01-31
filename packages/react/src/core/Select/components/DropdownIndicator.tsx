@@ -1,8 +1,8 @@
-import { DropdownIndicatorProps, components } from 'react-select'
-import { CustomDropdownIndicatorProps } from '../index'
+import { components, DropdownIndicatorProps } from 'react-select'
+import { CustomDropdownIndicatorProps, OptionProps } from '../index'
 
 interface DropdownComponentProps {
-  props: DropdownIndicatorProps<unknown, true>
+  props: DropdownIndicatorProps<OptionProps, true>
   disabled?: boolean
   dropdownIndicator?: CustomDropdownIndicatorProps
 }
