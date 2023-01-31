@@ -1,5 +1,12 @@
 # @bsafer-system/react
 
+## 1.4.1
+
+### Patch Changes
+
+- Table style adjustments
+  - Select props and typing adjustments
+
 ## 1.4.0
 
 ### Minor Changes
