@@ -1,30 +1,29 @@
-import React from 'react'
 import { ArrowUp2, Danger, Icon, IconProps } from 'iconsax-react'
-import ReactSelect, { MultiValue, ActionMeta } from 'react-select'
-import { SelectStyle, selectStyles } from './styles'
+import React from 'react'
+import ReactSelect, {
+  ActionMeta,
+  MultiValue,
+  Props as ReactSelectProps,
+  SingleValue
+} from 'react-select'
 import {
+  ClearIndicator,
   DropdownIndicator,
-  MultiValueRemoveIndicator,
-  ClearIndicator
+  MultiValueRemoveIndicator
 } from './components'
+import { SelectStyle, selectStyles } from './styles'
 
-interface OptionProps {
+export interface OptionProps {
   value: string
   label: string
 }
-
-type SelectGeneralAttributes = Pick<
-  React.HTMLAttributes<HTMLSelectElement>,
-  'className'
->
-
 export interface CustomDropdownIndicatorProps {
   icon?: Icon
   variant?: IconProps['variant']
   hoverColor?: string
 }
 
-export interface SelectProps extends SelectGeneralAttributes {
+export interface SelectProps extends ReactSelectProps<OptionProps, boolean> {
   /**
    * Support multiple selected options
    */
@@ -113,8 +112,8 @@ export interface SelectProps extends SelectGeneralAttributes {
    * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
    */
   onValueChange?: (
-    value: MultiValue<unknown>,
-    actionMeta: ActionMeta<unknown>
+    value: MultiValue<OptionProps> | SingleValue<OptionProps>,
+    actionMeta: ActionMeta<OptionProps | OptionProps[]>
   ) => void
 }
 
@@ -157,12 +156,14 @@ export const Select = ({
       )}
       <ReactSelect
         {...props}
+        menuPortalTarget={props.menuPortalTarget || document.body}
         isClearable={multiple}
         hideSelectedOptions={false}
-        {...(multiple ? { isMulti: true } : {})}
+        isMulti={multiple}
         closeMenuOnScroll={closeMenuOnScroll}
         closeMenuOnSelect={closeMenuOnSelect ?? !multiple}
         isDisabled={disabled}
+        options={options}
         onChange={onValueChange}
         classNamePrefix="select"
         styles={selectStyles({
@@ -174,7 +175,6 @@ export const Select = ({
           dropdownIndicator
         })}
         defaultValue={defaultValue}
-        options={options}
         placeholder={placeholder}
         menuIsOpen={menuIsOpen}
         onMenuOpen={() => setMenuIsOpen(true)}
