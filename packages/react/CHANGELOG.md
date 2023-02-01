@@ -1,5 +1,16 @@
 # @bsafer-system/react
 
+## 1.5.0
+
+### Minor Changes
+
+Select component:
+- Property `menuPlacement` added to component props;
+
+Select drag-n-drop:
+- Property `menuPlacement` added to component props;
+- Set `menuPortalTarget` to document body.
+
 ## 1.4.1
 
 ### Patch Changes
