@@ -6,6 +6,7 @@ import {
   SortableDragDropSelect,
   SortableSelectProps
 } from '@bsafer-system/react'
+import { PropsToArray } from '../helpers/propsToArray'
 
 const options: InputData[] = [
   {
@@ -73,6 +74,7 @@ export default {
     }
   },
   args: {
+    menuPlacement: 'bottom',
     options,
     selectedOptions: [],
     disabled: false,
@@ -89,6 +91,12 @@ export default {
     },
     disabled: {
       control: 'boolean'
+    },
+    menuPlacement: {
+      control: 'inline-radio',
+      options: ['auto', 'bottom', 'top'] as PropsToArray<
+        SortableSelectProps['menuPlacement']
+      >
     }
   },
   decorators: [(Story) => <div className="w-96">{Story()}</div>]
