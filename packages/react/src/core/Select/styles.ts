@@ -251,9 +251,7 @@ export const selectStyles = ({
         ':active': {
           background: '#E6F3FF'
         },
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        wordBreak: 'break-all'
       }
     },
     multiValue: (baseStyles, { isDisabled, isFocused }) => {
