@@ -212,7 +212,8 @@ export const selectStyles = ({
     menu: (baseStyles) => ({
       ...baseStyles,
       padding: '16px',
-      borderRadius: '8px'
+      borderRadius: '8px',
+      zIndex: '999999'
     }),
     menuList: (baseStyles) => {
       const clientHeight =
