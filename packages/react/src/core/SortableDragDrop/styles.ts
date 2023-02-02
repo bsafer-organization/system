@@ -248,11 +248,14 @@ export const selectStyles = ({ startIcon }: SelectStylesProps) => {
       color: variants({ isDisabled }).fontColor,
       lineHeight: '1.313rem'
     }),
+    menuPortal: (baseStyles) => ({
+      ...baseStyles,
+      zIndex: '999999'
+    }),
     menu: (baseStyles) => ({
       ...baseStyles,
       padding: '16px',
-      borderRadius: '8px',
-      zIndex: '999999'
+      borderRadius: '8px'
     }),
     menuList: (baseStyles) => {
       const clientHeight =
