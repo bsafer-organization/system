@@ -6,11 +6,12 @@ export const DialogStyle = {
     className: `
     inset-[0]
     fixed
+    z-[999999]
   `,
     variants: {
       overlayBackdrop: (overlayBackdrop?: boolean) =>
         overlayBackdrop === undefined || overlayBackdrop === true
-          ? `bg-[grey]`
+          ? `bg-black/[0.44]`
           : ``
     }
   }),
@@ -46,6 +47,7 @@ export const DialogStyle = {
       max-h-[85vh]
       px-16
       py-10
+      z-[999999]
   `,
     variants: {
       overlayShadow: (overlayShadow?: boolean) =>

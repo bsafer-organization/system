@@ -209,6 +209,10 @@ export const selectStyles = ({
       color: variants({ error, isDisabled }).fontColor,
       lineHeight: '1.313rem'
     }),
+    menuPortal: (baseStyles) => ({
+      ...baseStyles,
+      zIndex: '999999'
+    }),
     menu: (baseStyles) => ({
       ...baseStyles,
       padding: '16px',
@@ -251,9 +255,7 @@ export const selectStyles = ({
         ':active': {
           background: '#E6F3FF'
         },
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        wordBreak: 'break-all'
       }
     },
     multiValue: (baseStyles, { isDisabled, isFocused }) => {

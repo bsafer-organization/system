@@ -248,6 +248,10 @@ export const selectStyles = ({ startIcon }: SelectStylesProps) => {
       color: variants({ isDisabled }).fontColor,
       lineHeight: '1.313rem'
     }),
+    menuPortal: (baseStyles) => ({
+      ...baseStyles,
+      zIndex: '999999'
+    }),
     menu: (baseStyles) => ({
       ...baseStyles,
       padding: '16px',
@@ -293,9 +297,7 @@ export const selectStyles = ({ startIcon }: SelectStylesProps) => {
         ':active': {
           background: '#E6F3FF'
         },
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        wordBreak: 'break-all'
       }
     },
     multiValue: (baseStyles) => {

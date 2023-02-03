@@ -55,17 +55,15 @@ export const Dialog = (props: DialogProps) => {
           {(props.isActionDialog === undefined ||
             props.isActionDialog === true) && (
             <DialogStyle.ActionContainer>
-              <RadixDialog.Close asChild>
-                <DialogStyle.Button
-                  onClick={props.onSuccessButtonClick}
-                  variant="contained"
-                  color="primary"
-                >
-                  {props.successButtonStartIcon && props.successButtonStartIcon}
-                  {props.successButtonText}
-                  {props.successButtonEndIcon && props.successButtonEndIcon}
-                </DialogStyle.Button>
-              </RadixDialog.Close>
+              <DialogStyle.Button
+                onClick={props.onSuccessButtonClick}
+                variant="contained"
+                color="primary"
+              >
+                {props.successButtonStartIcon && props.successButtonStartIcon}
+                {props.successButtonText}
+                {props.successButtonEndIcon && props.successButtonEndIcon}
+              </DialogStyle.Button>
               {props.cancelButtonText && (
                 <RadixDialog.Close asChild>
                   <DialogStyle.Button
