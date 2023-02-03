@@ -1,0 +1,16 @@
+name: Test Deploy Docs
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'releases/docs/**'
+
+jobs:
+  testing:
+    if:  github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      name: Run echo
+      - run: echo 'The Docs deploying'
