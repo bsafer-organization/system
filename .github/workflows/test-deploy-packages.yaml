@@ -12,5 +12,5 @@ jobs:
     if:  github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      name: Run echo
-      - run: echo 'The Packages deploying'
+      - name: Run echo
+        run: echo 'The Packages deploying'
