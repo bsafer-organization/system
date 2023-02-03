@@ -1,9 +1,11 @@
 name: Release Packages
 
 on:
-  push:
-    tags:
-      - 'build-releases-[0-9]+'
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'releases/packages/**'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

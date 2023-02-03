@@ -1,9 +1,11 @@
 name: Deploy Storybook in GhPages
 
 on:
-  push:
-    tags:
-      - 'build-docs-[0-9]+'
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'releases/docs/**'
 
 jobs:
   build-and-deploy:
