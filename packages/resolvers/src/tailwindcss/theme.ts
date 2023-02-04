@@ -21,13 +21,18 @@ const theme = {
   borderRadius,
   extend: {
     keyframes: {
-      fade: {
+      dialogOverlayShow: {
         "0%": { opacity: 0 },
         "100%": { opacity: 1 },
       },
+      dialogContentShow: {
+        "0%": { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
+        "100%": { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+      },
     },
     animation: {
-      "fade-in-out": "fade 350ms cubic-bezier(0.16, 1, 0.3, 1)",
+      "dialog-overlay-animation": "dialogOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      "dialog-content-animation": "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
   }
 }
