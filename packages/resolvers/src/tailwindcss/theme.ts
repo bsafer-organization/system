@@ -18,7 +18,18 @@ const theme = {
   fontSize,
   fontWeight: fontWeights,
   boxShadow: elevations,
-  borderRadius
+  borderRadius,
+  extend: {
+    keyframes: {
+      fade: {
+        "0%": { opacity: 0 },
+        "100%": { opacity: 1 },
+      },
+    },
+    animation: {
+      "fade-in-out": "fade 350ms cubic-bezier(0.16, 1, 0.3, 1)",
+    },
+  }
 }
 
 const content = [

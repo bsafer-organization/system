@@ -7,6 +7,7 @@ export const DialogStyle = {
     inset-[0]
     fixed
     z-[999999]
+    animate-fade-in-out
   `,
     variants: {
       overlayBackdrop: (overlayBackdrop?: boolean) =>
@@ -48,6 +49,7 @@ export const DialogStyle = {
       px-16
       py-10
       z-[999999]
+      animate-fade-in-out
   `,
     variants: {
       overlayShadow: (overlayShadow?: boolean) =>
