@@ -1,5 +1,13 @@
 # @bsafer-system/resolvers
 
+## 1.4.0
+
+### Minor Changes
+
+- New overlay animation;
+- Close icon button only closes the dialog;
+- Increasing zIndex in the overlay and content.
+
 ## 1.3.0
 
 ### Minor Changes
