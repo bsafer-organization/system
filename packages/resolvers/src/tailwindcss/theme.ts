@@ -18,7 +18,23 @@ const theme = {
   fontSize,
   fontWeight: fontWeights,
   boxShadow: elevations,
-  borderRadius
+  borderRadius,
+  extend: {
+    keyframes: {
+      dialogOverlayShow: {
+        "0%": { opacity: 0 },
+        "100%": { opacity: 1 },
+      },
+      dialogContentShow: {
+        "0%": { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
+        "100%": { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+      },
+    },
+    animation: {
+      "dialog-overlay-animation": "dialogOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+      "dialog-content-animation": "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+    },
+  }
 }
 
 const content = [
