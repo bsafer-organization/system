@@ -5,10 +5,11 @@ on:
     types:
       - closed
     branches:
-      - 'releases/docs/**'
+      - main
 
 jobs:
   build-and-deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:

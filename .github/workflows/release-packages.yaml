@@ -5,12 +5,13 @@ on:
     types:
       - closed
     branches:
-      - 'releases/packages/**'
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release-packages:
+    if: github.event.pull_request.merged == true
     name: Release
     runs-on: ubuntu-latest
     steps:
