@@ -1,14 +1,24 @@
 # @bsafer-system/react
 
+## 1.7.0
+
+### Minor Changes
+
+- New overlay animation;
+- Close icon button only closes the dialog;
+- Increasing zIndex in the overlay and content.
+
 ## 1.6.0
 
 ### Minor Changes
 
 Select:
+
 - Changing option to display all the text and removing text-ellipsis;
 - Increasing zIndex of Menu and MenuPortal.
 
 Dialog:
+
 - Increasing Overlay and Content zIndex;
 - Changing Overlay color.
 
