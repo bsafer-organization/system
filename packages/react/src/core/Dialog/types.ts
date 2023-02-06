@@ -26,7 +26,7 @@ type CancelButtonProps =
       cancelButtonEndIcon?: React.ReactNode
 
       /**
-       * Cancel button click action
+       * Cancel button action
        */
       onCancelButtonClick?: () => void
     }
@@ -47,7 +47,7 @@ type CancelButtonProps =
       cancelButtonEndIcon?: never
 
       /**
-       * Cancel button click action
+       * Cancel button action
        */
       onCancelButtonClick?: never
     }
@@ -75,10 +75,15 @@ export type WithActionsProps = {
   successButtonEndIcon?: React.ReactNode
 
   /**
-   * Success button click action.\
+   * Success button action.\
    * **Set prop "openMenu" to closed state to close dialog.**
    */
   onSuccessButtonClick: () => void
+
+  /**
+   * Close icon button action
+   */
+  onCloseIconButtonClick?: () => void
 } & CancelButtonProps
 
 export type DialogProps = {
