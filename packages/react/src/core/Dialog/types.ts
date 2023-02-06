@@ -52,6 +52,50 @@ type CancelButtonProps =
       onCancelButtonClick?: never
     }
 
+type CloseIconButtonProps =
+  | {
+      /**
+       * Cancel button (outlined button) text
+       */
+      cancelButtonText: string
+
+      /**
+       * Icon placed before cancel button children
+       */
+      cancelButtonStartIcon?: React.ReactNode
+
+      /**
+       * Icon placed after cancel button children
+       */
+      cancelButtonEndIcon?: React.ReactNode
+
+      /**
+       * Cancel button action
+       */
+      onCancelButtonClick?: () => void
+    }
+  | {
+      /**
+       * Cancel button (outlined button) text
+       */
+      cancelButtonText?: never
+
+      /**
+       * Icon placed before cancel button children
+       */
+      cancelButtonStartIcon?: never
+
+      /**
+       * Icon placed after cancel button children
+       */
+      cancelButtonEndIcon?: never
+
+      /**
+       * Cancel button action
+       */
+      onCancelButtonClick?: never
+    }
+
 export type WithActionsProps = {
   /**
    * If false, action buttons and close icon are hidden
@@ -81,7 +125,8 @@ export type WithActionsProps = {
   onSuccessButtonClick: () => void
 
   /**
-   * Close icon button action
+   * Close icon button action.\
+   * **Set prop "openMenu" to closed state to close dialog.**
    */
   onCloseIconButtonClick?: () => void
 } & CancelButtonProps

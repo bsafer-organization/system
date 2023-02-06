@@ -154,6 +154,7 @@ export const WithoutChildren = () => {
         onSuccessButtonClick={() => {
           console.log('onSuccessButtonClick')
         }}
+        onCloseIconButtonClick={() => setOpen(!open)}
         openMenu={open}
       />
     </>

@@ -54,40 +54,41 @@ export const Dialog = (props: DialogProps) => {
           )}
           {(props.isActionDialog === undefined ||
             props.isActionDialog === true) && (
-            <DialogStyle.ActionContainer>
-              <DialogStyle.Button
-                onClick={props.onSuccessButtonClick}
-                variant="contained"
-                color="primary"
-              >
-                {props.successButtonStartIcon && props.successButtonStartIcon}
-                {props.successButtonText}
-                {props.successButtonEndIcon && props.successButtonEndIcon}
-              </DialogStyle.Button>
-              {props.cancelButtonText && (
-                <RadixDialog.Close asChild>
-                  <DialogStyle.Button
-                    onClick={props.onCancelButtonClick}
-                    variant="outlined"
-                    color="primary"
-                  >
-                    {props.cancelButtonStartIcon && props.cancelButtonStartIcon}
-                    {props.cancelButtonText}
-                    {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
-                  </DialogStyle.Button>
-                </RadixDialog.Close>
-              )}
-            </DialogStyle.ActionContainer>
-          )}
+              <DialogStyle.ActionContainer>
+                <DialogStyle.Button
+                  onClick={props.onSuccessButtonClick}
+                  variant="contained"
+                  color="primary"
+                >
+                  {props.successButtonStartIcon && props.successButtonStartIcon}
+                  {props.successButtonText}
+                  {props.successButtonEndIcon && props.successButtonEndIcon}
+                </DialogStyle.Button>
+                {props.cancelButtonText && (
+                  <RadixDialog.Close asChild>
+                    <DialogStyle.Button
+                      onClick={props.onCancelButtonClick}
+                      variant="outlined"
+                      color="primary"
+                    >
+                      {props.cancelButtonStartIcon && props.cancelButtonStartIcon}
+                      {props.cancelButtonText}
+                      {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
+                    </DialogStyle.Button>
+                  </RadixDialog.Close>
+                )}
+              </DialogStyle.ActionContainer>
+            )}
+          // (prop) showCloseIconButton?
           {(props.isActionDialog === undefined ||
             props.isActionDialog === true) && (
-            <DialogStyle.CloseDialogIcon
-              aria-label="Close"
-              onClick={props.onCloseIconButtonClick}
-            >
-              <CloseCircle size={24} />
-            </DialogStyle.CloseDialogIcon>
-          )}
+              <DialogStyle.CloseDialogIcon
+                aria-label="Close"
+                onClick={props.onCloseIconButtonClick}
+              >
+                <CloseCircle size={24} />
+              </DialogStyle.CloseDialogIcon>
+            )}
         </DialogStyle.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>
