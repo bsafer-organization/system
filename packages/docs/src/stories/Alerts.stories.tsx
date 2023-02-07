@@ -1,4 +1,4 @@
-import { Alerts, AlertProps } from '@bsafer-system/react'
+import { AlertProps, Alerts } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
 import { PropsToArray } from '../helpers/propsToArray'
 
@@ -19,8 +19,10 @@ export default {
   argTypes: {
     feedback: {
       control: 'inline-radio',
-      options: ['success', 'warning', 'error', 'info'] as PropsToArray<AlertProps['feedback']>
-    }    
+      options: ['success', 'warning', 'error', 'info'] as PropsToArray<
+        AlertProps['feedback']
+      >
+    }
   },
   decorators: [
     (Story) => {
@@ -36,40 +38,28 @@ export default {
 export const Playground: StoryObj<AlertProps> = {}
 
 export const Feedbacks = () => {
-  return(
-    <div className='flex flex-col gap-8'>
+  return (
+    <div className="flex flex-col gap-8">
       <Alerts
-        message='Mensagem de feedback para o usuário'
-        feedback='success'
+        message="Mensagem de feedback para o usuário - success"
+        feedback="success"
       />
-      <Alerts
-        message='Mensagem de feedback para o usuário'
-      />
-      <Alerts
-        message='Mensagem de feedback para o usuário'
-        feedback='error'
-      />
-      <Alerts
-        message='Mensagem de feedback para o usuário'
-        feedback='info'
-      />
+      <Alerts message="Mensagem de feedback para o usuário" />
+      <Alerts message="Mensagem de feedback para o usuário" feedback="error" />
+      <Alerts message="Mensagem de feedback para o usuário" feedback="info" />
     </div>
   )
 }
 
 export const WithoutComplementText = () => {
-  return(
-    <Alerts
-      message='Mensagem de feedback para o usuário'
-    />
-  )
+  return <Alerts message="Mensagem de feedback para o usuário" />
 }
 
 export const WithComplementText = () => {
-  return(
+  return (
     <Alerts
-      message='Mensagem de feedback para o usuário'
-      complement='Texto complementar sobre o feedback apresentado.'
+      message="Mensagem de feedback para o usuário"
+      complement="Texto complementar sobre o feedback apresentado."
     />
   )
-} 
+}
