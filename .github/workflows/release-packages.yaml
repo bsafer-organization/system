@@ -1,14 +1,17 @@
 name: Release Packages
 
 on:
-  push:
-    tags:
-      - 'build-releases-[0-9]+'
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release-packages:
+    if: github.event.pull_request.merged == true
     name: Release
     runs-on: ubuntu-latest
     steps:
