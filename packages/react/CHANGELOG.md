@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.8.0
+
+### Minor Changes
+
+- Event handlers called when click closeIconButton and outside the bounds of the component.
+
 ## 1.7.0
 
 ### Minor Changes
