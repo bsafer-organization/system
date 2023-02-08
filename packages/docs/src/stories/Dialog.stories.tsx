@@ -154,7 +154,9 @@ export const WithoutChildren = () => {
         onSuccessButtonClick={() => {
           console.log('onSuccessButtonClick')
         }}
+        onDismiss={() => setOpen(false)}
         openMenu={open}
+        closeOnClickOutside={true}
       />
     </>
   )
@@ -182,6 +184,46 @@ export const WithoutBackdrop = () => {
       openMenu={true}
       closeOnClickOutside={true}
       overlayBackdrop={false}
+    />
+  )
+}
+
+export const SuccessAsFocusedButton = () => {
+  return (
+    <Dialog
+      title="Você deseja realmente excluir esse cadeado?"
+      subtitle="ID: 68d47246-b163-4666-97f2-2245c670a12a"
+      icon={<TickCircle color="#05BA38" size={32} />}
+      successButtonText="Sim"
+      onSuccessButtonClick={() => {
+        console.log('onSuccessButtonClick')
+      }}
+      cancelButtonText="Não"
+      onCancelButtonClick={() => {
+        console.log('onCancelButtonClick')
+      }}
+      openMenu={true}
+      focusedButton="success"
+    />
+  )
+}
+
+export const CancelAsFocusedButton = () => {
+  return (
+    <Dialog
+      title="Você deseja realmente excluir esse cadeado?"
+      subtitle="ID: 68d47246-b163-4666-97f2-2245c670a12a"
+      icon={<TickCircle color="#05BA38" size={32} />}
+      successButtonText="Sim"
+      onSuccessButtonClick={() => {
+        console.log('onSuccessButtonClick')
+      }}
+      cancelButtonText="Não"
+      onCancelButtonClick={() => {
+        console.log('onCancelButtonClick')
+      }}
+      openMenu={true}
+      focusedButton="cancel"
     />
   )
 }
