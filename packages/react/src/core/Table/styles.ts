@@ -7,18 +7,19 @@ export const TableRoot = w.table(`w-full`, {
         ? `
             border-separate
             border-spacing-x-0 border-spacing-y-2
-            [&_thead]:text-grey-800 [&_thead]:mb-2
-            [&_thead_th]:px-6
-            [&_tbody]:gap-2
-            [&_tbody_tr]:rounded [&_tbody_tr]:bg-grey-100
-            [&_tbody_td]:px-6 [&_tbody_td]:py-4
+            [&_thead]:text-grey-800
+            [&_thead_tr_th]:px-6
+            [&_tbody_tr]:bg-grey-100
+            [&_tbody_tr_td]:px-6 [&_tbody_tr_td]:py-4
+            [&_tbody_tr_td:first-of-type]:rounded-l
+            [&_tbody_tr_td:last-of-type]:rounded-r
 
-            `
+          `
         : `
-            [&_thead]:text-grey-700 [&_thead]:mb-4
-            [&_thead_th]:px-6
-            [&_tbody_td]:px-6 [&_tbody_td]:py-2
-            `
+            [&_thead]:text-grey-700
+            [&_thead_tr_th]:px-6
+            [&_tbody_tr_td]:px-6 [&_tbody_tr_td]:py-2
+          `
   }
 })
 
