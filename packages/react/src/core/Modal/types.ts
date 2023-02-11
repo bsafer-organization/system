@@ -1,7 +1,17 @@
+import { DialogTriggerProps } from '@radix-ui/react-dialog'
 import React from 'react'
 
-interface Root {
+export interface ModalRootProps {
   isOpen?: boolean
+  children: React.ReactElement[] | React.ReactElement
+}
+
+export interface ModalTriggerProps extends DialogTriggerProps {
+  children: React.ReactElement
+}
+
+export interface ModalContentProps {
+  onDismiss?: () => void
   position?: 'center' | 'left' | 'right'
   width?: string
   overlay?: {
@@ -9,18 +19,4 @@ interface Root {
     opacity?: string
   }
   children: React.ReactElement
-}
-
-interface Trigger {
-  children: React.ReactElement
-}
-
-interface Content {
-  children: React.ReactElement
-}
-
-export interface ModalProps {
-  Root: Root
-  Trigger: Trigger
-  Content: Content
 }

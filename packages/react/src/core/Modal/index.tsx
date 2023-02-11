@@ -1,42 +1,54 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { CloseCircle } from 'iconsax-react'
-import React from 'react'
-import { IconButton } from '../IconButton'
+import { ModalCloseButton } from './styles'
+import { ModalContentProps, ModalRootProps, ModalTriggerProps } from './types'
 
-export interface ModalProps {
-  isOpen?: boolean
-  onDismiss?: () => void
-  position?: 'center' | 'left' | 'right'
-  width?: string
-  overlay?: {
-    color?: string
-    opacity?: string
-  }
-  trigger?: React.ReactElement
-  children: React.ReactElement
+function Root(props: ModalRootProps) {
+  const { children, isOpen } = props
+
+  return <Dialog.Root open={isOpen}>{children}</Dialog.Root>
 }
 
-export function Modal(props: ModalProps) {
-  const { children, isOpen, overlay, position, width, trigger, onDismiss } =
-    props
+function Trigger(props: ModalTriggerProps) {
+  const { children, ...rest } = props
+
+  return <Dialog.Trigger {...rest}>{children}</Dialog.Trigger>
+}
+
+function Content(props: ModalContentProps) {
+  const { children, onDismiss, width, overlay, position } = props
 
   return (
-    <Dialog.Root open={isOpen}>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay
-          className="fixed inset-0 bg-black opacity-80"
-          onClick={onDismiss}
-        />
-        <Dialog.Content className="fixed w-screen max-w-lg h-screen top-0 right-0 bg-white p-5">
-          {children}
-          <Dialog.Close asChild>
-            <IconButton color="default" onClick={onDismiss}>
-              <CloseCircle />
-            </IconButton>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    <Dialog.Portal>
+      <Dialog.Overlay
+        className="fixed inset-0 bg-black opacity-80"
+        onClick={onDismiss}
+      />
+      <Dialog.Content className="fixed w-screen max-w-lg h-screen top-0 right-0">
+        <div className="relative w-full h-full">
+          <div className="absolute top-5 -left-5">
+            <Dialog.Close asChild>
+              <ModalCloseButton onClick={onDismiss}>
+                <CloseCircle size={32} className="text-inherit" />
+              </ModalCloseButton>
+            </Dialog.Close>
+          </div>
+
+          <div className="w-full h-full bg-white">{children}</div>
+        </div>
+      </Dialog.Content>
+    </Dialog.Portal>
   )
+}
+
+export type ModalProps = {
+  Root: ModalRootProps
+  Trigger: ModalTriggerProps
+  Content: ModalContentProps
+}
+
+export const Modal = {
+  Root,
+  Trigger,
+  Content
 }
