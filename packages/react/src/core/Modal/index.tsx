@@ -28,10 +28,10 @@ function Content(props: ModalContentProps) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay
-        className="fixed inset-0 bg-black opacity-80 max-w-"
+        className="fixed inset-0 bg-black opacity-80 z-50"
         onClick={onDismiss}
       />
-      <ModalContainer position={position} maxWidth={maxWidth}>
+      <ModalContainer position={position} maxWidth={maxWidth} className="z-50">
         <div className="relative w-full h-full">
           <ModalCloseButtonContainer position={position}>
             <Dialog.Close asChild>
