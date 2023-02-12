@@ -13,10 +13,6 @@ export interface ModalTriggerProps extends DialogTriggerProps {
 export interface ModalContentProps {
   onDismiss?: () => void
   position?: 'center' | 'left' | 'right'
-  width?: string
-  overlay?: {
-    color?: string
-    opacity?: string
-  }
-  children: React.ReactElement
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
+  children: React.ReactElement[] | React.ReactElement
 }

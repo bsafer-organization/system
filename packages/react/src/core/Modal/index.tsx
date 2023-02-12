@@ -1,6 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { CloseCircle } from 'iconsax-react'
-import { ModalCloseButton } from './styles'
+import {
+  ModalCloseButton,
+  ModalCloseButtonContainer,
+  ModalContainer,
+  ModalContent
+} from './styles'
 import { ModalContentProps, ModalRootProps, ModalTriggerProps } from './types'
 
 function Root(props: ModalRootProps) {
@@ -16,27 +21,34 @@ function Trigger(props: ModalTriggerProps) {
 }
 
 function Content(props: ModalContentProps) {
-  const { children, onDismiss, width, overlay, position } = props
+  const { children, onDismiss, maxWidth = 'xl', position = 'right' } = props
+  const closeButonSize = position === 'center' ? 'sm' : 'md'
+  const closeButtonIconSize = position === 'center' ? 24 : 32
 
   return (
     <Dialog.Portal>
       <Dialog.Overlay
-        className="fixed inset-0 bg-black opacity-80"
+        className="fixed inset-0 bg-black opacity-80 max-w-"
         onClick={onDismiss}
       />
-      <Dialog.Content className="fixed w-screen max-w-lg h-screen top-0 right-0">
+      <ModalContainer position={position} maxWidth={maxWidth}>
         <div className="relative w-full h-full">
-          <div className="absolute top-5 -left-5">
+          <ModalCloseButtonContainer position={position}>
             <Dialog.Close asChild>
-              <ModalCloseButton onClick={onDismiss}>
-                <CloseCircle size={32} className="text-inherit" />
+              <ModalCloseButton onClick={onDismiss} size={closeButonSize}>
+                <CloseCircle
+                  size={closeButtonIconSize}
+                  className="text-inherit"
+                />
               </ModalCloseButton>
             </Dialog.Close>
-          </div>
+          </ModalCloseButtonContainer>
 
-          <div className="w-full h-full bg-white">{children}</div>
+          <ModalContent hasRounded={position === 'center'}>
+            {children}
+          </ModalContent>
         </div>
-      </Dialog.Content>
+      </ModalContainer>
     </Dialog.Portal>
   )
 }
