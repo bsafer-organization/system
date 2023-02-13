@@ -9,9 +9,13 @@ import {
 import { ModalContentProps, ModalRootProps, ModalTriggerProps } from './types'
 
 function Root(props: ModalRootProps) {
-  const { children, isOpen } = props
+  const { children, isOpen, onOpenChange } = props
 
-  return <Dialog.Root open={isOpen}>{children}</Dialog.Root>
+  return (
+    <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
+      {children}
+    </Dialog.Root>
+  )
 }
 
 function Trigger(props: ModalTriggerProps) {
@@ -60,7 +64,16 @@ export type ModalProps = {
 }
 
 export const Modal = {
+  /**
+   * The Root function is to wrap Trigger and Content, responsible for opening and content of Modal.
+   */
   Root,
+  /**
+   * The Trigger component triggers the opening of the modal.
+   */
   Trigger,
+  /**
+   * Them Content is responsible for showing what's inside the modal. This component is also responsible for the closing event when clicking on the overlay or on the dismiss button.
+   */
   Content
 }
