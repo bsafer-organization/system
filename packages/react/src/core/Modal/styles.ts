@@ -1,20 +1,25 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { w } from 'windstitch'
+import { backgroundColors, textColors } from '../../helpers'
 
 export const ModalCloseButton = w.button(``, {
   variants: {
+    color: textColors,
+    backgroundColors,
     size: {
       md: `
-          w-10 h-10 shrink-0 flex justify-center items-center bg-white rounded-full
-          text-black
-          focus-visible:ring-1 focus-visible:ring-black hover:text-grey-700
+          w-10 h-10 shrink-0 flex justify-center items-center rounded-full
+          focus-visible:ring-1 focus-visible:ring-black
           transition-all `,
       sm: `
-          w-6 h-6 shrink-0 flex justify-center items-center bg-white rounded-full
-          text-black
-          focus-visible:ring-1 focus-visible:ring-black hover:text-grey-700
+          w-6 h-6 shrink-0 flex justify-center items-center rounded-full
+          focus-visible:ring-1 focus-visible:ring-black 
           transition-all `
     }
+  },
+  defaultVariants: {
+    color: 'black',
+    backgroundColors: 'white'
   }
 })
 

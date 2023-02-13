@@ -25,7 +25,13 @@ function Trigger(props: ModalTriggerProps) {
 }
 
 function Content(props: ModalContentProps) {
-  const { children, onDismiss, maxWidth = 'xl', position = 'right' } = props
+  const {
+    children,
+    onDismiss,
+    maxWidth = 'xl',
+    position = 'right',
+    dismissOptions
+  } = props
   const closeButonSize = position === 'center' ? 'sm' : 'md'
   const closeButtonIconSize = position === 'center' ? 24 : 32
 
@@ -39,7 +45,12 @@ function Content(props: ModalContentProps) {
         <div className="relative w-full h-full">
           <ModalCloseButtonContainer position={position}>
             <Dialog.Close asChild>
-              <ModalCloseButton onClick={onDismiss} size={closeButonSize}>
+              <ModalCloseButton
+                onClick={onDismiss}
+                size={closeButonSize}
+                backgroundColors={dismissOptions?.backgroundColors}
+                color={dismissOptions?.color}
+              >
                 <CloseCircle
                   size={closeButtonIconSize}
                   className="text-inherit"

@@ -1,5 +1,6 @@
 import { DialogTriggerProps } from '@radix-ui/react-dialog'
 import React from 'react'
+import { backgroundColors, textColors } from '../../helpers'
 
 export interface ModalRootProps {
   /**
@@ -28,6 +29,18 @@ export interface ModalContentProps {
    * OnDismiss is a callback function that trigger when onDismissButton has been pressed
    */
   onDismiss?: () => void
+  /**
+   * CloseButton options
+   * - color (text)
+   * - backgroundColors
+   *
+   * @default color: 'black'
+   * @default backgroundColor: 'white'
+   */
+  dismissOptions?: {
+    color?: keyof typeof textColors
+    backgroundColors?: keyof typeof backgroundColors
+  }
   /**
    * Determines the position of the modal
    * - `center | left | right`
