@@ -1,6 +1,7 @@
 import { Input, InputProps } from '@bsafer-system/react'
 import { Meta, StoryObj } from '@storybook/react'
-import { Calendar1, CloseCircle } from 'iconsax-react'
+import { Calendar1, CloseCircle, Eye, EyeSlash } from 'iconsax-react'
+import { useState } from 'react'
 
 export default {
   title: 'Core/Input',
@@ -26,6 +27,8 @@ export default {
 export const Playground: StoryObj<InputProps> = {}
 
 export const Icons = () => {
+  const [passwordInputVisible, setPasswordInputVisible] = useState(true)
+
   return (
     <div className="flex flex-col gap-4">
       <Input label="StartIcon" startIcon placeholder="Placeholder" />
@@ -38,6 +41,15 @@ export const Icons = () => {
       <Input
         label="Custom EndIcon"
         endIcon={<CloseCircle />}
+        placeholder="Placeholder"
+      />
+      <Input
+        label="OnClick in EndIcon"
+        inputProps={{
+          type: passwordInputVisible ? 'text' : 'password'
+        }}
+        endIcon={passwordInputVisible ? <Eye /> : <EyeSlash />}
+        onClickEndIcon={() => setPasswordInputVisible((prev) => !prev)}
         placeholder="Placeholder"
       />
     </div>

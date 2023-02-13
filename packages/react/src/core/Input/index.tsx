@@ -2,6 +2,7 @@ import { Danger, SearchNormal1 } from 'iconsax-react'
 import React from 'react'
 import {
   ErrorTextContainer,
+  IconContainer,
   InputContainer,
   InputElement,
   InputElementContainer,
@@ -45,6 +46,10 @@ export interface InputProps {
    */
   endIcon?: boolean | JSX.Element
   /**
+   * Listen the click event in the endIcon props.
+   */
+  onClickEndIcon?: () => void
+  /**
    * All properties of the input tag must be passed inside this property
    * @default undefined
    */
@@ -73,12 +78,13 @@ export function Input({
   placeholder,
   inputProps,
   startIcon,
-  endIcon
+  endIcon,
+  onClickEndIcon
 }: InputProps) {
-  const DefaultStartIcon =
+  const StartIcon =
     typeof startIcon === 'boolean' && startIcon ? <SearchNormal1 /> : startIcon
 
-  const DefaultEndIcon =
+  const EndIcon =
     typeof endIcon === 'boolean' && endIcon ? <SearchNormal1 /> : endIcon
 
   return (
@@ -91,7 +97,7 @@ export function Input({
       </div>
 
       <InputElementContainer error={!!error} disabled={disabled}>
-        {DefaultStartIcon && DefaultStartIcon}
+        {StartIcon && <IconContainer>{StartIcon}</IconContainer>}
 
         <InputElement
           {...inputProps}
@@ -100,7 +106,12 @@ export function Input({
           disabled={disabled}
         />
 
-        {DefaultEndIcon && DefaultEndIcon}
+        {EndIcon && !onClickEndIcon && <IconContainer>{EndIcon}</IconContainer>}
+        {EndIcon && onClickEndIcon && (
+          <IconContainer onClick={onClickEndIcon} className="cursor-pointer">
+            {EndIcon}
+          </IconContainer>
+        )}
       </InputElementContainer>
 
       {error && (

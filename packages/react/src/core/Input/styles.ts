@@ -72,3 +72,10 @@ export const ErrorTextContainer = w.div(
 `,
   {}
 )
+
+export const IconContainer = w.span(
+  `
+  w-4 h-4 flex justify-center items-center
+`,
+  {}
+)
