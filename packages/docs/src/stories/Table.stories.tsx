@@ -1,4 +1,5 @@
-import { RootProps, Table } from '@bsafer-system/react'
+import { RootProps, Table, IconButton } from '@bsafer-system/react'
+import { ScanBarcode } from 'iconsax-react'
 import { Meta, StoryObj } from '@storybook/react'
 
 // import { IconButton } from '@bsafer-system/react'
@@ -82,7 +83,7 @@ export default {
   decorators: [
     (Story) => {
       return (
-        <div className="flex flex-col flex-wrap justify-center items-center gap-10 max-w-2lx my-0 mx-auto">
+        <div className="flex flex-col flex-wrap justify-center items-center gap-10 w-[700px] max-w-2lx my-0 mx-auto">
           {Story()}
         </div>
       )
@@ -108,9 +109,11 @@ export const TableWithCards = () => {
       </Table.Header.Root>
       <Table.Body.Root>
         <Table.Body.Row>
-          <Table.Body.Cell className="gap-2 col-span-2">
-            <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
-            <span className="self-center">Rotuladeira - Envasadora 1 </span>
+          <Table.Body.Cell className="col-span-2">
+            <div className='flex gap-2'>
+              <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
+              <span className="self-center">Rotuladeira - Envasadora 1 </span>
+            </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center col-span-2">
             <div className="flex gap-4">
@@ -124,15 +127,17 @@ export const TableWithCards = () => {
             </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center">
-            {/* <IconButton>
+            <IconButton>
               <ScanBarcode />
-            </IconButton> */}
+            </IconButton>
           </Table.Body.Cell>
         </Table.Body.Row>
         <Table.Body.Row>
-          <Table.Body.Cell className="gap-2 col-span-2">
-            <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
-            <span className="self-center">Rotuladeira - Envasadora 1 </span>
+          <Table.Body.Cell className="col-span-2">
+            <div className='flex gap-2'>
+              <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
+              <span className="self-center">Rotuladeira - Envasadora 1 </span>
+            </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center col-span-2">
             <div className="flex gap-4">
@@ -146,15 +151,17 @@ export const TableWithCards = () => {
             </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center">
-            {/* <IconButton>
+            <IconButton>
               <ScanBarcode />
-            </IconButton> */}
+            </IconButton>
           </Table.Body.Cell>
         </Table.Body.Row>
         <Table.Body.Row>
-          <Table.Body.Cell className="gap-2 col-span-2">
-            <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
-            <span className="self-center">Rotuladeira - Envasadora 1 </span>
+          <Table.Body.Cell className="col-span-2">
+            <div className='flex gap-2'>
+              <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
+              <span className="self-center">Rotuladeira - Envasadora 1 </span>
+            </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center col-span-2">
             <div className="flex gap-4">
@@ -168,15 +175,17 @@ export const TableWithCards = () => {
             </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center">
-            {/* <IconButton>
+            <IconButton>
               <ScanBarcode />
-            </IconButton> */}
+            </IconButton>
           </Table.Body.Cell>
         </Table.Body.Row>
         <Table.Body.Row>
-          <Table.Body.Cell className="gap-2 col-span-2">
-            <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
-            <span className="self-center">Rotuladeira - Envasadora 1 </span>
+          <Table.Body.Cell className="col-span-2">
+            <div className='flex gap-2'>
+              <div className="w-10 h-10 bg-cover bg-center bg-[url('../../docs/images/block_image.png')] rounded" />
+              <span className="self-center">Rotuladeira - Envasadora 1 </span>
+            </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center col-span-2">
             <div className="flex gap-4">
@@ -190,9 +199,9 @@ export const TableWithCards = () => {
             </div>
           </Table.Body.Cell>
           <Table.Body.Cell className="self-center">
-            {/* <IconButton>
+            <IconButton>
               <ScanBarcode />
-            </IconButton> */}
+            </IconButton>
           </Table.Body.Cell>
         </Table.Body.Row>
       </Table.Body.Root>
