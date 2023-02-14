@@ -2,6 +2,7 @@ import { Danger, SearchNormal1 } from 'iconsax-react'
 import React from 'react'
 import {
   ErrorTextContainer,
+  IconContainer,
   InputContainer,
   InputElement,
   InputElementContainer,
@@ -13,7 +14,7 @@ export interface InputProps {
   /**
    * Input label with id and htmlFor
    */
-  label: string
+  label?: string
   /**
    * Render a badge with text 'Opcional'
    * @default false
@@ -45,6 +46,10 @@ export interface InputProps {
    */
   endIcon?: boolean | JSX.Element
   /**
+   * Listen the click event in the endIcon props.
+   */
+  onClickEndIcon?: () => void
+  /**
    * All properties of the input tag must be passed inside this property
    * @default undefined
    */
@@ -73,25 +78,30 @@ export function Input({
   placeholder,
   inputProps,
   startIcon,
-  endIcon
+  endIcon,
+  onClickEndIcon
 }: InputProps) {
-  const DefaultStartIcon =
+  const StartIcon =
     typeof startIcon === 'boolean' && startIcon ? <SearchNormal1 /> : startIcon
 
-  const DefaultEndIcon =
+  const EndIcon =
     typeof endIcon === 'boolean' && endIcon ? <SearchNormal1 /> : endIcon
 
   return (
     <InputContainer>
-      <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
-        <InputLabel htmlFor={label} title={label}>
-          {label}
-        </InputLabel>
-        {optional && <OptionalBadge>Opcional</OptionalBadge>}
-      </div>
+      {(label || optional) && (
+        <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
+          {label && (
+            <InputLabel htmlFor={label} title={label}>
+              {label}
+            </InputLabel>
+          )}
+          {optional && <OptionalBadge>Opcional</OptionalBadge>}
+        </div>
+      )}
 
       <InputElementContainer error={!!error} disabled={disabled}>
-        {DefaultStartIcon && DefaultStartIcon}
+        {StartIcon && <IconContainer>{StartIcon}</IconContainer>}
 
         <InputElement
           {...inputProps}
@@ -100,7 +110,12 @@ export function Input({
           disabled={disabled}
         />
 
-        {DefaultEndIcon && DefaultEndIcon}
+        {EndIcon && !onClickEndIcon && <IconContainer>{EndIcon}</IconContainer>}
+        {EndIcon && onClickEndIcon && (
+          <IconContainer onClick={onClickEndIcon} className="cursor-pointer">
+            {EndIcon}
+          </IconContainer>
+        )}
       </InputElementContainer>
 
       {error && (
