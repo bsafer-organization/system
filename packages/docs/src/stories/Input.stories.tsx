@@ -65,6 +65,15 @@ export const Optional = () => {
   )
 }
 
+export const WithoutLabel = () => {
+  return (
+    <div className="flex flex-col gap-4">
+      <Input label="With Label" placeholder="Placeholder" />
+      <Input placeholder="Placeholder" />
+    </div>
+  )
+}
+
 export const Errors = () => {
   return (
     <div className="flex flex-col gap-4">

@@ -14,7 +14,7 @@ export interface InputProps {
   /**
    * Input label with id and htmlFor
    */
-  label: string
+  label?: string
   /**
    * Render a badge with text 'Opcional'
    * @default false
@@ -89,12 +89,16 @@ export function Input({
 
   return (
     <InputContainer>
-      <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
-        <InputLabel htmlFor={label} title={label}>
-          {label}
-        </InputLabel>
-        {optional && <OptionalBadge>Opcional</OptionalBadge>}
-      </div>
+      {(label || optional) && (
+        <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
+          {label && (
+            <InputLabel htmlFor={label} title={label}>
+              {label}
+            </InputLabel>
+          )}
+          {optional && <OptionalBadge>Opcional</OptionalBadge>}
+        </div>
+      )}
 
       <InputElementContainer error={!!error} disabled={disabled}>
         {StartIcon && <IconContainer>{StartIcon}</IconContainer>}
