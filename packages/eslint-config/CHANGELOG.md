@@ -1,5 +1,12 @@
 # @bsafer-system/eslint-config
 
+## 1.1.2
+
+### Patch Changes
+
+- eslint-config:
+  - Dependences adjustments
+
 ## 1.1.1
 
 ### Patch Changes
