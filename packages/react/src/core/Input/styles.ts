@@ -26,25 +26,28 @@ export const InputElementContainer = w.div(
   w-full min-w-0
   flex items-center gap-4
   py-3 px-4 rounded-lg
-  border border-grey-400
-
-  text-grey-800
-
-  focus-within:border-black
-
-  [&>svg]:w-4 [&>svg]:h-4 [&>svg]:shrink-0
+  border
 `,
   {
     variants: {
       error: (error: boolean) =>
         error
-          ? 'border-assistant-red-main focus-within:border-assistant-red-main'
+          ? 'border-assistant-red-main focus-within:border-assistant-red-main text-grey-800'
           : '',
       disabled: (disabled: boolean) =>
         disabled
-          ? 'bg-grey-100 border-grey-600 text-grey-600 placeholder:text-grey-600'
+          ? 'bg-grey-100 border-grey-600 text-grey-600 placeholder:text-grey-600 cursor-not-allowed'
           : ''
     },
+    compoundVariants: [
+      {
+        // @ts-ignore
+        error: false,
+        // @ts-ignore
+        disabled: false,
+        class: 'border-grey-400 focus-within:border-black text-grey-800'
+      }
+    ],
     defaultVariants: {
       error: false,
       disabled: false
@@ -59,6 +62,8 @@ export const InputElement = w.input(
 
   text-sm text-inherit font-regular
   placeholder:text-grey-600 placeholder:font-light placeholder-shown:
+
+  disabled:cursor-not-allowed
 `,
   {}
 )
@@ -75,7 +80,7 @@ export const ErrorTextContainer = w.div(
 
 export const IconContainer = w.span(
   `
-  w-4 h-4 flex justify-center items-center
+  w-4 h-4 flex justify-center items-center shrink-0 select-none
 `,
   {}
 )
