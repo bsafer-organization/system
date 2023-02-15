@@ -5,6 +5,26 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    scrollbar-width: 6px;
+    scrollbar-color: theme('colors.grey.500') theme('colors.white');
+    box-sizing: border-box;
+  }
+
+  *::-webkit-scrollbar {
+    @apply w-[6px];
+    @apply h-[6px];
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    @apply bg-grey-500;
+  }
+
   :focus-visible {
     outline: 0;
   }
