@@ -1,5 +1,12 @@
 # @bsafer-system/react
 
+## 1.9.1
+
+### Patch Changes
+
+- react:
+  - Input component css adjusmentes (border, disabled colors, etc)
+
 ## 1.9.0
 
 ### Minor Changes
