@@ -1,5 +1,21 @@
 # @bsafer-system/react
 
+## 1.9.1
+
+### Patch Changes
+
+- react:
+  - Input component css adjusmentes (border, disabled colors, etc)
+
+## 1.9.0
+
+### Minor Changes
+
+- The modal componente was added in design system
+- Input adjustments:
+  - Created an click event for endIcon prop
+  - Removed the required prop: label
+
 ## 1.8.0
 
 ### Minor Changes

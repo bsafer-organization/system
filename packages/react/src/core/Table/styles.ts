@@ -1,53 +1,38 @@
 import { w, W } from 'windstitch'
 
-export const TableRoot = w.table(`grid`, {
+export const TableRoot = w.table(`w-full`, {
   variants: {
     hasBackground: (bg: boolean) =>
       bg
         ? `
-            [&_thead]:text-grey-800 [&_thead]:mb-2
-            [&_thead_tr]:px-6
-            [&_tbody]:gap-2
-            [&_tbody_tr]:rounded [&_tbody_tr]:bg-grey-100 [&_tbody_tr]:px-6 [&_tbody_tr]:py-4
+            border-separate
+            border-spacing-x-0 border-spacing-y-2
+            [&_thead]:text-grey-800
+            [&_thead_tr_th]:px-6
+            [&_tbody_tr]:bg-grey-100
+            [&_tbody_tr_td]:px-6 [&_tbody_tr_td]:py-4
+            [&_tbody_tr_td:first-of-type]:rounded-l
+            [&_tbody_tr_td:last-of-type]:rounded-r
 
-            `
+          `
         : `
-            [&_thead]:text-grey-700 [&_thead]:mb-4
-            [&_thead_tr]:px-6
-            [&_tbody_tr]:px-6 [&_tbody_tr]:py-2
-            `
+            [&_thead]:text-grey-700
+            [&_thead_tr_th]:px-6
+            [&_tbody_tr_td]:px-6 [&_tbody_tr_td]:py-2
+          `
   }
 })
 
 export const TableHeader = {
-  Root: w.thead(
-    `
-        `
-  ),
-  Row: w.tr(
-    `
-        grid grid-flow-col auto-cols-fr
-        `
-  ),
-  Cell: w.th(
-    `
-        flex text-xs
-        `
-  )
+  Root: w.thead(``),
+  Row: w.tr(``),
+  Cell: w.th(`text-left text-xs`)
 }
 
 export const TableBody = {
-  Root: w.tbody(`flex flex-col`),
-  Row: w.tr(
-    `
-        grid grid-flow-col auto-cols-fr items-center
-        `
-  ),
-  Cell: w.td(
-    `
-        flex text-sm
-        `
-  )
+  Root: w.tbody(``),
+  Row: w.tr(``),
+  Cell: w.td(`text-sm`)
 }
 
 export type TableRootProps = W.Infer<typeof TableRoot>
