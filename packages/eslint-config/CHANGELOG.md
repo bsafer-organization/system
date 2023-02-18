@@ -1,5 +1,11 @@
 # @bsafer-system/eslint-config
 
+## 1.2.0
+
+### Minor Changes
+
+- Adjustments
+
 ## 1.1.2
 
 ### Patch Changes
