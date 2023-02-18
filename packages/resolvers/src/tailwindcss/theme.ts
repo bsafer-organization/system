@@ -1,5 +1,7 @@
 
 import { borderRadius, colors, elevations, fontFamily, fontSizes, fontWeights, lineHeights } from '@bsafer-system/tokens'
+//@ts-ignore
+import * as tailwindcss from 'tailwindcss-animate'
 
 const fontSize = {
   xs: [fontSizes.xs, lineHeights.lg],
@@ -46,5 +48,5 @@ export const defaultTailwindTheme = {
   theme,
   content,
   darkMode: 'class',
-  plugins: []
+  plugins: [tailwindcss]
 } as const

@@ -37,7 +37,7 @@ export const ModalContainer = w(Dialog.Content, {
     position: {
       left: 'fixed w-screen h-screen top-0 left-0',
       center:
-        'fixed w-screen max-h-[80vh] h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+        'fixed w-screen max-h-[80vh] h-screen top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2',
       right: 'fixed w-screen h-screen top-0 right-0'
     }
   }
