@@ -22,7 +22,7 @@ export function PopoverContent(props: PopoverContentProps) {
   const {
     children,
     className = '',
-    hideArrow = false,
+    hiddenArrow = false,
     arrow,
     sideOffset = 10,
     ...contentProps
@@ -30,7 +30,7 @@ export function PopoverContent(props: PopoverContentProps) {
   return (
     <RadixPopover.Content sideOffset={sideOffset} {...contentProps}>
       <PopoverBox className={className}>{children}</PopoverBox>
-      {!hideArrow && (
+      {!hiddenArrow && (
         <span className={textColors[arrow?.color || 'white']}>
           <RadixPopover.Arrow
             width={arrow?.width}
@@ -48,9 +48,33 @@ export function PopoverAnchor({ children }: PopoverAnchorProps) {
 }
 
 export const Popover = {
+  /**
+   * Root is the component that wraps the rest of the components and keeps them working
+   * @example
+   *  <Popover.Root>
+   *   <Popover.Trigger>
+   *     {children}
+   *   </Popover.Trigger>
+   *   <Popover.Anchor>
+   *     {children}
+   *   </Popover.Anchor>
+   *   <Popover.Content>
+   *    {children}
+   *   </Popover.Content>
+   *  </Popover.Root>
+   */
   Root: PopoverRoot,
+  /**
+   * Trigger is the component that triggers the action of opening(uncontrolled) the Popover
+   */
   Trigger: PopoverTrigger,
+  /**
+   * Content is the component that wraps the Popover content. Able to receive any set of elements
+   */
   Content: PopoverContent,
+  /**
+   * Anchor causes the Popover to open in a different element than the Trigger.
+   */
   Anchor: PopoverAnchor
 }
 

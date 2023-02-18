@@ -17,7 +17,23 @@ export interface PopoverTriggerProps extends RadixPopoverTriggerProps {
 
 export interface PopoverContentProps extends RadixPopoverContentProps {
   className?: string
-  hideArrow?: boolean
+  /**
+   * Hide the arrow svg
+   * @default false
+   */
+  hiddenArrow?: boolean
+  /**
+   * Arrow configuration
+   * - width: number
+   * - height: number
+   * - color: allColors
+   * @default
+   * {
+   *  width: 10,
+   *  height: 5,
+   *  color: 'white'
+   * }
+   */
   arrow?: {
     width?: number
     height?: number
