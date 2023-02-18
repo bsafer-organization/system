@@ -1,5 +1,11 @@
 # @bsafer-system/resolvers
 
+## 1.5.0
+
+### Minor Changes
+
+- Added `tailwindcss-animate` lib to improve easily animations
+
 ## 1.4.1
 
 ### Patch Changes

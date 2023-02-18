@@ -148,7 +148,7 @@ TooltipWithCustomText.storyName = 'Tootip With Custom Text'
 
 export const TooltipWithCustomChildren = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col items-center gap-6">
       <Tooltip text="Lorem <b>ipsum</b> dolor, <code>sit</code> amet <i>consectetur</i> adipisicing elit.">
         <Text size="lg">Text content</Text>
       </Tooltip>

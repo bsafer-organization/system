@@ -34,14 +34,23 @@ function Content(props: ModalContentProps) {
   } = props
   const closeButonSize = position === 'center' ? 'sm' : 'md'
   const closeButtonIconSize = position === 'center' ? 24 : 32
+  const animationByPosition = {
+    right: 'animate-in fade-in slide-in-from-right-1/3',
+    center: 'animate-in fade-in zoom-in-75',
+    left: 'animate-in fade-in slide-in-from-left-1/3'
+  }
 
   return (
     <Dialog.Portal>
       <Dialog.Overlay
-        className="fixed inset-0 bg-black opacity-80 z-50"
+        className="fixed inset-0 bg-black opacity-80 z-50 animate-in fade-in"
         onClick={onDismiss}
       />
-      <ModalContainer position={position} maxWidth={maxWidth} className="z-50">
+      <ModalContainer
+        position={position}
+        maxWidth={maxWidth}
+        className={`z-50 ${animationByPosition[position]}`}
+      >
         <div className="relative w-full h-full">
           <ModalCloseButtonContainer position={position}>
             <Dialog.Close asChild>
