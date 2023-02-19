@@ -42,6 +42,27 @@ export interface ModalContentProps {
     backgroundColors?: keyof typeof backgroundColors
   }
   /**
+   * DismissConfirmation show a dialog before close modal:
+   * If `true`, renders the default props, but can change any prop.
+   * @default
+   * {
+   *  title: 'As informações inseridas serão perdidas. Tem certeza que deseja fechar?',
+   *  icon: <InfoCircle size={40} />,
+   *  cancelText: 'Não',
+   *  successText: 'Sim',
+   *  focusedButton: 'cancel'
+   * }
+   */
+  dismissConfirmation?:
+    | {
+        title?: string
+        icon?: React.ReactElement
+        cancelText?: string
+        successText?: string
+        focusedButton?: 'success' | 'cancel'
+      }
+    | boolean
+  /**
    * Determines the position of the modal
    * - `center | left | right`
    * @default 'right'
