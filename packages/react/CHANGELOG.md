@@ -1,5 +1,12 @@
 # @bsafer-system/react
 
+## 1.11.0
+
+### Minor Changes
+
+- Added new componente: MaskInput
+- Added a confirmation dialog inside modal. This confirmation Dialog is called before `onDismiss`
+
 ## 1.10.0
 
 ### Minor Changes
