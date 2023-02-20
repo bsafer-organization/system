@@ -1,5 +1,8 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { CloseCircle } from 'iconsax-react'
+import { CloseCircle, InfoCircle } from 'iconsax-react'
+import { useState } from 'react'
+
+import { Dialog as ConfirmationDialog } from '../Dialog'
 import {
   ModalCloseButton,
   ModalCloseButtonContainer,
@@ -27,9 +30,10 @@ function Trigger(props: ModalTriggerProps) {
 function Content(props: ModalContentProps) {
   const {
     children,
-    onDismiss,
     maxWidth = 'xl',
     position = 'right',
+    onDismiss,
+    dismissConfirmation,
     dismissOptions
   } = props
   const closeButonSize = position === 'center' ? 'sm' : 'md'
@@ -39,6 +43,37 @@ function Content(props: ModalContentProps) {
     center: 'animate-in fade-in zoom-in-75',
     left: 'animate-in fade-in slide-in-from-left-1/3'
   }
+  const [confirmation, setConfirmation] = useState(false)
+
+  function handleOpenConfimation() {
+    setConfirmation(true)
+  }
+
+  const dismissConfirmationDefault = {
+    title:
+      'As informações inseridas serão perdidas. Tem certeza que deseja fechar?',
+    icon: <InfoCircle size={40} />,
+    cancelText: 'Não',
+    successText: 'Sim',
+    focusedButton: 'cancel' as const
+  }
+
+  const parsedDismissConfirmation =
+    typeof dismissConfirmation === 'object'
+      ? {
+          title: dismissConfirmation.title || dismissConfirmationDefault.title,
+          icon: dismissConfirmation.icon || dismissConfirmationDefault.icon,
+          cancelText:
+            dismissConfirmation.cancelText ||
+            dismissConfirmationDefault.cancelText,
+          successText:
+            dismissConfirmation.successText ||
+            dismissConfirmationDefault.successText,
+          focusedButton:
+            dismissConfirmation.focusedButton ||
+            dismissConfirmationDefault.focusedButton
+        }
+      : dismissConfirmationDefault
 
   return (
     <Dialog.Portal>
@@ -53,19 +88,53 @@ function Content(props: ModalContentProps) {
       >
         <div className="relative w-full h-full">
           <ModalCloseButtonContainer position={position}>
-            <Dialog.Close asChild>
-              <ModalCloseButton
-                onClick={onDismiss}
-                size={closeButonSize}
-                backgroundColors={dismissOptions?.backgroundColors}
-                color={dismissOptions?.color}
-              >
-                <CloseCircle
-                  size={closeButtonIconSize}
-                  className="text-inherit"
+            {dismissConfirmation && (
+              <>
+                <ModalCloseButton
+                  onClick={handleOpenConfimation}
+                  size={closeButonSize}
+                  backgroundColors={dismissOptions?.backgroundColors}
+                  color={dismissOptions?.color}
+                >
+                  <CloseCircle
+                    size={closeButtonIconSize}
+                    className="text-inherit"
+                  />
+                </ModalCloseButton>
+                <ConfirmationDialog
+                  openMenu={confirmation}
+                  title={parsedDismissConfirmation.title}
+                  icon={parsedDismissConfirmation.icon}
+                  onSuccessButtonClick={() => {
+                    setConfirmation(false)
+                    if (onDismiss) onDismiss()
+                  }}
+                  onCancelButtonClick={() => {
+                    setConfirmation(false)
+                  }}
+                  showCloseIconButton={false}
+                  successButtonText={parsedDismissConfirmation.successText}
+                  cancelButtonText={parsedDismissConfirmation.cancelText}
+                  focusedButton={parsedDismissConfirmation.focusedButton}
                 />
-              </ModalCloseButton>
-            </Dialog.Close>
+              </>
+            )}
+
+            {!dismissConfirmation && (
+              <Dialog.Close asChild>
+                <ModalCloseButton
+                  onClick={onDismiss}
+                  size={closeButonSize}
+                  backgroundColors={dismissOptions?.backgroundColors}
+                  color={dismissOptions?.color}
+                >
+                  <CloseCircle
+                    size={closeButtonIconSize}
+                    className="text-inherit"
+                  />
+                </ModalCloseButton>
+              </Dialog.Close>
+            )}
           </ModalCloseButtonContainer>
 
           <ModalContent hasRounded={position === 'center'}>

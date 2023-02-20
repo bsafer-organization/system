@@ -115,3 +115,59 @@ export const UncontrolledModal: StoryFn = () => {
 }
 
 UncontrolledModal.storyName = 'Uncontrolled modal (with trigger)'
+
+interface WithConfirmationProps {
+  isOpen: boolean
+  dismissConfirmation: boolean
+  title: string
+  cancelText: string
+  successText: string
+  focusedButton: 'cancel' | 'success'
+}
+export const WithConfirmation: StoryFn<WithConfirmationProps> = (props) => {
+  const [modal, setModal] = useState<boolean | undefined>(false)
+  const { isOpen, dismissConfirmation, ...dismissConfimationProps } = props
+
+  useEffect(() => {
+    setModal(isOpen)
+  }, [isOpen])
+
+  return (
+    <div className="flex flex-col gap-4 justify-center items-center">
+      <Text>Modals with confirmation before close:</Text>
+      <span className="block p-2 rounded bg-assistant-red-light/30">
+        <Text color="assistant-red-main">
+          This feature need <b>controlled</b> modal to work
+        </Text>
+      </span>
+
+      <div className="flex gap-4 mt-5">
+        <Modal.Root isOpen={!!modal}>
+          <Modal.Trigger asChild>
+            <Button onClick={() => setModal(true)}>Open Modal</Button>
+          </Modal.Trigger>
+          <Modal.Content
+            position="left"
+            onDismiss={() => setModal(false)}
+            dismissConfirmation={
+              dismissConfirmation === true ? dismissConfimationProps : undefined
+            }
+          >
+            <div className="w-full h-full flex justify-center items-center">
+              <p>To close, needs confirmation step</p>
+            </div>
+          </Modal.Content>
+        </Modal.Root>
+      </div>
+    </div>
+  )
+}
+
+WithConfirmation.args = {
+  isOpen: true,
+  dismissConfirmation: true,
+  title: 'Do you really want to close the modal?',
+  cancelText: 'No',
+  successText: 'Yes, sure.',
+  focusedButton: 'cancel'
+}
