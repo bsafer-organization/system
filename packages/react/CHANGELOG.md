@@ -1,5 +1,14 @@
 # @bsafer-system/react
 
+## 1.10.0
+
+### Minor Changes
+
+- New Components and adjustments:
+  - Popover
+  - OverflowText
+  - Modal animations
+
 ## 1.9.1
 
 ### Patch Changes

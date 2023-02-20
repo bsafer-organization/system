@@ -1,7 +1,7 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import React from 'react'
 import { Text, TextProps } from '../Text'
-import { TooltipContainer, TooltipTriggerContainer } from './styles'
+import { TooltipContainer } from './styles'
 
 type TooltipPositionType = Pick<
   RadixTooltip.PopperContentProps,
@@ -39,6 +39,12 @@ export interface TooltipProps {
    * @default undefined
    */
   open?: boolean
+
+  /**
+   * Trigger props
+   * @default undefined
+   */
+  triggerProps?: RadixTooltip.TooltipTriggerProps
 
   /**
    * Function that fires when changing the open state of the tooltip
@@ -154,7 +160,8 @@ export function Tooltip({
   collision,
   arrow,
   textProps,
-  contentProps
+  contentProps,
+  triggerProps
 }: TooltipProps) {
   const defaultPosition: TooltipPositionType = {
     ...position,
@@ -168,8 +175,8 @@ export function Tooltip({
       disableHoverableContent={disableHoverableContent}
     >
       <RadixTooltip.Root onOpenChange={onOpenChange} open={open}>
-        <RadixTooltip.Trigger>
-          <TooltipTriggerContainer>{children}</TooltipTriggerContainer>
+        <RadixTooltip.Trigger {...triggerProps}>
+          {children}
         </RadixTooltip.Trigger>
 
         <RadixTooltip.Portal container={portal}>
