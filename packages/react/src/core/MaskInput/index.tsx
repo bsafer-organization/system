@@ -123,7 +123,7 @@ export interface MaskInputProps {
   
           <InputElement
             {...inputProps}
-            format={format!}
+            format={format}
             mask={mask}
             patternChar={patternChar}
             isAllowed={isAllowed}
