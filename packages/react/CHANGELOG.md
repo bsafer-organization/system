@@ -1,5 +1,15 @@
 # @bsafer-system/react
 
+## 1.11.1
+
+### Patch Changes
+
+- Fix MaskInput component:
+  - Add value prop to pass inside component
+  - Adjusted inputProps prop for use Partial. The `format` recursive prop shouldn't required inside `inputProps`
+  - Removed required for the label prop
+  - Added onClick event on endIcon prop
+
 ## 1.11.0
 
 ### Minor Changes
