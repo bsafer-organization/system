@@ -1,9 +1,5 @@
-import {
-  SortableMultiSelect,
-  SortableMultiSelectOption
-} from '@bsafer-system/react'
+import { SortableMultiSelect } from '@bsafer-system/react'
 import { Meta } from '@storybook/react'
-import { useState } from 'react'
 
 export default {
   title: 'Organisms/SortableMultiSelect'
@@ -41,17 +37,22 @@ const userOptions = users.map((user) => ({
 }))
 
 export const Playground = () => {
-  const [selectedUsers, setSelectedUsers] = useState<
-    SortableMultiSelectOption<User>[]
-  >([])
+  // const [selectedUsers, setSelectedUsers] = useState<
+  //   SortableMultiSelectOption<User>[]
+  // >([])
 
   return (
-    <SortableMultiSelect
-      // value={selectedUsers}
-      options={userOptions}
-      selectProps={{
-        placeholder: 'Selecione um usuário'
-      }}
-    />
+    <div className="w-[30rem]">
+      <SortableMultiSelect
+        // value={selectedUsers}
+        options={userOptions}
+        onValuesChange={(options) => {
+          console.log('Playground', options)
+        }}
+        selectProps={{
+          placeholder: 'Selecione um usuário'
+        }}
+      />
+    </div>
   )
 }

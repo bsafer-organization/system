@@ -8,9 +8,12 @@
 
 Funções
 [x] add à list
-[] remove da lista
+[x] remove da lista
 [] drag and drop
 
 - Styles
 [] alterar o ícone
 [] alterar propriedades do `Select`
+
+- Pendentes
+[] Meta não está funcionando
