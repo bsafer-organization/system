@@ -1,23 +1,17 @@
+import { Add, Danger, HambergerMenu, Trash } from 'iconsax-react'
 import React from 'react'
-import { HambergerMenu, Trash, Add, Danger } from 'iconsax-react'
 import {
-  useForm,
-  useFieldArray,
-  Controller,
-  FieldArrayWithId
-} from 'react-hook-form'
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DropResult
+  DragDropContext, Draggable, Droppable, DropResult
 } from 'react-beautiful-dnd'
+import {
+  Controller,
+  FieldArrayWithId, useFieldArray, useForm
+} from 'react-hook-form'
 import ReactSelect, {
-  SingleValue,
-  Props as ReactSelectProps
+  Props as ReactSelectProps, SingleValue
 } from 'react-select'
-import { GeneralStyle, selectStyles } from './styles'
 import { DropdownIndicator } from './components'
+import { GeneralStyle, selectStyles } from './styles'
 
 export interface InputData {
   label: string
@@ -270,7 +264,7 @@ export const SortableDragDropSelect = ({
 
           if (
             initialSequenceExists?.selectedOption.id !==
-            curr.selectedOption.id ||
+              curr.selectedOption.id ||
             initialSequenceExists?.sequence !== curr.sequence
           ) {
             acc.toUpdate.push(curr)
