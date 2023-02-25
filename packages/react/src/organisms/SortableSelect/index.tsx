@@ -22,6 +22,10 @@ import {
 } from './styles'
 
 export type SortableSelectOption<T> = OptionProps & {
+  /**
+   * Meta is a fields for additional informations of the options. This prop get a same type when set `options.meta`
+   * @type {object}
+   */
   meta?: T
 }
 
@@ -30,13 +34,50 @@ type SortableSelectOptionWithId<T> = SortableSelectOption<T> & {
 }
 
 export interface SortableSelectProps<T = {}> {
+  /**
+   * Value is the prop for a current value, both for starting and for controlling the component
+   * @default undefined
+   */
   value?: SortableSelectOption<T>[]
+  /**
+   * Error is a string to render below container. Basically, shows an error.
+   * @default undefined
+   */
   error?: string
+  /**
+   * Set a threshold fields amount
+   * - `boolean`: If true, limited by options amount in prop `options[].length`
+   * - `number`: If more than 0, limited by a number
+   * @default false
+   */
   optionsLimit?: number | boolean
+  /**
+   * Options to render in Select component
+   *
+   * @example
+   * {
+   *   label: string
+   *   value: string
+   *   meta?: (T = {})
+   * }[]
+   *
+   */
   options: SortableSelectOption<T>[]
+  /**
+   * Event to get values on selector change or order change
+   */
   onValuesChange?: (options: SortableSelectOption<T>[]) => void
+  /**
+   * String to pass class name to top level container
+   */
   className?: string
+  /**
+   * Pass options to Select inside component
+   */
   selectProps?: Omit<SelectProps, 'options' | 'multiple'>
+  /**
+   * Pass options to Container(Div) component
+   */
   containerProps?: JSX.IntrinsicElements['div']
 }
 

@@ -12,17 +12,18 @@ export default {
 
 type PlaygroundProps = SortableSelectProps & { optionLimitBoolean?: boolean }
 
+const users = Array.from(Array(3).keys()).map((index) => {
+  const inc = index + 1
+  return {
+    id: inc.toString(),
+    name: `User-${inc}`,
+    register: inc.toString().padStart(4, '0')
+  }
+})
+
 export const Playground: StoryFn<PlaygroundProps> = (props) => {
   const { error, optionsLimit, optionLimitBoolean } = props
   const [selectedUsers, setSelectedUsers] = useState<any>([])
-  const users = Array.from(Array(3).keys()).map((index) => {
-    const inc = index + 1
-    return {
-      id: inc.toString(),
-      name: `User-${inc}`,
-      register: inc.toString().padStart(4, '0')
-    }
-  })
 
   return (
     <div className="w-screen max-w-[30rem] flex flex-col gap-10">
@@ -65,5 +66,83 @@ Playground.argTypes = {
   },
   optionLimitBoolean: {
     name: 'optinLimit (Boolean)'
+  }
+}
+
+export const Errors = () => {
+  return (
+    <div className="w-[400px]">
+      <SortableSelect
+        options={users.map((user) => ({
+          label: user.name,
+          value: user.id,
+          meta: user
+        }))}
+        error={'Campo obrigatório'}
+        selectProps={{
+          placeholder: 'Selecione um usuário'
+        }}
+      />
+    </div>
+  )
+}
+
+interface WithOptionsLimitsProps {
+  optionsLimitNumber: number
+  optionsLimitBoolean: boolean
+}
+
+export const WithOptionLimits: StoryFn<WithOptionsLimitsProps> = ({
+  optionsLimitBoolean,
+  optionsLimitNumber
+}) => {
+  return (
+    <div className="w-[600px] grid grid-cols-2 gap-4">
+      <article>
+        <Heading as="h6" className="mb-4">
+          Limited by option amount (true)
+        </Heading>
+        <SortableSelect
+          options={users.map((user) => ({
+            label: user.name,
+            value: user.id,
+            meta: user
+          }))}
+          optionsLimit={optionsLimitBoolean}
+          selectProps={{
+            placeholder: 'Selecione um usuário'
+          }}
+        />
+      </article>
+      <article>
+        <Heading as="h6" className="mb-4">
+          Limited by number
+        </Heading>
+        <SortableSelect
+          options={users.map((user) => ({
+            label: user.name,
+            value: user.id,
+            meta: user
+          }))}
+          optionsLimit={optionsLimitNumber}
+          selectProps={{
+            placeholder: 'Selecione um usuário'
+          }}
+        />
+      </article>
+    </div>
+  )
+}
+
+WithOptionLimits.args = {
+  optionsLimitBoolean: false,
+  optionsLimitNumber: 5
+}
+WithOptionLimits.argTypes = {
+  optionsLimitBoolean: {
+    name: `optionsLimit (boolean)`
+  },
+  optionsLimitNumber: {
+    name: 'optionsLimit (number)'
   }
 }
