@@ -34,14 +34,47 @@ export const SelectWithDrapIconContainer = w.div(
   {
     defaultVariants: {
       isDragging: false,
+      disabled: false,
       error: false
     },
     variants: {
+      disabled: (disabled?: boolean) => (disabled ? '' : ''),
       isDragging: (isDragging?: boolean) =>
         isDragging ? 'shadow-lg' : 'shadow-none',
-      error: (error?: boolean) =>
-        error ? 'bg-assistant-red-light' : 'bg-grey-100'
-    }
+      error: (error?: boolean) => (error ? '' : '')
+    },
+    compoundVariants: [
+      {
+        // @ts-ignore
+        disabled: false,
+        // @ts-ignore
+        error: false,
+        class: 'bg-grey-100 pointer-events-auto'
+      },
+      {
+        // @ts-ignore
+        disabled: true,
+        // @ts-ignore
+        error: false,
+        class:
+          'bg-grey-200 pointer-events-none text-grey-600 cursor-not-allowed'
+      },
+      {
+        // @ts-ignore
+        disabled: false,
+        // @ts-ignore
+        error: true,
+        class: 'bg-assistant-red-light pointer-events-auto'
+      },
+      {
+        // @ts-ignore
+        disabled: true,
+        // @ts-ignore
+        error: true,
+        class:
+          'bg-grey-200 pointer-events-none text-grey-600 cursor-not-allowed'
+      }
+    ]
   }
 )
 
@@ -55,7 +88,7 @@ export const DragIndexContainer = w.span(
   {}
 )
 
-export const DeleteButton = w.div(
-  'flex justify-center items-center focus-visible:ring-1 ring-black rounded-xl p-1 hover:bg-assistant-red-light hover:text-assistant-red-main mr-2 cursor-pointer',
+export const DeleteButton = w.button(
+  'flex justify-center items-center focus-visible:ring-1 ring-black rounded-xl p-1 hover:bg-assistant-red-light hover:text-assistant-red-main mr-2 cursor-pointer disabled:text-grey-600 disabled:hover:bg-transparent disabled:pointer-events-none',
   {}
 )
