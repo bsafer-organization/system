@@ -1,5 +1,13 @@
 # @bsafer-system/react
 
+## 1.12.0
+
+### Minor Changes
+
+- Added Components
+  - SortableSelect - removed SortableDragAndDrop
+  - Skeleton
+
 ## 1.11.1
 
 ### Patch Changes
