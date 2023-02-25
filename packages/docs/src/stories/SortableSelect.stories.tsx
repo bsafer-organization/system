@@ -22,18 +22,22 @@ const users = Array.from(Array(3).keys()).map((index) => {
 })
 
 export const Playground: StoryFn<PlaygroundProps> = (props) => {
-  const { error, optionsLimit, optionLimitBoolean } = props
+  const { error, optionsLimit, optionLimitBoolean, label, disabled, optional } =
+    props
   const [selectedUsers, setSelectedUsers] = useState<any>([])
 
   return (
     <div className="w-screen max-w-[30rem] flex flex-col gap-10">
       <SortableSelect
+        label={label}
+        optional={optional}
         options={users.map((user) => ({
           label: user.name,
           value: user.id,
           meta: user
         }))}
         error={error}
+        disabled={disabled}
         optionsLimit={optionsLimit || optionLimitBoolean}
         onValuesChange={(options) => {
           setSelectedUsers(options)
@@ -54,6 +58,9 @@ export const Playground: StoryFn<PlaygroundProps> = (props) => {
 }
 
 Playground.args = {
+  label: 'Usuários',
+  optional: false,
+  disabled: false,
   error: '',
   optionsLimit: undefined,
   optionLimitBoolean: false

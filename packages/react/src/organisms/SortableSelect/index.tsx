@@ -7,6 +7,7 @@ import {
   Droppable,
   DropResult
 } from 'react-beautiful-dnd'
+import { Badge } from '../../core/Badge'
 
 import { Button } from '../../core/Button'
 import { OptionProps, Select, SelectProps } from '../../core/Select'
@@ -35,6 +36,14 @@ type SortableSelectOptionWithId<T> = SortableSelectOption<T> & {
 
 export interface SortableSelectProps<T = {}> {
   /**
+   * Render a label before container
+   */
+  label?: string
+  /**
+   * Render optional badge
+   */
+  optional?: boolean
+  /**
    * Value is the prop for a current value, both for starting and for controlling the component
    * @default undefined
    */
@@ -44,6 +53,10 @@ export interface SortableSelectProps<T = {}> {
    * @default undefined
    */
   error?: string
+  /**
+   * Disable selection and drag and drop
+   */
+  disabled?: boolean
   /**
    * Set a threshold fields amount
    * - `boolean`: If true, limited by options amount in prop `options[].length`
@@ -64,6 +77,10 @@ export interface SortableSelectProps<T = {}> {
    */
   options: SortableSelectOption<T>[]
   /**
+   * Modify text inside button for add new field
+   */
+  addButtonText?: string
+  /**
    * Event to get values on selector change or order change
    */
   onValuesChange?: (options: SortableSelectOption<T>[]) => void
@@ -83,7 +100,10 @@ export interface SortableSelectProps<T = {}> {
 
 export function SortableSelect<T>({
   options,
+  label,
   value,
+  optional,
+  disabled,
   optionsLimit,
   error,
   onValuesChange,
@@ -131,6 +151,10 @@ export function SortableSelect<T>({
   }
 
   function handleDragEnd({ reason, destination, draggableId }: DropResult) {
+    if (disabled) {
+      return
+    }
+
     setItems((items) => {
       const updatedItems = [...items]
 
@@ -205,6 +229,21 @@ export function SortableSelect<T>({
 
   return (
     <Container className={className} {...containerProps}>
+      {(label || optional) && (
+        <span className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
+          {label && (
+            <Text size="xs" weight="bold">
+              {label}
+            </Text>
+          )}
+          {optional && (
+            <Badge size="xs" color="black">
+              Opcional
+            </Badge>
+          )}
+        </span>
+      )}
+
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable">
           {(DroppableProvided, DroppableSnapShot) => (
@@ -229,6 +268,7 @@ export function SortableSelect<T>({
                         {...DraggableProvided.draggableProps}
                       >
                         <SelectWithDrapIconContainer
+                          disabled={disabled}
                           error={!!error && !item.value}
                           isDragging={DraggableSnapshot.isDragging}
                         >
@@ -270,6 +310,8 @@ export function SortableSelect<T>({
                         {items.length > 1 && (
                           <DeleteButton
                             className=""
+                            type="button"
+                            disabled={disabled}
                             onClick={handleRemoveToList(item.itemId)}
                           >
                             <Trash size={20} />
@@ -299,9 +341,10 @@ export function SortableSelect<T>({
           size="sm"
           variant="outlined"
           color="default"
+          type="button"
           className="justify-start max-w-fit "
           onClick={disabledByOptionsAmount ? undefined : handleAddToList}
-          disabled={disabledByOptionsAmount}
+          disabled={disabledByOptionsAmount || disabled}
         >
           Adicionar novo campo
         </Button>
