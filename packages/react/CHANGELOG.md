@@ -1,5 +1,15 @@
 # @bsafer-system/react
 
+## 1.12.1
+
+### Patch Changes
+
+- Adjustments in SortableSelect
+  - label text
+  - disabled state
+  - optional state
+  - addButton text
+
 ## 1.12.0
 
 ### Minor Changes
