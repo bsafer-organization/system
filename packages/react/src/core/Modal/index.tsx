@@ -79,7 +79,7 @@ function Content(props: ModalContentProps) {
     <Dialog.Portal>
       <Dialog.Overlay
         className="fixed inset-0 bg-black opacity-80 z-50 animate-in fade-in"
-        onClick={onDismiss}
+        onClick={dismissConfirmation ? handleOpenConfimation : onDismiss}
       />
       <ModalContainer
         position={position}
