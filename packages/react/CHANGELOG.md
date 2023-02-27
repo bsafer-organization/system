@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.5
+
+### Patch Changes
+
+- 989884d: Fix modal confirmation on click overlay
+
 ## 1.12.4
 
 ### Patch Changes
