@@ -1,5 +1,18 @@
 # @bsafer-system/react
 
+## 1.12.4
+
+### Patch Changes
+
+- Update version package
+
+## 1.12.3
+
+### Patch Changes
+
+- 7720186: SortableSelect
+  - Fix onValueChange re-render on initial state
+
 ## 1.12.2
 
 ### Patch Changes
