@@ -1,16 +1,23 @@
 import {
   Heading,
   SortableSelect,
+  SortableSelectOption,
   SortableSelectProps
 } from '@bsafer-system/react'
 import { Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
 
 export default {
-  title: 'Organisms/SortableMultiSelect'
+  title: 'Organisms/SortableSelect'
 } as Meta
 
 type PlaygroundProps = SortableSelectProps & { optionLimitBoolean?: boolean }
+
+type User = {
+  id: string
+  name: string
+  register: string
+}
 
 const users = Array.from(Array(3).keys()).map((index) => {
   const inc = index + 1
@@ -24,11 +31,14 @@ const users = Array.from(Array(3).keys()).map((index) => {
 export const Playground: StoryFn<PlaygroundProps> = (props) => {
   const { error, optionsLimit, optionLimitBoolean, label, disabled, optional } =
     props
-  const [selectedUsers, setSelectedUsers] = useState<any>([])
+  const [selectedUsers, setSelectedUsers] = useState<
+    SortableSelectOption<User>[]
+  >([])
 
   return (
     <div className="w-screen max-w-[30rem] flex flex-col gap-10">
       <SortableSelect
+        value={selectedUsers}
         label={label}
         optional={optional}
         options={users.map((user) => ({
@@ -40,6 +50,7 @@ export const Playground: StoryFn<PlaygroundProps> = (props) => {
         disabled={disabled}
         optionsLimit={optionsLimit || optionLimitBoolean}
         onValuesChange={(options) => {
+          console.log('onValueChanges', options)
           setSelectedUsers(options)
         }}
         selectProps={{
