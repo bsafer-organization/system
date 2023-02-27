@@ -218,7 +218,7 @@ export function SortableSelect<T>({
 
   useEffect(() => {
     if (onValuesChange) onValuesChange(items)
-  }, [items, onValuesChange])
+  }, [items])
 
   useEffect(() => {
     if (value?.length) {

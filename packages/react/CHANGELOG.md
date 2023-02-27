@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.2
+
+### Patch Changes
+
+- Fix onValuesChange function in SortableSelectProps
+
 ## 1.12.1
 
 ### Patch Changes
