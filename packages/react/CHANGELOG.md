@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.6
+
+### Patch Changes
+
+- Fix handle functions
+
 ## 1.12.5
 
 ### Patch Changes
