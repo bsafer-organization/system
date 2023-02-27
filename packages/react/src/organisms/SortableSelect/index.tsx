@@ -1,6 +1,6 @@
 // import { Draggable } from 'react-beautiful-dnd'
 import { Danger, HambergerMenu, Trash } from 'iconsax-react'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import {
   DragDropContext,
   Draggable,
@@ -111,7 +111,6 @@ export function SortableSelect<T>({
   containerProps,
   className
 }: SortableSelectProps<T>) {
-  const didMount = useRef(false)
   const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>(
     value?.length
       ? value.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
@@ -134,7 +133,11 @@ export function SortableSelect<T>({
     const newEmptyItem = {
       itemId: crypto.randomUUID()
     } as SortableSelectOptionWithId<T>
-    setItems((prevItems) => [...prevItems, newEmptyItem])
+    setItems((prevItems) => {
+      const newItems = [...prevItems, newEmptyItem]
+      handleItemsChange(newItems)
+      return newItems
+    })
   }
 
   function handleRemoveToList(itemListId: string) {
@@ -147,6 +150,7 @@ export function SortableSelect<T>({
 
         if (itemIndex >= 0) {
           itemsWithoutItem.splice(itemIndex, 1)
+          handleItemsChange(itemsWithoutItem)
           return itemsWithoutItem
         }
 
@@ -173,6 +177,7 @@ export function SortableSelect<T>({
             const movedItem = updatedItems.splice(itemSourceIndex, 1)
             updatedItems.splice(destination.index, 0, movedItem[0])
 
+            handleItemsChange(updatedItems)
             return updatedItems
           }
         }
@@ -207,6 +212,7 @@ export function SortableSelect<T>({
                 itemId: item.itemId,
                 meta: options[optionIndex].meta
               }
+              handleItemsChange(items)
               return items
             }
 
@@ -221,14 +227,9 @@ export function SortableSelect<T>({
     return onValueChange
   }
 
-  useLayoutEffect(() => {
-    if (!didMount.current) {
-      didMount.current = true
-      return
-    }
-
-    if (onValuesChange) onValuesChange(items)
-  }, [items])
+  function handleItemsChange(options: SortableSelectOption<T>[]) {
+    if (onValuesChange) onValuesChange(options)
+  }
 
   return (
     <Container className={className} {...containerProps}>
