@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.4
+
+### Patch Changes
+
+- Update version package
+
 ## 1.12.3
 
 ### Patch Changes
