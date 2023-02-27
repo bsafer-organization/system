@@ -50,7 +50,7 @@ export const Playground: StoryFn<PlaygroundProps> = (props) => {
         disabled={disabled}
         optionsLimit={optionsLimit || optionLimitBoolean}
         onValuesChange={(options) => {
-          console.log('onValueChanges', options)
+          console.log('options', options)
           setSelectedUsers(options)
         }}
         selectProps={{
