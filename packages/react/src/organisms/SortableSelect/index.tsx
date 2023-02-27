@@ -1,6 +1,6 @@
 // import { Draggable } from 'react-beautiful-dnd'
 import { Danger, HambergerMenu, Trash } from 'iconsax-react'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import {
   DragDropContext,
   Draggable,
@@ -111,11 +111,16 @@ export function SortableSelect<T>({
   containerProps,
   className
 }: SortableSelectProps<T>) {
-  const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>([
-    {
-      itemId: crypto.randomUUID()
-    } as SortableSelectOptionWithId<T>
-  ])
+  const didMount = useRef(false)
+  const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>(
+    value?.length
+      ? value.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
+      : ([
+          {
+            itemId: crypto.randomUUID()
+          }
+        ] as SortableSelectOptionWithId<T>[])
+  )
   const availableOptions = options.map(({ label, value }) => ({ label, value }))
 
   const disabledByOptionsAmount =
@@ -216,16 +221,14 @@ export function SortableSelect<T>({
     return onValueChange
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true
+      return
+    }
+
     if (onValuesChange) onValuesChange(items)
   }, [items])
-
-  useEffect(() => {
-    if (value?.length) {
-      setItems(value.map((item) => ({ ...item, itemId: crypto.randomUUID() })))
-    }
-    // eslint-disable-next-line
-  }, [])
 
   return (
     <Container className={className} {...containerProps}>
