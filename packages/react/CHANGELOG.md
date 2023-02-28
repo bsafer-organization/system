@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.7
+
+### Patch Changes
+
+- - Sortable select adjustments
+
 ## 1.12.6
 
 ### Patch Changes

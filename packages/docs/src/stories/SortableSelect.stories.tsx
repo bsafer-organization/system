@@ -33,8 +33,13 @@ export const Playground: StoryFn<PlaygroundProps> = (props) => {
     props
   const [selectedUsers, setSelectedUsers] = useState<
     SortableSelectOption<User>[]
-  >([])
-
+  >(
+    users.map((user) => ({
+      label: user.name,
+      value: user.id,
+      meta: user
+    }))
+  )
   return (
     <div className="w-screen max-w-[30rem] flex flex-col gap-10">
       <SortableSelect
