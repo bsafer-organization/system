@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.12.8
+
+### Patch Changes
+
+- Adjustments in meta prop in SortableSelect
+
 ## 1.12.7
 
 ### Patch Changes
