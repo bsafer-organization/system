@@ -5,6 +5,9 @@ export default defineConfig({
   dts: true,
   external: ['react'],
   format: ['esm', 'cjs'],
-  splitting: false,
+  sourcemap: true,
+  clean: true,
+  minify: true,
+  splitting: true,
   onSuccess: 'npx tailwindcss -o ./dist/index.css --minify'
 })

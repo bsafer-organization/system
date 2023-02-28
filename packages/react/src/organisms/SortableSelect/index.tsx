@@ -1,12 +1,13 @@
 // import { Draggable } from 'react-beautiful-dnd'
 import { Danger, HambergerMenu, Trash } from 'iconsax-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   DragDropContext,
   Draggable,
   Droppable,
   DropResult
 } from 'react-beautiful-dnd'
+import { MultiValue, SingleValue } from 'react-select'
 import { Badge } from '../../core/Badge'
 
 import { Button } from '../../core/Button'
@@ -111,15 +112,8 @@ export function SortableSelect<T>({
   containerProps,
   className
 }: SortableSelectProps<T>) {
-  const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>(
-    value?.length
-      ? value.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
-      : ([
-          {
-            itemId: crypto.randomUUID()
-          }
-        ] as SortableSelectOptionWithId<T>[])
-  )
+  const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>([])
+
   const availableOptions = options.map(({ label, value }) => ({ label, value }))
 
   const disabledByOptionsAmount =
@@ -190,7 +184,7 @@ export function SortableSelect<T>({
   }
 
   function handleSelectOnValueChange(item: SortableSelectOptionWithId<T>) {
-    const onValueChange: SelectProps['onValueChange'] = (option) => {
+    return (option: MultiValue<OptionProps> | SingleValue<OptionProps>) => {
       if (!Array.isArray(option)) {
         const uniqueOption = option as {
           label: string
@@ -223,13 +217,22 @@ export function SortableSelect<T>({
         })
       }
     }
-
-    return onValueChange
   }
 
   function handleItemsChange(options: SortableSelectOption<T>[]) {
     if (onValuesChange) onValuesChange(options)
   }
+
+  useEffect(() => {
+    setItems(
+      value?.map((item) => ({ ...item, itemId: crypto.randomUUID() })) ||
+        ([
+          {
+            itemId: crypto.randomUUID()
+          }
+        ] as SortableSelectOptionWithId<T>[])
+    )
+  }, [value])
 
   return (
     <Container className={className} {...containerProps}>
