@@ -204,7 +204,7 @@ export function SortableSelect<T>({
               items[prevItemIndex] = {
                 ...uniqueOption,
                 itemId: item.itemId,
-                meta: options[optionIndex].meta
+                meta: item.meta || options[optionIndex].meta
               }
               handleItemsChange(items)
               return items
