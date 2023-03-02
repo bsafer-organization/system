@@ -1,9 +1,35 @@
 {
   "extends": "@bsafer-system/ts-config/react.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "typeRoots": [
       "./src/@types",
-    ]
+    ],
+    "types": [
+      "vitest/globals",
+      "vite/client",
+      "vite-plugin-svgr/client",
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "baseUrl": "src"
   },
   "include": [
     "src"
