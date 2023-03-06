@@ -1,6 +1,10 @@
 {
   "extends": "@bsafer-system/ts-config/react.json",
   "compilerOptions": {
+    "outDir": ".",
+    "types": [
+      "../../node_modules/@types/jest",
+    ],
     "typeRoots": [
       "./src/@types",
     ]
