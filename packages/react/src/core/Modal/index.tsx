@@ -40,8 +40,12 @@ function Content(props: ModalContentProps) {
   const closeButonSize = position === 'center' ? 'sm' : 'md'
   const closeButtonIconSize = position === 'center' ? 24 : 32
 
-  const maxHeightForCenter =
-    position !== 'center' ? '' : maxHeight || 'max-h-[80vh]'
+  const maxHeightByPosition = {
+    center: maxHeight || 'max-h-[80vh]',
+    left: maxHeight || 'max-h-screen',
+    right: maxHeight || 'max-h-screen'
+  }
+
   const [confirmation, setConfirmation] = useState(false)
 
   function handleOpenConfimation() {
@@ -83,7 +87,7 @@ function Content(props: ModalContentProps) {
       <ModalContainer
         position={position}
         maxWidth={maxWidth}
-        maxHeight={maxHeightForCenter}
+        maxHeight={maxHeightByPosition[position]}
         className={`z-50`}
       >
         <div className="relative w-full h-full">
