@@ -70,10 +70,16 @@ export interface ModalContentProps {
   position?: 'center' | 'left' | 'right'
   /**
    * Determines the max width of the modal
-   * - `sm | md | lg | xl | 2xl | 3xl | 4xl`
+   * - `sm | md | lg | xl | 2xl | 3xl | 4xl | full`
    * @default 'xl'
    */
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | 'full'
+  /**
+   * Determines the max height of the modal
+   *
+   * @default 'max-h-[80vh]'
+   */
+  maxHeight?: string
   /**
    * Any ReactElement
    */
