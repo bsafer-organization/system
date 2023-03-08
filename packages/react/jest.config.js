@@ -7,5 +7,9 @@ module.exports = {
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   coverageReporters: ['text-summary', 'lcov', 'html-spa'],
-  collectCoverageFrom: ['./src/core/**/*.tsx', './src/organisms/**/*.tsx']
+  collectCoverageFrom: ['./src/core/**/*.tsx', './src/organisms/**/*.tsx'],
+  moduleNameMapper: {
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '^react$': require.resolve('react')
+  }
 }

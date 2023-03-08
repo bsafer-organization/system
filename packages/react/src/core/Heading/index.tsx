@@ -43,7 +43,13 @@ export const Heading = ({
   ...props
 }: HeadingProps) => {
   return (
-    <HeadingElement as={as} weight={weight} color={color} {...props}>
+    <HeadingElement
+      data-testid="heading_testid"
+      as={as}
+      weight={weight}
+      color={color}
+      {...props}
+    >
       {children}
     </HeadingElement>
   )

@@ -82,21 +82,37 @@ export function Input({
   onClickEndIcon
 }: InputProps) {
   const StartIcon =
-    typeof startIcon === 'boolean' && startIcon ? <SearchNormal1 /> : startIcon
+    typeof startIcon === 'boolean' && startIcon ? (
+      <SearchNormal1 data-testid="input_start_icon__testid" />
+    ) : (
+      startIcon
+    )
 
   const EndIcon =
-    typeof endIcon === 'boolean' && endIcon ? <SearchNormal1 /> : endIcon
+    typeof endIcon === 'boolean' && endIcon ? (
+      <SearchNormal1 data-testid="input_end_icon__testid" />
+    ) : (
+      endIcon
+    )
 
   return (
-    <InputContainer>
+    <InputContainer data-testid="input__testid">
       {(label || optional) && (
         <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
           {label && (
-            <InputLabel htmlFor={label} title={label}>
+            <InputLabel
+              data-testid="input_label__testid"
+              htmlFor={label}
+              title={label}
+            >
               {label}
             </InputLabel>
           )}
-          {optional && <OptionalBadge>Opcional</OptionalBadge>}
+          {optional && (
+            <OptionalBadge data-testid="input_optional_badge__testid">
+              Opcional
+            </OptionalBadge>
+          )}
         </div>
       )}
 
@@ -119,7 +135,7 @@ export function Input({
       </InputElementContainer>
 
       {error && (
-        <ErrorTextContainer>
+        <ErrorTextContainer data-testid="input_error_text__testid">
           <Danger size={16} />
           <span>{error}</span>
         </ErrorTextContainer>

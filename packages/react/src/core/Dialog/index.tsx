@@ -27,6 +27,7 @@ export const Dialog = (props: DialogProps) => {
           overlayBackdrop={props.overlayBackdrop}
         />
         <DialogStyle.Content
+          data-testid="dialog_content__testid"
           overlayShadow={props.overlayBackdrop}
           className="DialogContent"
           onOpenAutoFocus={(e: Event) => {
@@ -46,82 +47,96 @@ export const Dialog = (props: DialogProps) => {
           }}
         >
           {props.icon && (
-            <DialogStyle.IconContainer>{props.icon}</DialogStyle.IconContainer>
+            <DialogStyle.IconContainer data-testid="dialog_icon__testid">
+              {props.icon}
+            </DialogStyle.IconContainer>
           )}
-          <DialogStyle.Title justify="center">{props.title}</DialogStyle.Title>
+          <DialogStyle.Title
+            data-testid="dialog_title__testid"
+            justify="center"
+          >
+            {props.title}
+          </DialogStyle.Title>
           {props.subtitle && (
-            <DialogStyle.Subtitle justify="center">
+            <DialogStyle.Subtitle
+              data-testid="dialog_subtitle__testid"
+              justify="center"
+            >
               {props.subtitle}
             </DialogStyle.Subtitle>
           )}
           {(props.isActionDialog === undefined ||
             props.isActionDialog === true) && (
-            <>
-              {props.focusedButton === 'success' ||
-              props.focusedButton === undefined ? (
-                <DialogStyle.ActionContainer>
-                  <DialogStyle.Button
-                    onClick={props.onSuccessButtonClick}
-                    variant="contained"
-                    color="primary"
-                  >
-                    {props.successButtonStartIcon &&
-                      props.successButtonStartIcon}
-                    {props.successButtonText}
-                    {props.successButtonEndIcon && props.successButtonEndIcon}
-                  </DialogStyle.Button>
-                  {props.cancelButtonText && (
+              <React.Fragment>
+                {props.focusedButton === 'success' ||
+                  props.focusedButton === undefined ? (
+                  <DialogStyle.ActionContainer>
                     <DialogStyle.Button
-                      onClick={props.onCancelButtonClick}
-                      variant="outlined"
-                      color="primary"
-                    >
-                      {props.cancelButtonStartIcon &&
-                        props.cancelButtonStartIcon}
-                      {props.cancelButtonText}
-                      {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
-                    </DialogStyle.Button>
-                  )}
-                </DialogStyle.ActionContainer>
-              ) : (
-                <DialogStyle.ActionContainer>
-                  {props.cancelButtonText && (
-                    <DialogStyle.Button
-                      onClick={props.onCancelButtonClick}
+                      data-testid="dialog_success_button__testid"
+                      onClick={props.onSuccessButtonClick}
                       variant="contained"
                       color="primary"
                     >
-                      {props.cancelButtonStartIcon &&
-                        props.cancelButtonStartIcon}
-                      {props.cancelButtonText}
-                      {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
+                      {props.successButtonStartIcon &&
+                        props.successButtonStartIcon}
+                      {props.successButtonText}
+                      {props.successButtonEndIcon && props.successButtonEndIcon}
                     </DialogStyle.Button>
-                  )}
-                  <DialogStyle.Button
-                    onClick={props.onSuccessButtonClick}
-                    variant="outlined"
-                    color="primary"
-                  >
-                    {props.successButtonStartIcon &&
-                      props.successButtonStartIcon}
-                    {props.successButtonText}
-                    {props.successButtonEndIcon && props.successButtonEndIcon}
-                  </DialogStyle.Button>
-                </DialogStyle.ActionContainer>
-              )}
-            </>
-          )}
+                    {props.cancelButtonText && (
+                      <DialogStyle.Button
+                        data-testid="dialog_cancel_button__testid"
+                        onClick={props.onCancelButtonClick}
+                        variant="outlined"
+                        color="primary"
+                      >
+                        {props.cancelButtonStartIcon &&
+                          props.cancelButtonStartIcon}
+                        {props.cancelButtonText}
+                        {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
+                      </DialogStyle.Button>
+                    )}
+                  </DialogStyle.ActionContainer>
+                ) : (
+                  <DialogStyle.ActionContainer data-testid="dialog_cancel_as_focused_button__testid">
+                    {props.cancelButtonText && (
+                      <DialogStyle.Button
+                        data-testid="dialog_cancel_button__testid"
+                        onClick={props.onCancelButtonClick}
+                        variant="contained"
+                        color="primary"
+                      >
+                        {props.cancelButtonStartIcon &&
+                          props.cancelButtonStartIcon}
+                        {props.cancelButtonText}
+                        {props.cancelButtonEndIcon && props.cancelButtonEndIcon}
+                      </DialogStyle.Button>
+                    )}
+                    <DialogStyle.Button
+                      data-testid="dialog_success_button__testid"
+                      onClick={props.onSuccessButtonClick}
+                      variant="outlined"
+                      color="primary"
+                    >
+                      {props.successButtonStartIcon &&
+                        props.successButtonStartIcon}
+                      {props.successButtonText}
+                      {props.successButtonEndIcon && props.successButtonEndIcon}
+                    </DialogStyle.Button>
+                  </DialogStyle.ActionContainer>
+                )}
+              </React.Fragment>
+            )}
           {(props.showCloseIconButton === undefined ||
             props.showCloseIconButton === true) && (
-            <DialogStyle.CloseDialogIcon
-              aria-label="Close"
-              onClick={() => {
-                if (props.onDismiss) props.onDismiss()
-              }}
-            >
-              <CloseCircle size={24} />
-            </DialogStyle.CloseDialogIcon>
-          )}
+              <DialogStyle.CloseDialogIcon
+                aria-label="Close"
+                onClick={() => {
+                  if (props.onDismiss) props.onDismiss()
+                }}
+              >
+                <CloseCircle size={24} />
+              </DialogStyle.CloseDialogIcon>
+            )}
         </DialogStyle.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>

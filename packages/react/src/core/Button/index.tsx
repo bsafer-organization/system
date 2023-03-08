@@ -63,7 +63,13 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <ButtonContainer size={size} variant={variant} color={color} {...props}>
+    <ButtonContainer
+      data-testid="button__testid"
+      size={size}
+      variant={variant}
+      color={color}
+      {...props}
+    >
       {startIcon && (
         <span className="flex justify-center items-center">{startIcon}</span>
       )}

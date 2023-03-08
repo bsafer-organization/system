@@ -114,21 +114,37 @@ export function MaskInput({
   patternChar
 }: MaskInputProps) {
   const StartIcon =
-    typeof startIcon === 'boolean' && startIcon ? <SearchNormal1 /> : startIcon
+    typeof startIcon === 'boolean' && startIcon ? (
+      <SearchNormal1 data-testid="mask_input_start_icon__testid" />
+    ) : (
+      startIcon
+    )
 
   const EndIcon =
-    typeof endIcon === 'boolean' && endIcon ? <SearchNormal1 /> : endIcon
+    typeof endIcon === 'boolean' && endIcon ? (
+      <SearchNormal1 data-testid="mask_input_end_icon__testid" />
+    ) : (
+      endIcon
+    )
 
   return (
-    <InputContainer>
+    <InputContainer data-testid="mask_input__testid">
       {(label || optional) && (
         <div className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
           {label && (
-            <InputLabel htmlFor={label} title={label}>
+            <InputLabel
+              data-testid="mask_input_label__testid"
+              htmlFor={label}
+              title={label}
+            >
               {label}
             </InputLabel>
           )}
-          {optional && <OptionalBadge>Opcional</OptionalBadge>}
+          {optional && (
+            <OptionalBadge data-testid="maks_input_optional_badge__testid">
+              Opcional
+            </OptionalBadge>
+          )}
         </div>
       )}
 
@@ -158,7 +174,7 @@ export function MaskInput({
       </InputElementContainer>
 
       {error && (
-        <ErrorTextContainer>
+        <ErrorTextContainer data-testid="mask_input_error_text__testid">
           <Danger size={16} />
           <span>{error}</span>
         </ErrorTextContainer>

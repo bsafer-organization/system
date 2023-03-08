@@ -81,14 +81,11 @@ export const ActionBadge = ({
     case 'lg':
       iconSize = 24
       break
-
-    default:
-      iconSize = 10
-      break
   }
 
   return (
     <ActionBadgeStyle.Container
+      data-testid="action_badge__testid"
       color={color}
       size={size}
       disabled={disabled}
@@ -96,7 +93,10 @@ export const ActionBadge = ({
     >
       <ActionBadgeStyle.Content gap={size}>
         {avatarUrl && (
-          <ActionBadgeStyle.Avatar.Container size={size}>
+          <ActionBadgeStyle.Avatar.Container
+            data-testid="action_badge_avatar__testid"
+            size={size}
+          >
             <ActionBadgeStyle.Avatar.Content src={avatarUrl} />
           </ActionBadgeStyle.Avatar.Container>
         )}
@@ -106,7 +106,12 @@ export const ActionBadge = ({
           disabled={disabled}
           onClick={onActionClick}
         >
-          {icon ?? <CloseCircle size={iconSize} />}
+          {icon ?? (
+            <CloseCircle
+              data-testid="action_badge_default_icon__testid"
+              size={iconSize}
+            />
+          )}
         </ActionBadgeStyle.IconContainer>
       </ActionBadgeStyle.Content>
     </ActionBadgeStyle.Container>

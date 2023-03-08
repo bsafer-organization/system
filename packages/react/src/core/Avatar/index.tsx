@@ -43,12 +43,15 @@ export const Avatar = ({ size = 'md', imageURL, name }: AvatarProps) => {
 
   return (
     <div
-      className={`${sizes[size].size} overflow-hidden rounded-full ${
-        !imageURL ? 'bg-grey-800' : ''
-      }`}
+      data-testid="avatar__testid"
+      className={`${sizes[size].size} overflow-hidden rounded-full ${!imageURL ? 'bg-grey-800' : ''
+        }`}
     >
       {!imageURL && (
-        <div className="flex justify-center items-center h-full">
+        <div
+          data-testid="avatar_text__testid"
+          className="flex justify-center items-center h-full"
+        >
           <Text
             className={`leading-none`}
             color="white"
@@ -61,6 +64,7 @@ export const Avatar = ({ size = 'md', imageURL, name }: AvatarProps) => {
 
       {imageURL && (
         <img
+          data-testid="avatar_image__testid"
           src={imageURL}
           className={`${sizes[size].size} object-cover object-center`}
           alt={name}

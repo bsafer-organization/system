@@ -50,7 +50,13 @@ export const Badge = ({
   ...props
 }: BadgeProps) => {
   return (
-    <BadgeContainer color={color} size={size} disabled={disabled} {...props}>
+    <BadgeContainer
+      data-testid="badge__testid"
+      color={color}
+      size={size}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </BadgeContainer>
   )

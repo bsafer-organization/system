@@ -44,6 +44,7 @@ export const Box = ({
 }: BoxProps) => {
   return (
     <BoxContainer
+      data-testid="box__testid"
       padding={padding}
       backgroundColor={backgroundColor}
       color={color}

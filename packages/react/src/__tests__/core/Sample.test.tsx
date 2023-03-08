@@ -19,7 +19,7 @@ describe('Sample', () => {
 
   it('render element', () => {
     render(<SampleElement>test</SampleElement>)
-    screen.debug()
+    // screen.debug()
     expect(screen.getByText('test')).toBeInTheDocument()
   })
 })

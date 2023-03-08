@@ -63,6 +63,7 @@ export const IconButton = ({
 }: IconButtonProps) => {
   return (
     <IconButtonContainer
+      data-testid="icon_button__testid"
       size={size}
       variant={variant}
       color={color}
