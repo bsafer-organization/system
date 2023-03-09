@@ -11,6 +11,7 @@ describe('Components: Dialog', () => {
   it('should render the component with main or required props', async () => {
     render(
       <Dialog
+        isActionDialog
         openMenu={true}
         title="Dialog title test"
         subtitle="Dialog subtitle test"
@@ -154,8 +155,20 @@ describe('Components: Dialog', () => {
         onSuccessButtonClick={() => {
           console.log()
         }}
+        successButtonStartIcon={
+          <TickCircle data-testid="dialog_success_button_start_icon__testid" />
+        }
+        successButtonEndIcon={
+          <TickCircle data-testid="dialog_success_button_end_icon__testid" />
+        }
         cancelButtonText="Dialog cancel button test"
         focusedButton="cancel"
+        cancelButtonStartIcon={
+          <TickCircle data-testid="dialog_cancel_button_start_icon__testid" />
+        }
+        cancelButtonEndIcon={
+          <TickCircle data-testid="dialog_cancel_button_end_icon__testid" />
+        }
       />
     )
 
@@ -174,57 +187,184 @@ describe('Components: Dialog', () => {
     expect(
       screen.getByTestId('dialog_cancel_as_focused_button__testid')
     ).toBeInTheDocument()
+
+    // ICONS
+    expect(
+      screen.getByTestId('dialog_cancel_button_start_icon__testid')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId('dialog_cancel_button_end_icon__testid')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId('dialog_success_button_start_icon__testid')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId('dialog_success_button_end_icon__testid')
+    ).toBeInTheDocument()
   })
 
-  // it('should render the component with main or required props and not being action dialog', async () => {
-  //   render(
-  //     <Dialog
-  //       openMenu={true}
-  //       title="Dialog title test"
-  //       subtitle="Dialog subtitle test"
-  //       icon={<TickCircle color="#05BA38" size={32} />}
-  //       isActionDialog={false}
-  //     />
-  //   )
+  it('should render the component and close it using close icon button', async () => {
+    const { result } = renderHook(() => {
+      const [openDialog, setOpenDialog] = React.useState<boolean>(true)
 
-  //   expect(screen.getByTestId('dialog_content__testid')).toBeInTheDocument()
-  // })
+      return { openDialog, setOpenDialog }
+    })
 
-  // it('should render the component', () => {
-  //   const { result } = renderHook(() => {
-  //     const [open, setOpen] = React.useState(false)
+    const { rerender } = render(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        showCloseIconButton
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
 
-  //     return { open, setOpen }
-  //   })
+    expect(screen.getByTestId('dialog_content__testid')).toBeInTheDocument()
 
-  //   const { rerender } = render(
-  //     <Dialog
-  //       openMenu={false}
-  //       title="Cadeado excluído com sucesso!"
-  //       icon={<TickCircle color="#05BA38" size={32} />}
-  //       successButtonText="Entendi"
-  //       onSuccessButtonClick={() => {
-  //         console.log('onSuccessButtonClick')
-  //       }}
-  //     />
-  //   )
+    const closeIconButtonComponent = screen.getByTestId(
+      'dialog_close_icon_button__testid'
+    )
 
-  //   result.current.setOpen(true)
+    expect(closeIconButtonComponent).toBeInTheDocument()
 
-  //   rerender(
-  //     <Dialog
-  //       openMenu={true}
-  //       title="Cadeado excluído com sucesso!"
-  //       icon={<TickCircle color="#05BA38" size={32} />}
-  //       successButtonText="Entendi"
-  //       onSuccessButtonClick={() => {
-  //         console.log('onSuccessButtonClick')
-  //       }}
-  //     />
-  //   )
+    await act(async () => {
+      await userEvent.click(closeIconButtonComponent)
+    })
 
-  //   // userEvent.click(screen.getByTestId('dialog_trigger__testid'))
+    rerender(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        showCloseIconButton
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
 
-  //   expect(screen.getByTestId('dialog_content__testid')).toBeInTheDocument()
-  // })
+    expect(screen.queryByTestId('dialog_content__testid')).toBeNull()
+  })
+
+  it('should render the component and close it interacting outside the bounds of the component', async () => {
+    const { result } = renderHook(() => {
+      const [openDialog, setOpenDialog] = React.useState<boolean>(true)
+
+      return { openDialog, setOpenDialog }
+    })
+
+    const { rerender } = render(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        closeOnClickOutside
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
+
+    expect(screen.getByTestId('dialog_content__testid')).toBeInTheDocument()
+
+    const dialogOverlay = screen.getByTestId('dialog_overlay__testid')
+
+    expect(dialogOverlay).toBeInTheDocument()
+
+    await act(async () => {
+      await userEvent.click(dialogOverlay)
+    })
+
+    rerender(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        showCloseIconButton
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
+
+    expect(screen.queryByTestId('dialog_content__testid')).toBeNull()
+  })
+
+  it('should render the component and interact outside the bounds of the component, but keeping it open', async () => {
+    const { result } = renderHook(() => {
+      const [openDialog, setOpenDialog] = React.useState<boolean>(true)
+
+      return { openDialog, setOpenDialog }
+    })
+
+    const { rerender } = render(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        closeOnClickOutside={false}
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
+
+    expect(screen.getByTestId('dialog_content__testid')).toBeInTheDocument()
+
+    const dialogOverlay = screen.getByTestId('dialog_overlay__testid')
+
+    expect(dialogOverlay).toBeInTheDocument()
+
+    await act(async () => {
+      await userEvent.click(dialogOverlay)
+    })
+
+    rerender(
+      <Dialog
+        openMenu={result.current.openDialog}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+        successButtonText="Dialog success button test"
+        onSuccessButtonClick={() => {
+          console.log()
+        }}
+        showCloseIconButton
+        onDismiss={() => result.current.setOpenDialog(false)}
+      />
+    )
+
+    expect(screen.queryByTestId('dialog_content__testid')).toBeInTheDocument()
+  })
+
+  it('should not render the component (open state set to false)', async () => {
+    render(
+      <Dialog
+        isActionDialog={false}
+        title="Dialog title test"
+        subtitle="Dialog subtitle test"
+        icon={<TickCircle color="#05BA38" size={32} />}
+      />
+    )
+
+    expect(screen.queryByTestId('dialog_content__testid')).toBeNull()
+  })
 })

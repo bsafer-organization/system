@@ -23,6 +23,7 @@ export const Dialog = (props: DialogProps) => {
       <RadixDialog.Trigger asChild>{props.children}</RadixDialog.Trigger>
       <RadixDialog.Portal>
         <DialogStyle.Overlay
+          data-testid="dialog_overlay__testid"
           className="DialogOverlay"
           overlayBackdrop={props.overlayBackdrop}
         />
@@ -129,6 +130,7 @@ export const Dialog = (props: DialogProps) => {
           {(props.showCloseIconButton === undefined ||
             props.showCloseIconButton === true) && (
               <DialogStyle.CloseDialogIcon
+                data-testid="dialog_close_icon_button__testid"
                 aria-label="Close"
                 onClick={() => {
                   if (props.onDismiss) props.onDismiss()

@@ -141,7 +141,7 @@ export function MaskInput({
             </InputLabel>
           )}
           {optional && (
-            <OptionalBadge data-testid="maks_input_optional_badge__testid">
+            <OptionalBadge data-testid="mask_input_optional_badge__testid">
               Opcional
             </OptionalBadge>
           )}

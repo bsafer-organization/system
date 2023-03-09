@@ -61,18 +61,18 @@ function Content(props: ModalContentProps) {
   const parsedDismissConfirmation =
     typeof dismissConfirmation === 'object'
       ? {
-          title: dismissConfirmation.title || dismissConfirmationDefault.title,
-          icon: dismissConfirmation.icon || dismissConfirmationDefault.icon,
-          cancelText:
-            dismissConfirmation.cancelText ||
-            dismissConfirmationDefault.cancelText,
-          successText:
-            dismissConfirmation.successText ||
-            dismissConfirmationDefault.successText,
-          focusedButton:
-            dismissConfirmation.focusedButton ||
-            dismissConfirmationDefault.focusedButton
-        }
+        title: dismissConfirmation.title || dismissConfirmationDefault.title,
+        icon: dismissConfirmation.icon || dismissConfirmationDefault.icon,
+        cancelText:
+          dismissConfirmation.cancelText ||
+          dismissConfirmationDefault.cancelText,
+        successText:
+          dismissConfirmation.successText ||
+          dismissConfirmationDefault.successText,
+        focusedButton:
+          dismissConfirmation.focusedButton ||
+          dismissConfirmationDefault.focusedButton
+      }
       : dismissConfirmationDefault
 
   return (
@@ -82,6 +82,7 @@ function Content(props: ModalContentProps) {
         onClick={dismissConfirmation ? handleOpenConfimation : onDismiss}
       />
       <ModalContainer
+        data-testid="modal_container__testid"
         position={position}
         maxWidth={maxWidth}
         className={`z-50 ${animationByPosition[position]}`}
@@ -91,6 +92,7 @@ function Content(props: ModalContentProps) {
             {dismissConfirmation && (
               <>
                 <ModalCloseButton
+                  data-testid="modal_close_button__testid"
                   onClick={handleOpenConfimation}
                   size={closeButonSize}
                   backgroundColors={dismissOptions?.backgroundColors}
