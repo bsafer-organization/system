@@ -15,7 +15,11 @@ export function PopoverRoot(props: PopoverRootProps) {
 
 export function PopoverTrigger(props: PopoverTriggerProps) {
   const { children } = props
-  return <RadixPopover.Trigger>{children}</RadixPopover.Trigger>
+  return (
+    <RadixPopover.Trigger data-testid="popover_trigger__testid">
+      {children}
+    </RadixPopover.Trigger>
+  )
 }
 
 export function PopoverContent(props: PopoverContentProps) {
@@ -28,7 +32,11 @@ export function PopoverContent(props: PopoverContentProps) {
     ...contentProps
   } = props
   return (
-    <RadixPopover.Content sideOffset={sideOffset} {...contentProps}>
+    <RadixPopover.Content
+      data-testid="popover_content__testid"
+      sideOffset={sideOffset}
+      {...contentProps}
+    >
       <PopoverBox className={className}>{children}</PopoverBox>
       {!hiddenArrow && (
         <span className={textColors[arrow?.color || 'white']}>
@@ -44,7 +52,11 @@ export function PopoverContent(props: PopoverContentProps) {
 }
 
 export function PopoverAnchor({ children }: PopoverAnchorProps) {
-  return <RadixPopover.Anchor>{children}</RadixPopover.Anchor>
+  return (
+    <RadixPopover.Anchor data-testid="popover_anchor__testid">
+      {children}
+    </RadixPopover.Anchor>
+  )
 }
 
 export const Popover = {
