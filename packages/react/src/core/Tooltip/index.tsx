@@ -181,6 +181,7 @@ export function Tooltip({
 
         <RadixTooltip.Portal container={portal}>
           <RadixTooltip.Content
+            data-testid="tooltip_content__testid"
             {...defaultPosition}
             {...collision}
             {...contentProps}

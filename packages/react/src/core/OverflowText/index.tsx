@@ -53,8 +53,9 @@ export function OverflowText(props: OverflowTextProps) {
         hidden: true
       }}
     >
-      <Text {...textProps}>
+      <Text data-testid="overflow_text__testid" {...textProps}>
         <span
+          data-testid="overflow_text_children__testid"
           ref={ref}
           className="block overflow-hidden text-ellipsis whitespace-nowrap text-start"
         >
