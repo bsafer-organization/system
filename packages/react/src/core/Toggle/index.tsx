@@ -39,8 +39,13 @@ export const Toggle = ({
       hasBackground={toggleState && !!text}
       {...containerProps}
     >
-      {text && <Text size="sm">{text}</Text>}
+      {text && (
+        <Text data-testid="toggle_text__testid" size="sm">
+          {text}
+        </Text>
+      )}
       <ToggleRoot
+        data-testid="toggle__testid"
         checked={toggleState}
         onCheckedChange={handleToggle}
         {...props}
