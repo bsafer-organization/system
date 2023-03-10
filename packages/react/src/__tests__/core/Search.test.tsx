@@ -13,7 +13,7 @@ describe('Components: Search', () => {
     ).toBe('Search input tests')
   })
 
-  it('should render the component without placeholder', () => {
+  it('should render the component with default placeholder', () => {
     render(<Search />)
 
     expect(screen.getByTestId('input__testid')).toBeInTheDocument()
