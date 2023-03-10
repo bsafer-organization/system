@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.13.0
+
+### Minor Changes
+
+- Added custom height in modal component
+
 ## 1.12.8
 
 ### Patch Changes
