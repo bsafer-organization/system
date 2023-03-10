@@ -25,6 +25,7 @@ export const ModalCloseButton = w.button(``, {
 
 export const ModalContainer = w(Dialog.Content, {
   variants: {
+    maxHeight: (maxHeight: string) => maxHeight,
     maxWidth: {
       sm: 'max-w-sm',
       md: 'max-w-md',
@@ -32,13 +33,15 @@ export const ModalContainer = w(Dialog.Content, {
       xl: 'max-w-xl',
       '2xl': 'max-w-2xl',
       '3xl': 'max-w-3xl',
-      '4xl': 'max-w-4xl'
+      '4xl': 'max-w-4xl',
+      full: 'max-w-screen'
     },
     position: {
-      left: 'fixed w-screen h-screen top-0 left-0',
+      left: 'fixed w-screen h-screen top-0 left-0 animate-in fade-in slide-in-from-left-1/3',
       center:
-        'fixed w-screen max-h-[80vh] h-screen top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2',
-      right: 'fixed w-screen h-screen top-0 right-0'
+        'fixed w-screen  h-screen top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 animate-in fade-in zoom-in-75',
+      right:
+        'fixed w-screen h-screen top-0 right-0 animate-in fade-in slide-in-from-right-1/3'
     }
   }
 })

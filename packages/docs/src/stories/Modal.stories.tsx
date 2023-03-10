@@ -43,6 +43,7 @@ export const Playground: StoryFn<ModalProps['Root'] & ModalProps['Content']> = (
           onDismiss={() => setIsModalOpen(false)}
           position={props.position}
           maxWidth={props.maxWidth}
+          maxHeight={props.maxHeight}
         >
           <div className="w-full h-full p-5 overflow-auto">
             <Heading as="h4">Title</Heading>
@@ -59,10 +60,20 @@ Playground.args = {
   maxWidth: 'xl'
 }
 Playground.argTypes = {
+  maxHeight: {
+    control: 'text'
+  },
   maxWidth: {
-    options: ['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] as PropsToArray<
-      ModalProps['Content']['maxWidth']
-    >,
+    options: [
+      'sm',
+      'md',
+      'lg',
+      'xl',
+      '2xl',
+      '3xl',
+      '4xl',
+      'full'
+    ] as PropsToArray<ModalProps['Content']['maxWidth']>,
     control: 'select'
   },
   position: {
