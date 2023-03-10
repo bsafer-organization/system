@@ -17,7 +17,7 @@ const options: SelectProps['options'] = [
   { value: 'silver', label: 'Silver' }
 ]
 
-describe('Components: Search', () => {
+describe('Components: Select', () => {
   it('should render the component', () => {
     render(<Select options={options} />)
 
