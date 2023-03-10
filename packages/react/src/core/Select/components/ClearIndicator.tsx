@@ -24,6 +24,7 @@ export const ClearIndicator = ({
       {...props}
       innerProps={{
         ...props.innerProps,
+        role: 'button',
         onMouseDown: async (event) => {
           if (onClearValue) {
             const onClearValueAction = await onClearValue()

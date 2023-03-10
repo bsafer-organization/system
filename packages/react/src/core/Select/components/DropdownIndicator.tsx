@@ -20,7 +20,7 @@ export const DropdownIndicator = ({
             <dropdownIndicator.icon
               variant={dropdownIndicator.variant}
               size={16}
-              color={disabled ? '#747F87' : '#2E3338'}
+              color={'#2E3338'}
             />
           ) : (
             <dropdownIndicator.icon

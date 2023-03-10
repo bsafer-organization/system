@@ -146,11 +146,17 @@ export const Select = ({
     <SelectStyle.Container>
       {label && (
         <SelectStyle.HeaderContainer>
-          <SelectStyle.Label htmlFor={label} title={label}>
+          <SelectStyle.Label
+            data-testid="select_label__testid"
+            htmlFor={label}
+            title={label}
+          >
             {label}
           </SelectStyle.Label>
           {optional && (
-            <SelectStyle.OptionalBadge>Opcional</SelectStyle.OptionalBadge>
+            <SelectStyle.OptionalBadge data-testid="select_optional_badge__testid">
+              Opcional
+            </SelectStyle.OptionalBadge>
           )}
         </SelectStyle.HeaderContainer>
       )}
@@ -202,7 +208,7 @@ export const Select = ({
       />
 
       {error && (
-        <SelectStyle.ErrorTextContainer>
+        <SelectStyle.ErrorTextContainer data-testid="select_error__testid">
           <Danger size={16} />
           <span>{error}</span>
         </SelectStyle.ErrorTextContainer>
