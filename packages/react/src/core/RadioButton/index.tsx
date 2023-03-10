@@ -51,6 +51,7 @@ export function RadioButton({
 }: RadioButtonProps) {
   return (
     <RadioButtonStyle.Root
+      data-testid="radio_button__testid"
       orientationView={orientationView}
       defaultValue={value ?? options[0].value}
       aria-label="View density"
@@ -59,10 +60,17 @@ export function RadioButton({
     >
       {options.map((option) => (
         <RadioButtonStyle.Label htmlFor={option.value} key={option.value}>
-          <RadioButtonStyle.Item value={option.value} id={option.value}>
+          <RadioButtonStyle.Item
+            data-testid="radio_button_item__testid"
+            value={option.value}
+            id={option.value}
+          >
             <RadioButtonStyle.Indicator />
           </RadioButtonStyle.Item>
-          <span className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap">
+          <span
+            data-testid="radio_button_label__testid"
+            className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap"
+          >
             {option.label}
           </span>
         </RadioButtonStyle.Label>
