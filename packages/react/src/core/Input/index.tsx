@@ -120,6 +120,7 @@ export function Input({
         {StartIcon && <IconContainer>{StartIcon}</IconContainer>}
 
         <InputElement
+          data-testid="input_element__testid"
           {...inputProps}
           id={label}
           placeholder={placeholder}

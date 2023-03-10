@@ -7,9 +7,9 @@ export interface SearchProps {
      */
     placeholder?: InputProps['placeholder']
     /**
-    * Disable all component
-    * @default false
-    */
+     * Disable all component
+     * @default false
+     */
     disabled?: InputProps['disabled']
     /**
      * Render a message text below input
@@ -24,8 +24,14 @@ export interface SearchProps {
  * @param SearchProps
  * @returns `<Search placeholder='Search me...' />`
  */
-export const Search = ({placeholder, disabled, error}: SearchProps) => {
-    return(
-        <Input label='' placeholder={placeholder || 'Pesquise aqui'} disabled={disabled} error={error} endIcon />
+export const Search = ({ placeholder, disabled, error }: SearchProps) => {
+    return (
+        <Input
+            label=""
+            placeholder={placeholder || 'Pesquise aqui'}
+            disabled={disabled}
+            error={error}
+            endIcon
+        />
     )
 }
