@@ -175,7 +175,10 @@ export function Tooltip({
       disableHoverableContent={disableHoverableContent}
     >
       <RadixTooltip.Root onOpenChange={onOpenChange} open={open}>
-        <RadixTooltip.Trigger {...triggerProps}>
+        <RadixTooltip.Trigger
+          data-testid="tooltip_trigger__testid"
+          {...triggerProps}
+        >
           {children}
         </RadixTooltip.Trigger>
 
@@ -197,6 +200,7 @@ export function Tooltip({
               />
               {!arrow?.hidden && (
                 <RadixTooltip.Arrow
+                  data-testid="tooltip_arrow__testid"
                   width={arrow?.width}
                   height={arrow?.height}
                 />
