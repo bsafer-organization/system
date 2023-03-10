@@ -3,7 +3,7 @@ import { screen, render, waitFor, fireEvent, act } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { Skeleton } from '../../core/Skeleton'
 
-describe('Components: Search', () => {
+describe('Components: Skeleton', () => {
   it('should render the component without children', () => {
     render(<Skeleton />)
 
