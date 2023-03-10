@@ -28,6 +28,7 @@ export function Skeleton({
 }: SkeletonProps) {
   return (
     <SkeletonElement
+      data-testid="skeleton__testid"
       className={className}
       hasChild={!!children}
       style={{ animationDuration: `${animationDuration}ms` }}
