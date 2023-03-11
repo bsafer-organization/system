@@ -19,7 +19,7 @@ function Root(props: SidebarMenuProps['Root']) {
 
   return (
     <SidebarMenuContext.Provider value={{ isOpen, activedRoute }}>
-      <RootContainer isOpen={isOpen}>
+      <RootContainer data-testid="sidebar__testid" isOpen={isOpen}>
         <AbsoluteContainer>
           <>{children}</>
         </AbsoluteContainer>
@@ -30,7 +30,7 @@ function Root(props: SidebarMenuProps['Root']) {
 
 function List({ children }: SidebarMenuProps['List']) {
   return (
-    <ListContainer>
+    <ListContainer data-testid="sidebar_list_container__testid">
       <>{children}</>
     </ListContainer>
   )
@@ -39,7 +39,7 @@ function List({ children }: SidebarMenuProps['List']) {
 function Footer({ children }: SidebarMenuProps['Footer']) {
   return (
     <footer>
-      <FooterContainer>
+      <FooterContainer data-testid="sidebar_footer_container__testid">
         <>{children}</>
       </FooterContainer>
     </footer>
@@ -65,14 +65,23 @@ function Item(
     <ItemContainer>
       <MenuItemTooptip label={label} hidden={isOpen}>
         <ItemLink
+          data-testid="sidebar_item_link__testid"
           onClick={handleClick}
           isActive={activeBoolean}
           focusColor={focusColor}
           className="sidebar-item-menu"
         >
-          <Icon size={16} className="shrink-0" />
+          <Icon
+            data-testid="sidebar_item_icon__testid"
+            size={16}
+            className="shrink-0"
+          />
           {isOpen && (
-            <TextMenu size="sm" className="sidebar-text-menu">
+            <TextMenu
+              data-testid="sidebar_item_text__testid"
+              size="sm"
+              className="sidebar-text-menu"
+            >
               {label}
             </TextMenu>
           )}
