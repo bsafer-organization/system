@@ -11,7 +11,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn()
 }))
 
-describe('Components: Box', () => {
+describe('Components: SidebarMenu', () => {
   it('should render the component', () => {
     render(
       <SidebarMenu.Root isOpen={true}>
