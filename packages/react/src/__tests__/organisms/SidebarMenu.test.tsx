@@ -89,20 +89,6 @@ describe('Components: Box', () => {
     await act(async () => {
       await userEvent.click(sidebarMenuItensLinks[0])
     })
-
-    // await waitFor(() => {
-    //   expect(screen.getByTestId('tooltip_content__testid')).toBeInTheDocument()
-    // })
-
-    // // FOOTER INCLUDED
-    // expect(sidebarMenuItens).toHaveLength(4)
-
-    // expect(sidebarMenuItens[0]).toHaveTextContent('Home')
-    // expect(sidebarMenuItens[1]).toHaveTextContent('Dashboard')
-    // expect(sidebarMenuItens[2]).toHaveTextContent('Users')
-    // expect(sidebarMenuItens[3]).toHaveTextContent('Quit')
-
-    screen.debug()
   })
 
   it('should render the component and hover some sidebar item to show tooltip', async () => {
