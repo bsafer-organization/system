@@ -10,19 +10,35 @@ import {
 } from './styles'
 
 function Root({ children, ...props }: RootProps) {
-  return <RootContainer {...props}>{children}</RootContainer>
+  return (
+    <RootContainer data-testid="top_header__testid" {...props}>
+      {children}
+    </RootContainer>
+  )
 }
 
 function Leading({ children, ...props }: LeadingProps) {
-  return <LeadingContainer {...props}>{children}</LeadingContainer>
+  return (
+    <LeadingContainer data-testid="top_header_leading__testid" {...props}>
+      {children}
+    </LeadingContainer>
+  )
 }
 
 function Center({ children, ...props }: CenterProps) {
-  return <CenterContainer {...props}>{children}</CenterContainer>
+  return (
+    <CenterContainer data-testid="top_header_center__testid" {...props}>
+      {children}
+    </CenterContainer>
+  )
 }
 
 function Trailing({ children, ...props }: TrailingProps) {
-  return <TrailingContainer {...props}>{children}</TrailingContainer>
+  return (
+    <TrailingContainer data-testid="top_header_trailing__testid" {...props}>
+      {children}
+    </TrailingContainer>
+  )
 }
 
 export const TopHeader = {
