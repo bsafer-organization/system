@@ -3,7 +3,7 @@ import { screen, render } from '@testing-library/react'
 import { TopHeader } from '../../organisms/TopHeader'
 import '@testing-library/jest-dom'
 
-describe('Components: Box', () => {
+describe('Components: TopHeader', () => {
   it('should render the component', () => {
     render(
       <TopHeader.Root>
