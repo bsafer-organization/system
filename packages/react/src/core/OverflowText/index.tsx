@@ -19,6 +19,8 @@ export function OverflowText(props: OverflowTextProps) {
     if (!element || !('ResizeObserver' in window)) return
 
     const checkOverflow = () => {
+      console.log('checkOverflow')
+
       setIsOverflow(element.offsetWidth < element.scrollWidth)
     }
 
