@@ -120,8 +120,8 @@ export function SortableSelect<T>({
     typeof optionsLimit === 'number'
       ? items.length >= optionsLimit
       : optionsLimit
-      ? items.length >= options.length
-      : false
+        ? items.length >= options.length
+        : false
 
   function handleAddToList() {
     const newEmptyItem = {
@@ -226,25 +226,37 @@ export function SortableSelect<T>({
   useEffect(() => {
     setItems(
       value?.map((item) => ({ ...item, itemId: crypto.randomUUID() })) ||
-        ([
-          {
-            itemId: crypto.randomUUID()
-          }
-        ] as SortableSelectOptionWithId<T>[])
+      ([
+        {
+          itemId: crypto.randomUUID()
+        }
+      ] as SortableSelectOptionWithId<T>[])
     )
   }, [value])
 
   return (
-    <Container className={className} {...containerProps}>
+    <Container
+      data-testid="sortable_select_container__testid"
+      className={className}
+      {...containerProps}
+    >
       {(label || optional) && (
         <span className="flex items-center mb-1 gap-2 min-h-[1.375rem]">
           {label && (
-            <Text size="xs" weight="bold">
+            <Text
+              data-testid="sortable_select_label__testid"
+              size="xs"
+              weight="bold"
+            >
               {label}
             </Text>
           )}
           {optional && (
-            <Badge size="xs" color="black">
+            <Badge
+              data-testid="sortable_select_optional_badge__testid"
+              size="xs"
+              color="black"
+            >
               Opcional
             </Badge>
           )}
@@ -281,6 +293,7 @@ export function SortableSelect<T>({
                         >
                           <DragIndexContainer
                             {...DraggableProvided.dragHandleProps}
+                            data-testid="sortable_select_drag_index_container__testid"
                           >
                             {DraggableSnapshot.isDragging && <HambergerMenu />}
                             {!DraggableSnapshot.isDragging && (
@@ -305,9 +318,9 @@ export function SortableSelect<T>({
                             value={
                               item.value
                                 ? {
-                                    label: item.label,
-                                    value: item.value
-                                  }
+                                  label: item.label,
+                                  value: item.value
+                                }
                                 : undefined
                             }
                             options={availableOptions}
@@ -316,6 +329,7 @@ export function SortableSelect<T>({
 
                         {items.length > 1 && (
                           <DeleteButton
+                            data-testid="sortable_select_remove_field_button__testid"
                             className=""
                             type="button"
                             disabled={disabled}
@@ -337,7 +351,7 @@ export function SortableSelect<T>({
       </DragDropContext>
 
       {error && (
-        <TextErrorContainer>
+        <TextErrorContainer data-testid="sortable_select_error_message__testid">
           <Danger size={16} />
           <Text size="xs">{error}</Text>
         </TextErrorContainer>
@@ -345,6 +359,7 @@ export function SortableSelect<T>({
 
       <div className="mt-3 flex items-center justify-between">
         <Button
+          data-testid="sortable_select_add_field_button__testid"
           size="sm"
           variant="outlined"
           color="default"
