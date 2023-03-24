@@ -17,13 +17,23 @@ export interface OptionProps {
   value: string
   label: string
 }
+
+export type SelectOption<T> = OptionProps & {
+  /**
+   * Meta is a fields for additional informations of the options. This prop get a same type when set `options.meta`
+   * @type {object}
+   */
+  meta?: T
+}
+
 export interface CustomDropdownIndicatorProps {
   icon?: Icon
   variant?: IconProps['variant']
   hoverColor?: string
 }
 
-export interface SelectProps extends ReactSelectProps<OptionProps, boolean> {
+export interface SelectProps<T = {}>
+  extends ReactSelectProps<SelectOption<T>, boolean> {
   /**
    * Support multiple selected options
    */
@@ -33,12 +43,12 @@ export interface SelectProps extends ReactSelectProps<OptionProps, boolean> {
    * @example [{label: 'Example', value: 'example'}]
    * @required
    */
-  options: OptionProps[]
+  options: SelectOption<T>[]
   /**
    * Selected option from `options`
    * @example {label: 'Example', value: 'example'}
    */
-  defaultValue?: OptionProps
+  defaultValue?: SelectOption<T> | SelectOption<T>[]
   /**
    * If true, close the select menu when the user scrolls the document/body.
    * @default false
@@ -111,13 +121,10 @@ export interface SelectProps extends ReactSelectProps<OptionProps, boolean> {
    * @param value selected value
    * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
    */
-  onValueChange?: (
-    value: MultiValue<OptionProps> | SingleValue<OptionProps>,
-    actionMeta: ActionMeta<OptionProps | OptionProps[]>
-  ) => void
+  onValueChange?: (values: SelectOption<T>[]) => void
 }
 
-export const Select = ({
+export function Select<T>({
   multiple,
   options,
   defaultValue,
@@ -140,8 +147,47 @@ export const Select = ({
   onClearValue,
   onValueChange,
   ...props
-}: SelectProps) => {
+}: SelectProps<T>) {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
+  const [selectedOptions, setSelectedOptions] = React.useState<
+    typeof defaultValue
+  >(defaultValue || [])
+
+  function handleSelectOnValueChange(
+    selectedOptions: MultiValue<SelectOption<T>> | SingleValue<SelectOption<T>>
+  ) {
+    const optionsToArray: SelectOption<T>[] = []
+
+    if (!Array.isArray(selectedOptions)) {
+      const sss = options.find((option) => option === selectedOptions)
+
+      if (sss) {
+        optionsToArray.push({ label: sss.label, value: sss.value })
+      }
+
+      if (onValueChange) onValueChange(optionsToArray)
+    } else {
+      setSelectedOptions((prevState) => {
+        const prevSelectedOptions = prevState
+
+        if (Array.isArray(prevSelectedOptions)) {
+          const missing: SelectOption<T>[] = selectedOptions.filter(
+            (option) => prevSelectedOptions.indexOf(option) < 0
+          )
+
+          const sss = options.find((option) => option === missing[0])
+
+          if (sss) {
+            prevSelectedOptions.push({ label: sss.label, value: sss.value })
+          }
+          if (onValueChange) onValueChange(prevSelectedOptions)
+        }
+
+        return selectedOptions
+      })
+    }
+  }
+
   return (
     <SelectStyle.Container>
       {label && (
@@ -165,7 +211,7 @@ export const Select = ({
         closeMenuOnSelect={closeMenuOnSelect ?? !multiple}
         isDisabled={disabled}
         options={options}
-        onChange={onValueChange}
+        onChange={handleSelectOnValueChange}
         classNamePrefix="select"
         styles={selectStyles({
           error,
