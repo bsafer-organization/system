@@ -15,12 +15,12 @@
     "iconsax-react": "^0.0.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.5",
     "@bsafer-system/eslint-config": "*",
-    "@bsafer-system/react": "*",
     "@bsafer-system/resolvers": "*",
+    "@bsafer-system/react": "*",
     "@bsafer-system/tokens": "*",
     "@bsafer-system/ts-config": "*",
+    "@babel/core": "^7.20.5",
     "@storybook/addon-a11y": "^6.5.14",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",

@@ -32,23 +32,50 @@ export interface CustomDropdownIndicatorProps {
   hoverColor?: string
 }
 
-export interface SelectProps<T = {}>
+type MultipleSelectType<T> =
+  | {
+    /**
+     * Support multiple selected options
+     */
+    multiple: true
+    /**
+     *
+     * @param value selected value
+     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+     */
+    onValueChange?: (values: SelectOption<T>[]) => void
+    /**
+     * Selected option from `options`
+     * @example [{label: 'Example', value: 'example'}]
+     */
+    defaultValue?: SelectOption<T>[]
+  }
+  | {
+    /**
+     * Support multiple selected options
+     */
+    multiple?: false
+    /**
+     *
+     * @param value selected value
+     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+     */
+    onValueChange?: (values: SelectOption<T>) => void
+    /**
+     * Selected option from `options`
+     * @example {label: 'Example', value: 'example'}
+     */
+    defaultValue?: SelectOption<T>
+  }
+
+export interface DefaultSelectProps<T>
   extends ReactSelectProps<SelectOption<T>, boolean> {
-  /**
-   * Support multiple selected options
-   */
-  multiple?: boolean
   /**
    * Select options
    * @example [{label: 'Example', value: 'example'}]
    * @required
    */
   options: SelectOption<T>[]
-  /**
-   * Selected option from `options`
-   * @example {label: 'Example', value: 'example'}
-   */
-  defaultValue?: SelectOption<T> | SelectOption<T>[]
   /**
    * If true, close the select menu when the user scrolls the document/body.
    * @default false
@@ -116,13 +143,9 @@ export interface SelectProps<T = {}>
    * Action to do on clear select value
    */
   onClearValue?: () => Promise<void>
-  /**
-   *
-   * @param value selected value
-   * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
-   */
-  onValueChange?: (values: SelectOption<T>[]) => void
 }
+
+export type SelectProps<T> = DefaultSelectProps<T> & MultipleSelectType<T>
 
 export function Select<T>({
   multiple,
@@ -149,41 +172,44 @@ export function Select<T>({
   ...props
 }: SelectProps<T>) {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
+
   const [selectedOptions, setSelectedOptions] = React.useState<
-    typeof defaultValue
-  >(defaultValue || [])
+    SelectOption<T>[]
+  >((defaultValue as SelectOption<T>[]) || [])
 
   function handleSelectOnValueChange(
     selectedOptions: MultiValue<SelectOption<T>> | SingleValue<SelectOption<T>>
   ) {
-    const optionsToArray: SelectOption<T>[] = []
-
-    if (!Array.isArray(selectedOptions)) {
+    if (!multiple && !Array.isArray(selectedOptions)) {
       const sss = options.find((option) => option === selectedOptions)
 
-      if (sss) {
-        optionsToArray.push({ label: sss.label, value: sss.value })
+      if (sss && onValueChange) {
+        onValueChange(sss)
       }
+    }
 
-      if (onValueChange) onValueChange(optionsToArray)
-    } else {
+    if (multiple) {
+      const test: SelectOption<T>[] = selectedOptions as SelectOption<T>[]
+
       setSelectedOptions((prevState) => {
         const prevSelectedOptions = prevState
 
-        if (Array.isArray(prevSelectedOptions)) {
-          const missing: SelectOption<T>[] = selectedOptions.filter(
-            (option) => prevSelectedOptions.indexOf(option) < 0
-          )
+        const missing: SelectOption<T>[] = test.filter(
+          (option) => prevSelectedOptions.indexOf(option) < 0
+        )
 
-          const sss = options.find((option) => option === missing[0])
+        const sss = options.find((option) => option === missing[0])
 
-          if (sss) {
-            prevSelectedOptions.push({ label: sss.label, value: sss.value })
-          }
-          if (onValueChange) onValueChange(prevSelectedOptions)
+        if (sss) {
+          prevSelectedOptions.push({
+            label: sss.label,
+            value: sss.value,
+            meta: sss.meta
+          })
         }
+        if (onValueChange) onValueChange(prevSelectedOptions)
 
-        return selectedOptions
+        return test
       })
     }
   }
