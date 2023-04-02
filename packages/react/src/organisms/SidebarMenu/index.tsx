@@ -20,7 +20,7 @@ function Root(props: SidebarMenuProps['Root']) {
   return (
     <SidebarMenuContext.Provider value={{ isOpen, activedRoute }}>
       <RootContainer isOpen={isOpen}>
-        <AbsoluteContainer>
+        <AbsoluteContainer isRootContainerOpen={isOpen}>
           <>{children}</>
         </AbsoluteContainer>
       </RootContainer>
