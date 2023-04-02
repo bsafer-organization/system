@@ -35,7 +35,7 @@ export const AbsoluteContainer = w.div(
       isRootContainerOpen: (isRootContainerOpen: boolean) =>
         isRootContainerOpen
           ? 'min-w-[16rem] px-6 [&_ul]:items-start'
-          : 'w-[5rem] [&_ul]:items-center'
+          : 'w-[5rem] px-2 [&_ul]:items-center'
     },
     defaultVariants: {
       isRootContainerOpen: true
@@ -45,7 +45,7 @@ export const AbsoluteContainer = w.div(
 
 export const ListContainer = w.ul(
   `
-  w-full flex-1 overflow-y-auto
+  w-full flex-1 overflow-y-auto overflow-x-hidden
   flex flex-col gap-6
 
   transition-all
