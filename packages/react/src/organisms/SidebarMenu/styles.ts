@@ -13,7 +13,7 @@ export const RootContainer = w.nav(
 `,
   {
     variants: {
-      isOpen: (isOpen: boolean) => (isOpen ? 'min-w-[16rem]' : `w-[5rem]`)
+      isOpen: (isOpen: boolean) => (isOpen ? 'min-w-[16rem]' : `w-[4.5rem]`)
     },
     defaultVariants: {
       isOpen: true
@@ -35,7 +35,7 @@ export const AbsoluteContainer = w.div(
       isRootContainerOpen: (isRootContainerOpen: boolean) =>
         isRootContainerOpen
           ? 'min-w-[16rem] px-6 [&_ul]:items-start'
-          : 'w-[5rem] px-2 [&_ul]:items-center'
+          : 'w-[4.5rem] px-2 [&_ul]:items-center'
     },
     defaultVariants: {
       isRootContainerOpen: true
