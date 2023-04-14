@@ -92,7 +92,7 @@ export interface SortableSelectProps<T = {}> {
   /**
    * Pass options to Select inside component
    */
-  selectProps?: Omit<SelectProps, 'options' | 'multiple'>
+  selectProps?: Omit<SelectProps<T>, 'options' | 'multiple' | 'defaultValue'>
   /**
    * Pass options to Container(Div) component
    */
@@ -112,9 +112,21 @@ export function SortableSelect<T>({
   containerProps,
   className
 }: SortableSelectProps<T>) {
-  const [items, setItems] = useState<SortableSelectOptionWithId<T>[]>([])
+  const initialValue = value?.length
+    ? value?.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
+    : ([
+        {
+          itemId: crypto.randomUUID()
+        }
+      ] as SortableSelectOptionWithId<T>[])
+  const [items, setItems] =
+    useState<SortableSelectOptionWithId<T>[]>(initialValue)
 
-  const availableOptions = options.map(({ label, value }) => ({ label, value }))
+  const availableOptions = options.map(({ label, value, meta }) => ({
+    label,
+    value,
+    meta
+  }))
 
   const disabledByOptionsAmount =
     typeof optionsLimit === 'number'
@@ -127,6 +139,7 @@ export function SortableSelect<T>({
     const newEmptyItem = {
       itemId: crypto.randomUUID()
     } as SortableSelectOptionWithId<T>
+
     setItems((prevItems) => {
       const newItems = [...prevItems, newEmptyItem]
       handleItemsChange(newItems)
@@ -189,7 +202,13 @@ export function SortableSelect<T>({
         const uniqueOption = option as {
           label: string
           value: string
+          meta?: T
         }
+
+        if (uniqueOption.value === item.value) {
+          return
+        }
+
         setItems((prevItems) => {
           const items = [...prevItems]
           try {
@@ -204,7 +223,7 @@ export function SortableSelect<T>({
               items[prevItemIndex] = {
                 ...uniqueOption,
                 itemId: item.itemId,
-                meta: item.meta || options[optionIndex].meta
+                meta: options[optionIndex].meta
               }
               handleItemsChange(items)
               return items
@@ -222,17 +241,6 @@ export function SortableSelect<T>({
   function handleItemsChange(options: SortableSelectOption<T>[]) {
     if (onValuesChange) onValuesChange(options)
   }
-
-  useEffect(() => {
-    setItems(
-      value?.map((item) => ({ ...item, itemId: crypto.randomUUID() })) ||
-        ([
-          {
-            itemId: crypto.randomUUID()
-          }
-        ] as SortableSelectOptionWithId<T>[])
-    )
-  }, [value])
 
   return (
     <Container className={className} {...containerProps}>
@@ -306,7 +314,8 @@ export function SortableSelect<T>({
                               item.value
                                 ? {
                                     label: item.label,
-                                    value: item.value
+                                    value: item.value,
+                                    meta: item.meta
                                   }
                                 : undefined
                             }

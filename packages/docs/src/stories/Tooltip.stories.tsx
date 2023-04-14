@@ -1,118 +1,117 @@
 import {
   Button,
   Heading,
+  Input,
   Text,
   Tooltip,
   TooltipProps
 } from '@bsafer-system/react'
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryFn, StoryObj } from '@storybook/react'
+
+type TooltipStoryProps = TooltipProps['Root'] &
+  TooltipProps['Content'] &
+  TooltipProps['Trigger']
 
 export default {
-  title: 'Core/Tooltip',
-  component: Tooltip,
-  argTypes: {
-    skipDelayDuration: {
-      table: {
-        defaultValue: { summary: 300 }
-      }
+  title: 'Core/Tooltip'
+} as Meta
+
+export const Playground: StoryFn<TooltipStoryProps> = (props) => {
+  return (
+    <Tooltip.Root
+      skipDelayDuration={props.skipDelayDuration}
+      delayDuration={props.delayDuration}
+      disableHoverableContent={props.disableHoverableContent}
+    >
+      <Tooltip.Trigger>
+        <Text size="lg">Hover me!</Text>
+      </Tooltip.Trigger>
+
+      <Tooltip.Content>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit
+      </Tooltip.Content>
+    </Tooltip.Root>
+  )
+}
+
+Playground.argTypes = {
+  skipDelayDuration: {
+    table: {
+      defaultValue: { summary: 300 }
+    }
+  },
+  disableHoverableContent: {
+    table: {
+      defaultValue: { summary: false }
+    }
+  },
+  delayDuration: {
+    table: {
+      defaultValue: { summary: 300 }
+    }
+  },
+  open: {
+    control: 'boolean',
+    table: {
+      defaultValue: { summary: 'undefined' }
+    }
+  },
+  children: {
+    control: {
+      type: null
+    }
+  },
+  portal: {
+    table: {
+      defaultValue: { summary: 'undefined' }
     },
-    disableHoverableContent: {
-      table: {
-        defaultValue: { summary: false }
-      }
+    control: {
+      type: null
+    }
+  },
+  onOpenChange: {
+    table: {
+      defaultValue: { summary: 'undefined' }
     },
-    delayDuration: {
-      table: {
-        defaultValue: { summary: 300 }
-      }
-    },
-    open: {
-      control: 'boolean',
-      table: {
-        defaultValue: { summary: 'undefined' }
-      }
-    },
-    children: {
-      control: {
-        type: null
-      }
-    },
-    contentProps: {
-      table: {
-        defaultValue: { summary: 'undefined' }
-      },
-      control: {
-        type: null
-      }
-    },
-    textProps: {
-      table: {
-        defaultValue: { summary: 'undefined' }
-      },
-      control: {
-        type: null
-      }
-    },
-    portal: {
-      table: {
-        defaultValue: { summary: 'undefined' }
-      },
-      control: {
-        type: null
-      }
-    },
-    onOpenChange: {
-      table: {
-        defaultValue: { summary: 'undefined' }
-      },
-      control: {
-        type: null
-      }
+    control: {
+      type: null
     }
   }
-} as Meta<TooltipProps>
+}
 
-export const Playground: StoryObj<TooltipProps> = {
-  args: {
-    text: 'Tooltip working!',
-    delayDuration: 300,
-    skipDelayDuration: 300,
-    disableHoverableContent: false,
-
-    position: {
-      align: 'center',
-      alignOffset: 0,
-      side: 'top',
-      sideOffset: 8,
-      sticky: 'partial'
-    },
-
-    collision: {
-      avoidCollisions: true,
-      collisionBoundary: [],
-      collisionPadding: 0,
-      hideWhenDetached: false
-    },
-
-    arrow: {
-      width: 10,
-      height: 5,
-      hidden: false
-    },
-
-    children: <Text size="lg">Hover me!</Text>,
-    onOpenChange: (open) => console.log('Tooltip: ', open)
-  }
+Playground.args = {
+  delayDuration: 300,
+  skipDelayDuration: 300,
+  disableHoverableContent: false,
+  align: 'center',
+  alignOffset: 0,
+  side: 'top',
+  sideOffset: 8,
+  sticky: 'partial',
+  avoidCollisions: true,
+  collisionBoundary: [],
+  collisionPadding: 0,
+  hideWhenDetached: false,
+  arrow: {
+    width: 10,
+    height: 5,
+    hidden: false
+  },
+  children: <Text size="lg">Hover me!</Text>,
+  onOpenChange: (open: any) => console.log('Tooltip: ', open)
 }
 
 export const TootipWithoutArrow = () => {
   return (
-    <Tooltip
-      text="Lorem ipsum dolor, sit amet consectetur adipisicing elit"
-      arrow={{ hidden: true }}
-    >
-      <Text size="lg">Hover me! (but without arrow)</Text>
-    </Tooltip>
+    <Tooltip.Root>
+      <Tooltip.Trigger>
+        <Text size="lg">Hover me! (but without arrow)</Text>
+      </Tooltip.Trigger>
+
+      <Tooltip.Content arrow={{ hidden: true }}>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit
+      </Tooltip.Content>
+    </Tooltip.Root>
   )
 }
 
@@ -120,85 +119,84 @@ TootipWithoutArrow.storyName = 'Tootip Without Arrow'
 
 export const TootipWithHugeText = () => {
   return (
-    <Tooltip text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, eaque iste ut numquam tempora natus consectetur veniam impedit consequuntur eveniet voluptate quod architecto earum provident doloribus laudantium a quia doloremque. (max-w-md)">
-      <Text size="lg">Huge text in tooltip...</Text>
-    </Tooltip>
+    <Tooltip.Root>
+      <Tooltip.Trigger>
+        <Text size="lg">Huge text in tooltip...</Text>
+      </Tooltip.Trigger>
+
+      <Tooltip.Content arrow={{ hidden: true }}>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, eaque
+        iste ut numquam tempora natus consectetur veniam impedit consequuntur
+        eveniet voluptate quod architecto earum provident doloribus laudantium a
+        quia doloremque. (max-w-md)
+      </Tooltip.Content>
+    </Tooltip.Root>
   )
 }
 
 TootipWithHugeText.storyName = 'Tootip With Huge Text'
 
-export const TooltipWithCustomText = () => {
+export const TooltipWithCustomContent = () => {
   return (
-    <div className="flex flex-col gap-6">
-      <Tooltip text="Lorem <b>ipsum</b> dolor, <code>sit</code> amet <i>consectetur</i> adipisicing elit.">
-        <Text size="lg">Tooltip with text with &lsquo;b&lsquo; tag</Text>
-      </Tooltip>
-      <Tooltip text="Lorem ipsum dolor, sit amet <i>consectetur adipisicing elit.</i>">
-        <Text size="lg">Tooltip with text with &lsquo;i&lsquo; tag</Text>
-      </Tooltip>
-      <Tooltip text="Lorem <strong>ipsum dolor, sit amet consectetur</strong> adipisicing elit.">
-        <Text size="lg">Tooltip with text with &lsquo;strong&lsquo; tag</Text>
-      </Tooltip>
+    <div className="h-[98vh]">
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Register here!</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content
+          avoidCollisions
+          className="bg-white shadow-md p-4 rounded-lg flex flex-col gap-2"
+          arrow={{
+            className: 'fill-white'
+          }}
+        >
+          <Input placeholder="Enter your name" label="Name" />
+          <Input placeholder="email@email.com" label="Email" />
+          <Input placeholder="8 - 15 characters" label="Password" />
+          <Button>Register now!</Button>
+        </Tooltip.Content>
+      </Tooltip.Root>
     </div>
   )
 }
 
-TooltipWithCustomText.storyName = 'Tootip With Custom Text'
-
-export const TooltipWithCustomChildren = () => {
-  return (
-    <div className="flex flex-col items-center gap-6">
-      <Tooltip text="Lorem <b>ipsum</b> dolor, <code>sit</code> amet <i>consectetur</i> adipisicing elit.">
-        <Text size="lg">Text content</Text>
-      </Tooltip>
-      <Tooltip text="Lorem ipsum dolor, sit amet <i>consectetur adipisicing elit.</i>">
-        <Heading color="assistant-yellow-main">Heading content</Heading>
-      </Tooltip>
-      <Tooltip text="Lorem <strong>ipsum dolor, sit amet consectetur</strong> adipisicing elit.">
-        <Button color="primary">Button content</Button>
-      </Tooltip>
-    </div>
-  )
-}
-
-TooltipWithCustomChildren.storyName = 'Tootip With Custom Children'
+TooltipWithCustomContent.storyName = 'Tootip With Custom Content'
 
 export const TooltipPositions = () => {
   return (
     <div className="flex flex-col gap-6">
-      <Tooltip
-        position={{
-          side: 'top'
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Top</Text>
-      </Tooltip>
-      <Tooltip
-        position={{
-          side: 'left'
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Left</Text>
-      </Tooltip>
-      <Tooltip
-        position={{
-          side: 'right'
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Right</Text>
-      </Tooltip>
-      <Tooltip
-        position={{
-          side: 'bottom'
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Bottom</Text>
-      </Tooltip>
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Top</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="top">On top!</Tooltip.Content>
+      </Tooltip.Root>
+
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Left</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="left">On left!</Tooltip.Content>
+      </Tooltip.Root>
+
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Right</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="right">On right!</Tooltip.Content>
+      </Tooltip.Root>
+
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Bottom</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="bottom">On bottom!</Tooltip.Content>
+      </Tooltip.Root>
     </div>
   )
 }
@@ -208,33 +206,35 @@ TooltipPositions.storyName = 'Tootip Positions'
 export const TooltipOffset = () => {
   return (
     <div className="flex flex-col gap-6">
-      <Tooltip
-        position={{
-          side: 'top',
-          sideOffset: 32
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Offset 32</Text>
-      </Tooltip>
-      <Tooltip
-        position={{
-          side: 'right',
-          sideOffset: 64
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Offset 64</Text>
-      </Tooltip>
-      <Tooltip
-        position={{
-          side: 'top',
-          sideOffset: 13
-        }}
-        text="Tooltip working!"
-      >
-        <Text size="lg">Any Number Value (in px)</Text>
-      </Tooltip>
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">32px</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="top" sideOffset={32}>
+          Offset 32px!
+        </Tooltip.Content>
+      </Tooltip.Root>
+
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">64px</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="top" sideOffset={32}>
+          Ofsset 64px!
+        </Tooltip.Content>
+      </Tooltip.Root>
+
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          <Text size="lg">Any value</Text>
+        </Tooltip.Trigger>
+
+        <Tooltip.Content side="top" sideOffset={150}>
+          Ofsset to any where (150px)
+        </Tooltip.Content>
+      </Tooltip.Root>
     </div>
   )
 }

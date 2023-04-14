@@ -33,7 +33,8 @@
     "react-hook-form": "^7.41.3",
     "react-number-format": "^5.1.3",
     "react-select": "^5.7.0",
-    "windstitch": "^0.3.0"
+    "windstitch": "^0.3.0",
+    "tailwind-merge": "^1.12.0"
   },
   "devDependencies": {
     "@bsafer-system/eslint-config": "*",
