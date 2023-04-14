@@ -13,7 +13,7 @@ export const RootContainer = w.nav(
 `,
   {
     variants: {
-      isOpen: (isOpen: boolean) => (isOpen ? 'min-w-[16rem]' : `w-[5.5rem]`)
+      isOpen: (isOpen: boolean) => (isOpen ? 'min-w-[16rem]' : `w-[4.5rem]`)
     },
     defaultVariants: {
       isOpen: true
@@ -24,18 +24,28 @@ export const RootContainer = w.nav(
 export const AbsoluteContainer = w.div(
   `
   absolute top-0 left-0
-  w-full h-full min-w-[16rem] overflow-hidden
+  w-full h-full overflow-hidden
   flex flex-col gap-8
-  py-8 px-6
+  py-8
 
   transition-all
 `,
-  {}
+  {
+    variants: {
+      isRootContainerOpen: (isRootContainerOpen: boolean) =>
+        isRootContainerOpen
+          ? 'min-w-[16rem] px-6 [&_ul]:items-start'
+          : 'w-[4.5rem] px-2 [&_ul]:items-center'
+    },
+    defaultVariants: {
+      isRootContainerOpen: true
+    }
+  }
 )
 
 export const ListContainer = w.ul(
   `
-  w-full flex-1 overflow-y-auto
+  w-full flex-1 overflow-y-auto overflow-x-hidden
   flex flex-col gap-6
 
   transition-all
