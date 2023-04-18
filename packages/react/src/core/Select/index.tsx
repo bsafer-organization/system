@@ -34,39 +34,39 @@ export interface CustomDropdownIndicatorProps {
 
 type MultipleSelectType<T> =
   | {
-    /**
-     * Support multiple selected options
-     */
-    multiple: true
-    /**
-     *
-     * @param value selected value
-     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
-     */
-    onValueChange?: (values: SelectOption<T>[]) => void
-    /**
-     * Selected option from `options`
-     * @example [{label: 'Example', value: 'example'}]
-     */
-    defaultValue?: SelectOption<T>[]
-  }
+      /**
+       * Support multiple selected options
+       */
+      multiple: true
+      /**
+       *
+       * @param value selected value
+       * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+       */
+      onValueChange?: (values: SelectOption<T>[]) => void
+      /**
+       * Selected option from `options`
+       * @example [{label: 'Example', value: 'example'}]
+       */
+      defaultValue?: SelectOption<T>[]
+    }
   | {
-    /**
-     * Support multiple selected options
-     */
-    multiple?: false
-    /**
-     *
-     * @param value selected value
-     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
-     */
-    onValueChange?: (values: SelectOption<T>) => void
-    /**
-     * Selected option from `options`
-     * @example {label: 'Example', value: 'example'}
-     */
-    defaultValue?: SelectOption<T>
-  }
+      /**
+       * Support multiple selected options
+       */
+      multiple?: false
+      /**
+       *
+       * @param value selected value
+       * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+       */
+      onValueChange?: (values: SelectOption<T>) => void
+      /**
+       * Selected option from `options`
+       * @example {label: 'Example', value: 'example'}
+       */
+      defaultValue?: SelectOption<T>
+    }
 
 export interface DefaultSelectProps<T>
   extends ReactSelectProps<SelectOption<T>, boolean> {

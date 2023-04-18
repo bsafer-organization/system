@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Text, TextProps } from '../Text'
-import { Tooltip } from '../Tooltip'
+import { Tooltip, TooltipProps } from '../Tooltip'
 
 type TextPropsWithoutChildren = Omit<TextProps, 'children'>
 
-export interface OverflowTextProps extends TextPropsWithoutChildren {
+export interface OverflowTextProps {
+  textProps?: TextPropsWithoutChildren
+  tooltipProps?: TooltipProps['Content']
   children?: React.ReactNode
 }
 
 export function OverflowText(props: OverflowTextProps) {
-  const { children, ...textProps } = props
+  const { children, textProps, tooltipProps } = props
   const ref = useRef<HTMLSpanElement | null>(null)
   const [isOverflow, setIsOverflow] = useState(false)
 
@@ -38,29 +40,24 @@ export function OverflowText(props: OverflowTextProps) {
   }
 
   return (
-    <Tooltip
-      text={children.toString()}
+    <Tooltip.Root
       open={isOverflow ? undefined : false}
       disableHoverableContent
       delayDuration={100}
-      position={{
-        align: 'start'
-      }}
-      triggerProps={{
-        className: 'w-full select-text cursor-default'
-      }}
-      arrow={{
-        hidden: true
-      }}
     >
-      <Text {...textProps}>
-        <span
-          ref={ref}
-          className="block overflow-hidden text-ellipsis whitespace-nowrap text-start"
-        >
-          {children}
-        </span>
-      </Text>
-    </Tooltip>
+      <Tooltip.Trigger className="w-full select-text cursor-default">
+        <Text {...textProps}>
+          <span
+            ref={ref}
+            className="block overflow-hidden text-ellipsis whitespace-nowrap text-start"
+          >
+            {children}
+          </span>
+        </Text>
+      </Tooltip.Trigger>
+      <Tooltip.Content align="start" arrow={{ hidden: true }} {...tooltipProps}>
+        <Text>{children?.toString()}</Text>
+      </Tooltip.Content>
+    </Tooltip.Root>
   )
 }

@@ -34,39 +34,55 @@ export const Playground: StoryFn<PlaygroundProps> = (props) => {
   const [selectedUsers, setSelectedUsers] = useState<
     SortableSelectOption<User>[]
   >(
-    users.map((user) => ({
-      label: user.name,
-      value: user.id,
-      meta: user
-    }))
+    // users.map((user) => ({
+    //   label: user.name,
+    //   value: user.id,
+    //   meta: user
+    // }))
+    []
   )
   return (
-    <div className="w-screen max-w-[30rem] flex flex-col gap-10">
-      <SortableSelect
-        value={selectedUsers}
-        label={label}
-        optional={optional}
-        options={users.map((user) => ({
-          label: user.name,
-          value: user.id,
-          meta: user
-        }))}
-        error={error}
-        disabled={disabled}
-        optionsLimit={optionsLimit || optionLimitBoolean}
-        onValuesChange={(options) => {
-          console.log('options', options)
-          setSelectedUsers(options)
-        }}
-        selectProps={{
-          placeholder: 'Selecione um usuário'
-        }}
-      />
+    <div className="w-[95vw] grid grid-cols-12 gap-10">
+      <div className="col-span-full md:col-span-5">
+        <SortableSelect
+          value={selectedUsers}
+          label={label}
+          optional={optional}
+          options={users.map((user) => ({
+            label: user.name,
+            value: user.id,
+            meta: user
+          }))}
+          error={error}
+          disabled={disabled}
+          optionsLimit={optionsLimit || optionLimitBoolean}
+          onValuesChange={(options) => {
+            console.log('options', options)
+            setSelectedUsers(options)
+          }}
+          selectProps={{
+            placeholder: 'Selecione um usuário'
+          }}
+        />
+      </div>
 
-      <div className="flex-1">
+      <div className="col-span-full md:col-span-7 pr-4">
         <Heading as="h6">Result (onValuesChange)</Heading>
-        <div className="max-h-[200px] overflow-y-auto overflow-x-hidden">
-          <pre>{JSON.stringify(selectedUsers, null, 2)}</pre>
+        <div className="w-full overflow-x-hidden pr-4">
+          {selectedUsers.map((user, index) => {
+            return (
+              <div key={index} className="flex gap-3 mb-3">
+                <span className="bg-assistant-blue-light flex p-1 justify-center items-center rounded text-assistant-blue-dark">
+                  {index + 1}
+                </span>
+                <div className="p-2 rounded bg-grey-100 flex-1">
+                  <pre className="text-sm whitespace-pre-wrap">
+                    {JSON.stringify(selectedUsers[index], null, 2)}
+                  </pre>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
