@@ -1,5 +1,13 @@
 # @bsafer-system/react
 
+## 1.14.0
+
+### Minor Changes
+
+- Adjustments in Tooltip, Select e SortableSelect.
+  - The tooltip can receive any body. Changing the structure to composite components
+  - Interfaces fixes: Select and SortableSelect.
+
 ## 1.13.0
 
 ### Minor Changes
