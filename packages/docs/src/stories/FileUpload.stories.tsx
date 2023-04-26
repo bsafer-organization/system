@@ -46,7 +46,13 @@ export default {
       control: 'boolean'
     }
   },
-  decorators: [(Story) => Story()]
+  decorators: [
+    (Story) => (
+      <div className="w-[400px] flex">
+        <div className="flex-1">{Story()}</div>
+      </div>
+    )
+  ]
 } as Meta<FileUploadProps>
 
 export const Playground: StoryObj<FileUploadProps> = {}

@@ -13,24 +13,40 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { DropZoneContainer, OptionalBadge } from './styles'
+import DocViewer, { MSDocRenderer } from 'react-doc-viewer'
+import ReactFileViewer from 'react-file-viewer'
 
-import { PropsToArray } from '../../helpers/propsToArray'
+interface IAcceptedFiles {
+  [key: string]: string[]
+}
 
-const supportedFiles = {
-  pdf: {
-    'application/pdf': ['.pdf']
-  },
-  image: {
-    'image/*': ['.jpeg', '.jpg', '.png']
-  },
-  word: {
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [
-      '.docx'
-    ]
+interface ISupportedFiles {
+  [key: string]: {
+    [key: string]: string[]
   }
 }
 
-type ISupportedFiles = 'pdf' | 'image' | 'word'
+const defaultSupportedFiles: ISupportedFiles = {
+  pdf: {
+    'application/pdf': ['.pdf']
+  },
+  jpeg: {
+    'image/jpeg': ['.jpeg', '.jpg']
+  },
+  png: {
+    'image/png': ['.png']
+  },
+  docx: {
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [
+      '.docx'
+    ]
+  },
+  doc: {
+    'application/msword': ['.doc']
+  }
+}
+
+type SupportedFilesKeys = keyof typeof defaultSupportedFiles
 
 export interface FileUploadProps {
   file?: File | string
@@ -39,16 +55,8 @@ export interface FileUploadProps {
   onChangeFile?: (file?: File) => void
   label?: string
   optional?: boolean
-  supportedFiles?: ISupportedFiles[]
+  supportedFiles?: SupportedFilesKeys[]
 }
-
-// const supportedFiles = {
-//   'application/pdf': ['.pdf']
-// }
-
-const allExts = Object.keys(supportedFiles)
-  .map((fileExt) => supportedFiles[fileExt as keyof typeof supportedFiles])
-  .join(',')
 
 export const FileUpload = ({
   error,
@@ -57,8 +65,28 @@ export const FileUpload = ({
   onChangeFile,
   label = 'Arquivo da Guia',
   optional = false,
-  supportedFiles = ['image', 'pdf']
+  supportedFiles = ['png', 'docx', 'pdf']
 }: FileUploadProps) => {
+  let acceptedFileExtensions: IAcceptedFiles = {}
+
+  supportedFiles.forEach((extension) => {
+    const filteredDefaultSupportedFiles = Object.keys(
+      defaultSupportedFiles
+    ).filter(
+      (defaultSupportedFilesExt) => defaultSupportedFilesExt === extension
+    )[0]
+
+    const supportedFilesSelectedByUser =
+      defaultSupportedFiles[filteredDefaultSupportedFiles as SupportedFilesKeys]
+
+    acceptedFileExtensions = {
+      ...acceptedFileExtensions,
+      ...supportedFilesSelectedByUser
+    }
+  })
+
+  const acceptedFileExtensionsCSV = '.' + supportedFiles.join(', .')
+
   const {
     isDragActive,
     isDragAccept,
@@ -67,18 +95,62 @@ export const FileUpload = ({
     getInputProps
   } = useDropzone({
     onDropAccepted,
-    accept: supportedFiles
+    accept: acceptedFileExtensions
   })
 
   const [attachedFile, setAttachedFile] = useState<File | string | null>(null)
-  const fileUrl =
-    attachedFile instanceof File
-      ? URL.createObjectURL(attachedFile)
-      : attachedFile
+
+  const isAttachedFileInstanceOfFile = attachedFile instanceof File
+
+  const fileUrl = isAttachedFileInstanceOfFile
+    ? URL.createObjectURL(attachedFile)
+    : attachedFile
+
+  const fileType = isAttachedFileInstanceOfFile
+    ? attachedFile.type
+    : 'application/pdf'
+
+  const isWordFile =
+    isAttachedFileInstanceOfFile &&
+    attachedFile.type ===
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
+  const handleFileChange = async (file: File) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      setDocumentUri(reader.result as string)
+      console.log(reader.result)
+    }
+
+    // const file = event.target.files[0];
+
+    // Ler o arquivo .docx como um blob
+    // const reader = new FileReader()
+    // reader.onload = async (e) => {
+    //   const arrayBuffer = e.target && e.target.result
+    //   if (arrayBuffer && typeof arrayBuffer !== 'string') {
+    //     console.log('FileReader')
+
+    //     const buffer = new Uint8Array(arrayBuffer)
+    //     const blob = new Blob([buffer], {
+    //       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    //     })
+    //     // Converter o blob em URL de objeto
+    //     const url = URL.createObjectURL(blob)
+    //     // Abrir o URL em uma nova janela
+    //     window.open(url, '_blank')
+    //   }
+    // }
+    // reader.readAsArrayBuffer(file)
+  }
+
+  console.log('fileUrl', fileUrl)
 
   function onDropAccepted(acceptedFiles: File[]) {
     if (onChangeFile) onChangeFile(acceptedFiles[0])
     setAttachedFile(acceptedFiles[0])
+    // handleFileChange(acceptedFiles[0])
   }
 
   function removeFile() {
@@ -184,18 +256,33 @@ export const FileUpload = ({
                   </Text>
                 </Text>
                 <Text size="xs" color="grey-700">
-                  Arquivo suportados: {allExts}
+                  Arquivo suportados: {acceptedFileExtensionsCSV}
                 </Text>
               </>
             )}
           </DropZoneContainer>
         )}
-        {fileUrl && (
+        {fileUrl && !isWordFile && (
           <embed
             src={fileUrl}
-            type="application/pdf"
+            type={fileType}
             className="w-full min-h-[200px] rounded-lg"
           />
+        )}
+        {fileUrl && isWordFile && (
+          <>
+            <DocViewer
+              documents={[
+                { uri: URL.createObjectURL(attachedFile), fileType: 'docx' }
+              ]}
+              pluginRenderers={[MSDocRenderer]}
+            />
+            <embed
+              src={fileUrl}
+              type={fileType}
+              className="w-full min-h-[200px] rounded-lg"
+            />
+          </>
         )}
       </div>
       {error && (
