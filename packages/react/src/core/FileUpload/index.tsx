@@ -14,7 +14,7 @@ import {
 } from 'iconsax-react'
 import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { DropZoneContainer, OptionalBadge } from './styles'
+import { FileUploadContainer, OptionalBadge } from './styles'
 
 interface IAcceptedFiles {
   [key: string]: string[]
@@ -259,7 +259,7 @@ export const FileUpload = ({
       </header>
       <div className="flex-1 overflow-hidden">
         {!fileUrl && (
-          <DropZoneContainer
+          <FileUploadContainer
             isDragAccept={isDragAccept}
             isDragReject={isDragReject}
             {...getRootProps()}
@@ -301,7 +301,7 @@ export const FileUpload = ({
                 </Text>
               </>
             )}
-          </DropZoneContainer>
+          </FileUploadContainer>
         )}
         {fileUrl && !isWordFile && (
           <embed

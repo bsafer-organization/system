@@ -1,6 +1,6 @@
 import { w } from 'windstitch'
 
-export const DropZoneContainer = w.div(
+export const FileUploadContainer = w.div(
   `
   border-2 rounded gap-3
   flex flex-col justify-center items-center px-5 py-10
