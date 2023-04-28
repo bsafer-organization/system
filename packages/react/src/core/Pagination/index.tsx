@@ -1,40 +1,73 @@
-import { Select, SelectProps } from '../Select'
+import { Select } from '../Select'
 import { Text } from '../Text'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
-interface OnPageChangeData {
+interface IOnPageChangeData<T> {
   currentPage: number
   amountPerPage: number
   indexPerPage: {
     init: number
     end: number
   }
+  filteredItems: T[]
 }
 
-export interface PaginationProps {
-  totalRecords: number
-  // alterar o tipo, receber o objeto todo (machineStore.machinesData, por exemplo) e retornar o objeto já cortado por página (linha 60)
-  onPageChange?: (data: OnPageChangeData) => void
-  items: any[]
-  itemsPerPage: () => any[]
+interface IPerPageOptions {
+  label: string
+  value: string
 }
 
-const perPageOptions = [
-  { label: '5', value: '5' },
+export interface PaginationProps<T> {
+  /**
+   * Handle page changes
+   */
+  onPageChange?: (data: IOnPageChangeData<T>) => void
+
+  /**
+   * Table content
+   */
+  items: T[]
+
+  /**
+   * Number of displayed items per page
+   * @example ['10', '20']
+   * @default ['10', '15', '25', '50']
+   */
+  perPageOptions?: string[]
+}
+
+const defaultPerPageOptions: IPerPageOptions[] = [
   { label: '10', value: '10' },
   { label: '15', value: '15' },
   { label: '25', value: '25' },
   { label: '50', value: '50' }
 ]
 
-export function Pagination({
-  totalRecords,
+export function Pagination<T>({
   onPageChange,
-  items
-}: PaginationProps) {
-  const [perPage, setPerPage] = useState(perPageOptions[0])
+  items,
+  perPageOptions
+}: PaginationProps<T>) {
+  const formattedPerPageOptions: IPerPageOptions[] = useMemo(() => {
+    let newPerPageOptionsArray: IPerPageOptions[] = []
+    if (perPageOptions) {
+      perPageOptions?.forEach((option) => {
+        newPerPageOptionsArray.push({
+          label: option,
+          value: option
+        })
+      })
+    } else {
+      newPerPageOptionsArray = defaultPerPageOptions
+    }
+
+    return newPerPageOptionsArray
+  }, [perPageOptions])
+
+  const [perPage, setPerPage] = useState(formattedPerPageOptions[0])
   const [currentPage, setCurrentPage] = useState(0)
+  const totalRecords = items.length
 
   const pageCount = Math.ceil(totalRecords / Number(perPage.value))
   const amountPerPage = currentPage * Number(perPage.value)
@@ -50,10 +83,8 @@ export function Pagination({
     [amountPerPage, perPage.value, totalRecords]
   )
 
-  const handlePerPageChange: SelectProps<any>['onValueChange'] = (
-    value: any
-  ) => {
-    setPerPage(value as typeof perPageOptions[number])
+  const handlePerPageChange = (value: any) => {
+    setPerPage(value as IPerPageOptions)
     setCurrentPage(0)
   }
 
@@ -61,26 +92,21 @@ export function Pagination({
     setCurrentPage(page)
   }
 
+  const filteredItems = useMemo(
+    () => items.slice(indexPerPage.init, indexPerPage.end + 1),
+    [amountPerPage, perPage.value, currentPage]
+  )
+
   useEffect(() => {
     if (onPageChange) {
       onPageChange({
         currentPage,
         amountPerPage,
-        indexPerPage
-        // itens já fitlrados daquela pagina
+        indexPerPage,
+        filteredItems
       })
     }
   }, [currentPage, amountPerPage, indexPerPage, onPageChange])
-
-  // items.slice((parseInt(perPage.value) * currentPage) - items.length, (parseInt(perPage.value) * currentPage) + parseInt(perPage.value))
-  const primeiroPasso =
-    (items.length / parseInt(perPage.value)) * currentPage - 1
-  items = items.slice(
-    primeiroPasso - parseInt(perPage.value),
-    parseInt(perPage.value)
-  )
-
-  console.log('items', items)
 
   return (
     <div className="flex flex-col lg:flex-row justify-between items-center py-2 font-light gap-2 mx-2">
@@ -93,13 +119,12 @@ export function Pagination({
           <Text weight="light" size="sm" className="shrink-0">
             Registros por página
           </Text>
-          {/* <Select onValueChange={handlePerPageChange} options={perPageOptions} value={perPage} padding="0 0.2rem"/>
           <Select
             onValueChange={handlePerPageChange}
-            options={perPageOptions}
+            options={formattedPerPageOptions}
             value={perPage}
             padding="0 0.2rem"
-          /> */}
+          />
         </div>
       </div>
       <div className="flex items-center gap-2 [&_*]:select-none">

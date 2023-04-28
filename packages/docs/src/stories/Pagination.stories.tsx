@@ -1,7 +1,6 @@
 import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
-// import { Pagination, PaginationProps } from '@bsafer-system/react'
-import { Pagination, PaginationProps } from '../components/Pagination'
+import { Pagination, PaginationProps } from '@bsafer-system/react'
 
 interface IOptions {
   n: number
@@ -30,25 +29,68 @@ const options: IOptions[] = [
 export default {
   title: 'Core/Pagination',
   component: Pagination,
-
-  parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/FLeQZ1N2SuYH73TGd3Pcjo/Core-Components?node-id=446%3A2391&t=fE8HNjTfArbFMfN1-0'
-    }
-  },
   decorators: [
     (Story) => {
+      const [itemsFiltrados, setItemsFiltrados] = React.useState<IOptions[]>()
       return (
-        <div className="flex flex-col h-full overflow-hidden">{Story()}</div>
+        <div className="overflow-hidden flex-1 px-2">
+          <div className="flex flex-col h-full overflow-hidden">
+            <div className="flex-1 overflow-y-auto">
+              <table className="w-full table-fixed border-separate border-spacing-y-2 px-1">
+                <thead className="sticky top-0 bg-background">
+                  <tr>
+                    <th>Index</th>
+                    <th>Color</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {itemsFiltrados &&
+                    itemsFiltrados.length > 0 &&
+                    itemsFiltrados.map((option, index) => {
+                      return (
+                        <tr
+                          key={index}
+                          className="bg-grey-100 hover:bg-white hover:shadow-md
+                  transition-all text-sm [&_td]:py-4 [&_td]:px-6 [&_td_*]:text-sm [&_td_*]:font-light [&_*]:cursor-pointer"
+                        >
+                          <td className="rounded-l-md" align="center">
+                            <span>{option.n}</span>
+                          </td>
+                          <td className="rounded-l-md" align="center">
+                            <span>{option.label}</span>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                </tbody>
+              </table>
+            </div>
+            {Story({
+              args: {
+                perPageOptions: ['3', '5'],
+                items: options,
+                onPageChange: ({
+                  filteredItems
+                }: {
+                  filteredItems: IOptions[]
+                }) => {
+                  setItemsFiltrados(filteredItems)
+                  console.log('filteredItems', filteredItems)
+                }
+              }
+            })}
+          </div>
+        </div>
       )
     }
   ]
-} as Meta<PaginationProps<typeof options>>
+} as Meta<PaginationProps<IOptions>>
 
-export const Playground: StoryObj<PaginationProps<typeof options>> = {}
+export const Playground: StoryObj<PaginationProps<IOptions>> = {}
 
-export const Optional = () => {
+// Example
+const Usage = () => {
   const [itemsFiltrados, setItemsFiltrados] = React.useState<IOptions[]>()
   return (
     <div className="overflow-hidden flex-1 px-2">
@@ -84,12 +126,11 @@ export const Optional = () => {
             </tbody>
           </table>
         </div>
-        <Pagination<IOptions[]>
-          totalRecords={options.length}
+        <Pagination
+          perPageOptions={['3', '7']}
           items={options}
-          onPageChange={({ filteredItems }) => {
+          onPageChange={({ filteredItems }: { filteredItems: IOptions[] }) => {
             setItemsFiltrados(filteredItems)
-            console.log('items no stories', filteredItems)
           }}
         />
       </div>
