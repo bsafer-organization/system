@@ -1,20 +1,20 @@
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
 import { Text } from '../Text'
-import { Badge } from '../Badge'
+import { OverflowText } from '../OverflowText'
+
 import {
   ClipboardClose,
   ClipboardTick,
   Danger,
   ExportSquare,
   Receipt1,
-  Trash
+  Trash,
+  ImportCurve
 } from 'iconsax-react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { DropZoneContainer, OptionalBadge } from './styles'
-import DocViewer, { MSDocRenderer } from 'react-doc-viewer'
-import ReactFileViewer from 'react-file-viewer'
 
 interface IAcceptedFiles {
   [key: string]: string[]
@@ -49,23 +49,61 @@ const defaultSupportedFiles: ISupportedFiles = {
 type SupportedFilesKeys = keyof typeof defaultSupportedFiles
 
 export interface FileUploadProps {
+  /**
+   * Uploaded or attached file
+   */
   file?: File | string
+
+  /**
+   * Render a error message text below the component
+   */
   error?: string
+
+  /**
+   * Disable the component
+   * @default false
+   */
   disabled?: boolean
+
+  /**
+   * Handle the component changes (adding or removing files).
+   */
   onChangeFile?: (file?: File) => void
+
+  /**
+   * Component label
+   * @default 'Arquivo da Guia'
+   */
   label?: string
+
+  /**
+   * Render a badge with text 'Opcional'
+   * @default false
+   */
   optional?: boolean
+
+  /**
+   * List of supported files.\
+   * Available options:
+   * - pdf
+   * - png
+   * - jpeg
+   * - docx
+   * - doc
+   * @example ['pdf', 'png']
+   * @default ['pdf']
+   */
   supportedFiles?: SupportedFilesKeys[]
 }
 
 export const FileUpload = ({
   error,
   file,
-  disabled,
+  disabled = false,
   onChangeFile,
   label = 'Arquivo da Guia',
   optional = false,
-  supportedFiles = ['png', 'docx', 'pdf']
+  supportedFiles = ['pdf']
 }: FileUploadProps) => {
   let acceptedFileExtensions: IAcceptedFiles = {}
 
@@ -112,45 +150,13 @@ export const FileUpload = ({
 
   const isWordFile =
     isAttachedFileInstanceOfFile &&
-    attachedFile.type ===
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    (attachedFile.type ===
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+      attachedFile.type === 'application/msword')
 
-  const handleFileChange = async (file: File) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => {
-      setDocumentUri(reader.result as string)
-      console.log(reader.result)
-    }
-
-    // const file = event.target.files[0];
-
-    // Ler o arquivo .docx como um blob
-    // const reader = new FileReader()
-    // reader.onload = async (e) => {
-    //   const arrayBuffer = e.target && e.target.result
-    //   if (arrayBuffer && typeof arrayBuffer !== 'string') {
-    //     console.log('FileReader')
-
-    //     const buffer = new Uint8Array(arrayBuffer)
-    //     const blob = new Blob([buffer], {
-    //       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    //     })
-    //     // Converter o blob em URL de objeto
-    //     const url = URL.createObjectURL(blob)
-    //     // Abrir o URL em uma nova janela
-    //     window.open(url, '_blank')
-    //   }
-    // }
-    // reader.readAsArrayBuffer(file)
-  }
-
-  console.log('fileUrl', fileUrl)
-
-  function onDropAccepted(acceptedFiles: File[]) {
+  async function onDropAccepted(acceptedFiles: File[]) {
     if (onChangeFile) onChangeFile(acceptedFiles[0])
     setAttachedFile(acceptedFiles[0])
-    // handleFileChange(acceptedFiles[0])
   }
 
   function removeFile() {
@@ -182,45 +188,76 @@ export const FileUpload = ({
           </Text>
           {optional && <OptionalBadge>Opcional</OptionalBadge>}
         </div>
-        {disabled && (
-          <Button
-            size="sm"
-            color="default"
-            variant="text"
-            type="button"
-            endIcon={<ExportSquare />}
-            className="ml-auto"
-            onClick={handleViewFile}
-          >
-            Visualizar arquivo
-          </Button>
+        {disabled && (file || attachedFile) && (
+          <>
+            {isWordFile ? (
+              <Button
+                size="sm"
+                color="default"
+                variant="text"
+                type="button"
+                endIcon={<ImportCurve />}
+                className="ml-auto"
+                onClick={handleViewFile}
+              >
+                Fazer download
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                color="default"
+                variant="text"
+                type="button"
+                endIcon={<ExportSquare />}
+                className="ml-auto"
+                onClick={handleViewFile}
+              >
+                Visualizar arquivo
+              </Button>
+            )}
+          </>
         )}
         {!disabled && (
           <div className="ml-auto flex items-center">
-            {file && (
-              <IconButton
-                size="sm"
-                variant="text"
-                color="default"
-                type="button"
-                onClick={removeFile}
-              >
-                <Trash />
-              </IconButton>
+            {(file || attachedFile) && (
+              <>
+                <IconButton
+                  size="sm"
+                  variant="text"
+                  color="default"
+                  type="button"
+                  onClick={removeFile}
+                >
+                  <Trash />
+                </IconButton>
+
+                {isWordFile ? (
+                  <IconButton
+                    size="sm"
+                    variant="text"
+                    color="default"
+                    type="button"
+                    onClick={handleViewFile}
+                  >
+                    <ImportCurve />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    size="sm"
+                    variant="text"
+                    color="default"
+                    type="button"
+                    onClick={handleViewFile}
+                  >
+                    <ExportSquare />
+                  </IconButton>
+                )}
+              </>
             )}
-            <IconButton
-              size="sm"
-              variant="text"
-              color="default"
-              type="button"
-              onClick={handleViewFile}
-            >
-              <ExportSquare />
-            </IconButton>
           </div>
         )}
       </header>
-      <div className="flex-1">
+      <div className="flex-1 overflow-hidden">
         {!fileUrl && (
           <DropZoneContainer
             isDragAccept={isDragAccept}
@@ -232,7 +269,7 @@ export const FileUpload = ({
               <>
                 <ClipboardTick size={24} className="text-assistant-blue-main" />
                 <Text size="sm" color="assistant-blue-main">
-                  Solte o arquivo <Text>e aguarde carregar</Text>
+                  Solte o arquivo e aguarde carregar
                 </Text>
               </>
             )}
@@ -251,12 +288,16 @@ export const FileUpload = ({
                 <Receipt1 size={24} />
                 <Text size="sm">
                   Arrate o arquivo ou{' '}
-                  <Text color="assistant-blue-main">
+                  <Text
+                    size="sm"
+                    color="assistant-blue-main"
+                    className="cursor-pointer"
+                  >
                     clique aqui para carregar
                   </Text>
                 </Text>
                 <Text size="xs" color="grey-700">
-                  Arquivo suportados: {acceptedFileExtensionsCSV}
+                  Arquivos suportados: {acceptedFileExtensionsCSV}
                 </Text>
               </>
             )}
@@ -270,19 +311,7 @@ export const FileUpload = ({
           />
         )}
         {fileUrl && isWordFile && (
-          <>
-            <DocViewer
-              documents={[
-                { uri: URL.createObjectURL(attachedFile), fileType: 'docx' }
-              ]}
-              pluginRenderers={[MSDocRenderer]}
-            />
-            <embed
-              src={fileUrl}
-              type={fileType}
-              className="w-full min-h-[200px] rounded-lg"
-            />
-          </>
+          <OverflowText>{attachedFile.name}</OverflowText>
         )}
       </div>
       {error && (
