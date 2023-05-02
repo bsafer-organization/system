@@ -16,7 +16,6 @@ export * from './core/MaskInput'
 export * from './core/Modal'
 export * from './core/OverflowText'
 export * from './core/Poppover'
-export * from './core/Pagination'
 export * from './core/RadioButton'
 export * from './core/Search'
 export * from './core/Select'
@@ -29,6 +28,7 @@ export * from './core/Tooltip'
 export * from './organisms/SidebarMenu'
 export * from './organisms/SortableSelect'
 export * from './organisms/TopHeader'
+export * from './organisms/Pagination'
 
 
 

@@ -1,5 +1,5 @@
-import { Select } from '../Select'
-import { Text } from '../Text'
+import { Select } from '../../core/Select'
+import { Text } from '../../core/Text'
 import { useEffect, useMemo, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
