@@ -11,7 +11,8 @@ export default {
       console.log(file)
     },
     label: 'File upload',
-    optional: false
+    optional: false,
+    supportedFiles: ['docx', 'pdf']
   },
   argTypes: {
     error: {

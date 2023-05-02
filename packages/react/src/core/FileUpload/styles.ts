@@ -1,20 +1,18 @@
 import { w } from 'windstitch'
+import { twMerge } from 'tailwind-merge'
 
 export const FileUploadContainer = w.div(
   `
   border-2 rounded gap-3
   flex flex-col justify-center items-center px-5 py-10
-  min-h-[11.25rem] transition-all
+  min-h-[11.25rem] transition-all border-dashed
 `,
   {
     defaultVariants: {
-      isFocused: false,
       isDragAccept: false,
       isDragReject: false
     },
     variants: {
-      isFocused: (isFocused?: boolean) =>
-        isFocused ? 'border-solid' : 'border-dashed',
       isDragAccept: (isDragAccept?: boolean) =>
         isDragAccept
           ? 'border-assistant-blue-main bg-assistant-blue-light'
@@ -41,4 +39,14 @@ export const OptionalBadge = w.span(
     bg-background rounded
     `,
   {}
+)
+
+export const WordFileContainer = w.div(
+  `
+  border-2 rounded gap-3
+  flex flex-col justify-center items-center px-5 py-10
+  min-h-[11.25rem] transition-all border-solid overflow-hidden
+  border-assistant-blue-main bg-assistant-blue-light
+  
+`
 )

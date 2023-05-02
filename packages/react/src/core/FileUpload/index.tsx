@@ -1,7 +1,7 @@
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
 import { Text } from '../Text'
-import { OverflowText } from '../OverflowText'
+import { Tooltip } from '../Tooltip'
 
 import {
   ClipboardClose,
@@ -14,7 +14,7 @@ import {
 } from 'iconsax-react'
 import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { FileUploadContainer, OptionalBadge } from './styles'
+import { FileUploadContainer, OptionalBadge, WordFileContainer } from './styles'
 
 interface IAcceptedFiles {
   [key: string]: string[]
@@ -287,7 +287,7 @@ export const FileUpload = ({
               <>
                 <Receipt1 size={24} />
                 <Text size="sm">
-                  Arrate o arquivo ou{' '}
+                  Arraste o arquivo ou{' '}
                   <Text
                     size="sm"
                     color="assistant-blue-main"
@@ -311,7 +311,23 @@ export const FileUpload = ({
           />
         )}
         {fileUrl && isWordFile && (
-          <OverflowText>{attachedFile.name}</OverflowText>
+          <WordFileContainer>
+            <ClipboardTick size={24} className="text-assistant-blue-main" />
+            <Tooltip.Root>
+              <Tooltip.Trigger className="w-full text-center truncate">
+                <Text size="sm">{attachedFile.name}</Text>
+              </Tooltip.Trigger>
+              <Tooltip.Content>
+                <Text size="sm" className="w-full text-center">
+                  {attachedFile.name}
+                </Text>
+              </Tooltip.Content>
+            </Tooltip.Root>
+
+            <Text size="xs" color="grey-700" className="text-center">
+              A pré-visualização desse tipo de arquivo não está disponível
+            </Text>
+          </WordFileContainer>
         )}
       </div>
       {error && (
