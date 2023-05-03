@@ -33,7 +33,7 @@ export default {
     disabled: false,
     label: 'Colors',
     optional: false,
-    onValueChange: (value) => {
+    onValueChange: (value: any) => {
       console.log(value)
     }
   },
@@ -64,9 +64,9 @@ export default {
       )
     }
   ]
-} as Meta<SelectProps>
+} as Meta<SelectProps<any>>
 
-export const Playground: StoryObj<SelectProps> = {}
+export const Playground: StoryObj<SelectProps<any>> = {}
 
 export const Optional = () => {
   return (
@@ -92,7 +92,7 @@ export const Multiple = () => {
         optional={true}
         label="Colors"
         options={options}
-        onValueChange={(value) => {
+        onValueChange={(value: any) => {
           console.log(value)
         }}
       />

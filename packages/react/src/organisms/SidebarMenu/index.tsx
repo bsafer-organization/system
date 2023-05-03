@@ -20,7 +20,7 @@ function Root(props: SidebarMenuProps['Root']) {
   return (
     <SidebarMenuContext.Provider value={{ isOpen, activedRoute }}>
       <RootContainer isOpen={isOpen}>
-        <AbsoluteContainer>
+        <AbsoluteContainer isRootContainerOpen={isOpen}>
           <>{children}</>
         </AbsoluteContainer>
       </RootContainer>
@@ -90,15 +90,10 @@ function MenuItemTooptip(props: MenuItemTooltipProps) {
   }
 
   return (
-    <Tooltip
-      text={label}
-      delayDuration={100}
-      position={{
-        side: 'right'
-      }}
-    >
-      {children}
-    </Tooltip>
+    <Tooltip.Root delayDuration={100}>
+      <Tooltip.Trigger>{children}</Tooltip.Trigger>
+      <Tooltip.Content side="right">{label}</Tooltip.Content>
+    </Tooltip.Root>
   )
 }
 
