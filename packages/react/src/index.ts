@@ -28,6 +28,7 @@ export * from './core/Tooltip'
 export * from './organisms/SidebarMenu'
 export * from './organisms/SortableSelect'
 export * from './organisms/TopHeader'
+export * from './organisms/Pagination'
 
 
 
