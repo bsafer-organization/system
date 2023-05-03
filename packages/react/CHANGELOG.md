@@ -1,15 +1,24 @@
 # @bsafer-system/react
 
-## 1.14.0
+## 1.15.0
 
 ### Minor Changes
 
 New components:
+
 - FileUpload
- - Pagination
+- Pagination
 
 **Pagination** is most used to control how many items will be displayed per page in a table.
 **FileUpload** accepts drag and drop inputs.
+
+## 1.14.0
+
+### Minor Changes
+
+- Adjustments in Tooltip, Select e SortableSelect.
+  - The tooltip can receive any body. Changing the structure to composite components
+  - Interfaces fixes: Select and SortableSelect.
 
 ## 1.13.0
 
