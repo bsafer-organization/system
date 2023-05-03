@@ -45,6 +45,7 @@ export const Default = () => {
         <aside className="w-96">
           <SidebarMenu.Root isOpen={isOpen} activedRoute={page}>
             <SidebarMenu.List>
+              <h6>Geral</h6>
               <SidebarMenu.Item
                 icon={Building}
                 label="Home"
@@ -57,6 +58,7 @@ export const Default = () => {
                 route="/dashboard"
                 onClick={handleChangePage}
               />
+              <span className="border-t w-10 border-grey-500 " />
               <SidebarMenu.Item
                 icon={Figma}
                 label="Users"
