@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.15.2
+
+### Patch Changes
+
+- Change version to force an update
+
 ## 1.15.1
 
 ### Patch Changes

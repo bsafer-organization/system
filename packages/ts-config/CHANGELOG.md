@@ -1,5 +1,11 @@
 # @bsafer-system/ts-config
 
+## 1.0.3
+
+### Patch Changes
+
+- Change version to force an update
+
 ## 1.0.2
 
 ### Patch Changes

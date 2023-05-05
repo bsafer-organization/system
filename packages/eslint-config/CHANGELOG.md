@@ -1,5 +1,11 @@
 # @bsafer-system/eslint-config
 
+## 1.2.2
+
+### Patch Changes
+
+- Change version to force an update
+
 ## 1.2.1
 
 ### Patch Changes
