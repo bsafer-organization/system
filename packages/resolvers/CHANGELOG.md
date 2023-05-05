@@ -1,5 +1,13 @@
 # @bsafer-system/resolvers
 
+## 1.5.1
+
+### Patch Changes
+
+- Dependences and lock file adjustments
+- Updated dependencies
+  - @bsafer-system/tokens@1.3.2
+
 ## 1.5.0
 
 ### Minor Changes
