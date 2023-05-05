@@ -1,5 +1,11 @@
 # @bsafer-system/tokens
 
+## 1.3.3
+
+### Patch Changes
+
+- Change version to force an update
+
 ## 1.3.2
 
 ### Patch Changes
