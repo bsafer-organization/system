@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.15.3
+
+### Patch Changes
+
+- Changing Pagination function to const
+
 ## 1.15.2
 
 ### Patch Changes
@@ -23,6 +29,12 @@ New components:
 
 **Pagination** is most used to control how many items will be displayed per page in a table.
 **FileUpload** accepts drag and drop inputs.
+
+## 1.14.1
+
+### Patch Changes
+
+- Changing Pagination component to const
 
 ## 1.14.0
 
