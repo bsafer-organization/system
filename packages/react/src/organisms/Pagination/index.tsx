@@ -44,11 +44,13 @@ const defaultPerPageOptions: IPerPageOptions[] = [
   { label: '50', value: '50' }
 ]
 
-export function Pagination<T>({
+type PaginationComponent = <T>(props: PaginationProps<T>) => JSX.Element
+
+export const Pagination: PaginationComponent = ({
   onPageChange,
   items,
   perPageOptions
-}: PaginationProps<T>) {
+}) => {
   const formattedPerPageOptions: IPerPageOptions[] = useMemo(() => {
     let newPerPageOptionsArray: IPerPageOptions[] = []
     if (perPageOptions) {
@@ -94,7 +96,7 @@ export function Pagination<T>({
 
   const filteredItems = useMemo(
     () => items.slice(indexPerPage.init, indexPerPage.end + 1),
-    [amountPerPage, perPage.value, currentPage]
+    [amountPerPage, perPage.value, currentPage, items]
   )
 
   useEffect(() => {
