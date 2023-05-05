@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.14.1
+
+### Patch Changes
+
+- Changing Pagination component to const
+
 ## 1.14.0
 
 ### Minor Changes
