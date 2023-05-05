@@ -1,10 +1,6 @@
 {
   "name": "@bsafer-system/react",
-<<<<<<< HEAD
-  "version": "1.14.1",
-=======
-  "version": "1.15.2",
->>>>>>> 32d65eb7d4b248e10e2515de063ce200f75d8df4
+  "version": "1.15.3",
   "license": "MIT",
   "files": [
     "./dist"
