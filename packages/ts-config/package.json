@@ -1,6 +1,6 @@
 {
   "name": "@bsafer-system/ts-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "exports": {
     ".": "./base.json",
     "./base.json": "./base.json",

@@ -1,5 +1,11 @@
 # @bsafer-system/tokens
 
+## 1.3.2
+
+### Patch Changes
+
+- Dependences and lock file adjustments
+
 ## 1.3.1
 
 ### Patch Changes

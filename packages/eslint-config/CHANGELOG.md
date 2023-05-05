@@ -1,5 +1,11 @@
 # @bsafer-system/eslint-config
 
+## 1.2.1
+
+### Patch Changes
+
+- Dependences and lock file adjustments
+
 ## 1.2.0
 
 ### Minor Changes
