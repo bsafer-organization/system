@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.15.5
+
+### Patch Changes
+
+- Fix Tooltip export declaration
+
 ## 1.15.4
 
 ### Patch Changes
