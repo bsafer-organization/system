@@ -1,5 +1,11 @@
 # @bsafer-system/react
 
+## 1.15.4
+
+### Patch Changes
+
+- Update Pagination component and remove `react-paginate` dependence
+
 ## 1.15.3
 
 ### Patch Changes
