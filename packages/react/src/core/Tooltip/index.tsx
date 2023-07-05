@@ -6,7 +6,7 @@ import {
   TooltipTriggerProps
 } from './types'
 
-export function Root({
+function TooltipRoot({
   skipDelayDuration,
   delayDuration,
   disableHoverableContent,
@@ -24,11 +24,11 @@ export function Root({
   )
 }
 
-export function Trigger({ children, ...props }: TooltipTriggerProps) {
+function TooltipTrigger({ children, ...props }: TooltipTriggerProps) {
   return <RadixTooltip.Trigger {...props}>{children}</RadixTooltip.Trigger>
 }
 
-export function Content({
+function TooltipContent({
   arrow,
   portal,
   asChild = true,
@@ -51,9 +51,9 @@ export function Content({
 }
 
 export const Tooltip = {
-  Root,
-  Content,
-  Trigger
+  Root: TooltipRoot,
+  Content: TooltipContent,
+  Trigger: TooltipTrigger
 }
 
 export type TooltipProps = {
