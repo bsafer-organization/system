@@ -67,8 +67,10 @@ export const Playground: StoryFn<PaginationProps<IOptions>> = (props) => {
             </tbody>
           </table>
         </div>
+
         <Pagination
           perPageOptions={props.perPageOptions}
+          initSelectAsFrom={props.initSelectAsFrom}
           items={options}
           onPageChange={({ filteredItems }: { filteredItems: IOptions[] }) => {
             setItemsFiltrados(filteredItems)
@@ -80,6 +82,9 @@ export const Playground: StoryFn<PaginationProps<IOptions>> = (props) => {
 }
 
 Playground.argTypes = {
+  initSelectAsFrom: {
+    name: 'initSelectAsFrom: A number to trigger buttons or select component'
+  },
   perPageOptions: {
     // control: 'select',
     // options: ['2', '8', '25'],
@@ -88,5 +93,6 @@ Playground.argTypes = {
 }
 
 Playground.args = {
+  initSelectAsFrom: 5,
   perPageOptions: ['3', '7', '10']
 }
