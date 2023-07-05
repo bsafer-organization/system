@@ -146,7 +146,7 @@ export const Pagination: PaginationComponent = ({
             }}
             disabled={currentPage <= 0}
           >
-            <ArrowLeft2 />
+            <ArrowLeft2 size={18} />
           </PaginationButton>
         )}
 
@@ -188,7 +188,7 @@ export const Pagination: PaginationComponent = ({
             }}
             disabled={currentPage >= pageCount - 1}
           >
-            <ArrowRight2 />
+            <ArrowRight2 size={18} />
           </PaginationButton>
         )}
       </div>
