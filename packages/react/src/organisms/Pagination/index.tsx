@@ -1,7 +1,8 @@
+import { ArrowLeft2, ArrowRight2 } from 'iconsax-react'
+import { useEffect, useMemo, useState } from 'react'
 import { Select } from '../../core/Select'
 import { Text } from '../../core/Text'
-import { useEffect, useMemo, useState } from 'react'
-import ReactPaginate from 'react-paginate'
+import { PaginationButton } from './styles'
 
 interface IOnPageChangeData<T> {
   currentPage: number
@@ -35,6 +36,12 @@ export interface PaginationProps<T> {
    * @default ['10', '15', '25', '50']
    */
   perPageOptions?: string[]
+
+  /**
+   * Number of buttons available before render a select
+   * @default 5
+   */
+  initSelectAsFrom?: number
 }
 
 const defaultPerPageOptions: IPerPageOptions[] = [
@@ -49,7 +56,8 @@ type PaginationComponent = <T>(props: PaginationProps<T>) => JSX.Element
 export const Pagination: PaginationComponent = ({
   onPageChange,
   items,
-  perPageOptions
+  perPageOptions,
+  initSelectAsFrom = 5
 }) => {
   const formattedPerPageOptions: IPerPageOptions[] = useMemo(() => {
     let newPerPageOptionsArray: IPerPageOptions[] = []
@@ -73,6 +81,7 @@ export const Pagination: PaginationComponent = ({
 
   const pageCount = Math.ceil(totalRecords / Number(perPage.value))
   const amountPerPage = currentPage * Number(perPage.value)
+  const arrayFromPageCount = Array.from(Array(pageCount).keys())
 
   const indexPerPage = useMemo(
     () => ({
@@ -130,19 +139,58 @@ export const Pagination: PaginationComponent = ({
         </div>
       </div>
       <div className="flex items-center gap-2 [&_*]:select-none">
+        {pageCount > initSelectAsFrom && (
+          <PaginationButton
+            onClick={() => {
+              if (currentPage > 0) handlePageChange(currentPage - 1)
+            }}
+            disabled={currentPage <= 0}
+          >
+            <ArrowLeft2 />
+          </PaginationButton>
+        )}
+
         <Text>Página</Text>
-        <ReactPaginate
-          pageCount={pageCount}
-          pageRangeDisplayed={3}
-          forcePage={currentPage}
-          onPageChange={({ selected }) => handlePageChange(selected)}
-          containerClassName="flex justify-baseline gap-2"
-          pageLinkClassName="block py-1 px-2 text-grey-500 hover:bg-grey-100 rounded-2xl min-w-[1.5rem] text-center font-regular"
-          nextClassName="hidden"
-          previousClassName="hidden"
-          activeClassName="[&_a]:text-black"
-          breakLinkClassName="block h-full text-black pt-1"
-        />
+
+        {pageCount > initSelectAsFrom && (
+          <>
+            <Select
+              className="min-w-[4.2rem]"
+              options={arrayFromPageCount.map((i) => ({
+                label: `${i + 1}`,
+                value: `${i}`
+              }))}
+              value={{ label: `${currentPage + 1}`, value: `${currentPage}` }}
+              onValueChange={({ value }) => handlePageChange(Number(value))}
+              padding="0 0.2rem"
+            />
+            <Text className="whitespace-nowrap">de {pageCount}</Text>
+          </>
+        )}
+
+        {pageCount <= initSelectAsFrom &&
+          arrayFromPageCount.map((i) => {
+            return (
+              <PaginationButton
+                key={i}
+                onClick={() => handlePageChange(i)}
+                isCurrent={i === currentPage}
+              >
+                {i + 1}
+              </PaginationButton>
+            )
+          })}
+
+        {pageCount > initSelectAsFrom && (
+          <PaginationButton
+            onClick={() => {
+              if (currentPage < pageCount - 1) handlePageChange(currentPage + 1)
+            }}
+            disabled={currentPage >= pageCount - 1}
+          >
+            <ArrowRight2 />
+          </PaginationButton>
+        )}
       </div>
     </div>
   )
