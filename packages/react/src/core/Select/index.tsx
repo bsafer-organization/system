@@ -34,39 +34,39 @@ export interface CustomDropdownIndicatorProps {
 
 type MultipleSelectType<T> =
   | {
-      /**
-       * Support multiple selected options
-       */
-      multiple: true
-      /**
-       *
-       * @param value selected value
-       * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
-       */
-      onValueChange?: (values: SelectOption<T>[]) => void
-      /**
-       * Selected option from `options`
-       * @example [{label: 'Example', value: 'example'}]
-       */
-      defaultValue?: SelectOption<T>[]
-    }
+    /**
+     * Support multiple selected options
+     */
+    multiple: true
+    /**
+     *
+     * @param value selected value
+     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+     */
+    onValueChange?: (values: SelectOption<T>[]) => void
+    /**
+     * Selected option from `options`
+     * @example [{label: 'Example', value: 'example'}]
+     */
+    defaultValue?: SelectOption<T>[]
+  }
   | {
-      /**
-       * Support multiple selected options
-       */
-      multiple?: false
-      /**
-       *
-       * @param value selected value
-       * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
-       */
-      onValueChange?: (values: SelectOption<T>) => void
-      /**
-       * Selected option from `options`
-       * @example {label: 'Example', value: 'example'}
-       */
-      defaultValue?: SelectOption<T>
-    }
+    /**
+     * Support multiple selected options
+     */
+    multiple?: false
+    /**
+     *
+     * @param value selected value
+     * @returns `{label: 'selectedLabel', value: 'selectedValue'}`
+     */
+    onValueChange?: (values: SelectOption<T>) => void
+    /**
+     * Selected option from `options`
+     * @example {label: 'Example', value: 'example'}
+     */
+    defaultValue?: SelectOption<T>
+  }
 
 export interface DefaultSelectProps<T>
   extends ReactSelectProps<SelectOption<T>, boolean> {
@@ -173,44 +173,24 @@ export function Select<T>({
 }: SelectProps<T>) {
   const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false)
 
-  const [selectedOptions, setSelectedOptions] = React.useState<
-    SelectOption<T>[]
-  >((defaultValue as SelectOption<T>[]) || [])
-
   function handleSelectOnValueChange(
     selectedOptions: MultiValue<SelectOption<T>> | SingleValue<SelectOption<T>>
   ) {
     if (!multiple && !Array.isArray(selectedOptions)) {
-      const sss = options.find((option) => option === selectedOptions)
+      const sameValueFromOptions = options.find(
+        (option) => option === selectedOptions
+      )
 
-      if (sss && onValueChange) {
-        onValueChange(sss)
+      if (sameValueFromOptions && onValueChange) {
+        onValueChange(sameValueFromOptions)
       }
     }
 
     if (multiple) {
-      const test: SelectOption<T>[] = selectedOptions as SelectOption<T>[]
+      const parsedSelectedOptions: SelectOption<T>[] =
+        selectedOptions as SelectOption<T>[]
 
-      setSelectedOptions((prevState) => {
-        const prevSelectedOptions = prevState
-
-        const missing: SelectOption<T>[] = test.filter(
-          (option) => prevSelectedOptions.indexOf(option) < 0
-        )
-
-        const sss = options.find((option) => option === missing[0])
-
-        if (sss) {
-          prevSelectedOptions.push({
-            label: sss.label,
-            value: sss.value,
-            meta: sss.meta
-          })
-        }
-        if (onValueChange) onValueChange(prevSelectedOptions)
-
-        return test
-      })
+      if (onValueChange) onValueChange(parsedSelectedOptions)
     }
   }
 
