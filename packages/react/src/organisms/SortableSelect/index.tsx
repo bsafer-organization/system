@@ -281,6 +281,11 @@ export function SortableSelect<T>({
                         key={index}
                         ref={DraggableProvided.innerRef}
                         {...DraggableProvided.draggableProps}
+                        style={{
+                          ...DraggableProvided.draggableProps.style,
+                          // REVIEW: Refactor to create a portal instead change left property
+                          left: 'auto'
+                        }}
                       >
                         <SelectWithDrapIconContainer
                           disabled={disabled}
