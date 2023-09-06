@@ -1,10 +1,19 @@
 # @bsafer-system/react
 
+## 1.15.7
+
+### Patch Changes
+
+Sortable Select:
+
+ - Fixing component position.
+
 ## 1.15.6
 
 ### Patch Changes
 
 Select (with 'multiple' option):
+
 - Returning the entire value changed.
 
 ## 1.15.5
