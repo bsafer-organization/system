@@ -1,6 +1,6 @@
 // import { Draggable } from 'react-beautiful-dnd'
 import { Danger, HambergerMenu, Trash } from 'iconsax-react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   DragDropContext,
   Draggable,
@@ -112,13 +112,16 @@ export function SortableSelect<T>({
   containerProps,
   className
 }: SortableSelectProps<T>) {
-  const initialValue = value?.length
-    ? value?.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
-    : ([
+  const initialValue = React.useMemo(() => {
+    return value?.length
+      ? value?.map((item) => ({ ...item, itemId: crypto.randomUUID() }))
+      : ([
         {
           itemId: crypto.randomUUID()
         }
       ] as SortableSelectOptionWithId<T>[])
+  }, [value])
+
   const [items, setItems] =
     useState<SortableSelectOptionWithId<T>[]>(initialValue)
 
@@ -132,8 +135,8 @@ export function SortableSelect<T>({
     typeof optionsLimit === 'number'
       ? items.length >= optionsLimit
       : optionsLimit
-      ? items.length >= options.length
-      : false
+        ? items.length >= options.length
+        : false
 
   function handleAddToList() {
     const newEmptyItem = {
@@ -242,6 +245,10 @@ export function SortableSelect<T>({
     if (onValuesChange) onValuesChange(options)
   }
 
+  React.useEffect(() => {
+    setItems(initialValue)
+  }, [initialValue])
+
   return (
     <Container className={className} {...containerProps}>
       {(label || optional) && (
@@ -318,10 +325,10 @@ export function SortableSelect<T>({
                             value={
                               item.value
                                 ? {
-                                    label: item.label,
-                                    value: item.value,
-                                    meta: item.meta
-                                  }
+                                  label: item.label,
+                                  value: item.value,
+                                  meta: item.meta
+                                }
                                 : undefined
                             }
                             options={availableOptions}
