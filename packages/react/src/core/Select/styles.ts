@@ -105,7 +105,7 @@ export interface SelectStylesProps {
   padding?: string
   backgroundColor?: string
   border?: string
-  borderRadius?: SelectProps['borderRadius']
+  borderRadius?: SelectProps<any>['borderRadius']
   dropdownIndicator?: CustomDropdownIndicatorProps
 }
 
