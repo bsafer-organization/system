@@ -1,0 +1,2 @@
+import{t}from"./index-78ffb611.js";import"./iframe-2763bc4f.js";import"./es.map.constructor-0bfb1b94.js";import"./es.number.to-fixed-08ceb8c8.js";import"./index-406657fe.js";const c={actions:{argTypesRegex:"^on[A-Z].*"},controls:{matchers:{color:/(background|color)$/i,date:/Date$/}},docs:{theme:t.dark},layout:"centered",backgrounds:{default:"light",values:[{name:"light",value:"#F4F5F6"},{name:"dark",value:"#090A0B"}]}};export{c as parameters};
+//# sourceMappingURL=preview-6d1a58d3.js.map
