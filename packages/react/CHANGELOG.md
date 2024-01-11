@@ -1,12 +1,20 @@
 # @bsafer-system/react
 
+## 1.15.8
+
+### Patch Changes
+
+Sortable Select:
+
+- The state of received items has been optimized based on component updates
+
 ## 1.15.7
 
 ### Patch Changes
 
 Sortable Select:
 
- - Fixing component position.
+- Fixing component position.
 
 ## 1.15.6
 
